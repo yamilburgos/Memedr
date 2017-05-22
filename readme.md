@@ -1,4 +1,15 @@
 # Memedr
+Memedr is a app that brings people together based on their choice of memes. A user is presented with a meme, they can choose if they like it or not. If they like a meme their choice goes into the database. After selecting a certain amount of memes(to be decided) they will be matched with another user who has liked a certain percentage of those same memes(also to be decided).
+
+### CRUD FUNCTIONALITY
+1. CREATE
+    * User Profiles and Meme selections
+2. READ
+    * User Profiles and Meme selections
+3. UPDATE
+    * User Profiles
+4. DELETE
+    * User Profiles and Meme selections
 
 ### GITHUB PROJECTS/TRELLO
 
@@ -12,7 +23,6 @@
     * Update Profile
 3. Database Schema
 4. Matching Users
-5. 
 
 ### TECHNOLOGIES USED
 1. HTML/CSS/Javascript
