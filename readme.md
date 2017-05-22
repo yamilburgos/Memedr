@@ -53,6 +53,11 @@
     * Used to manage Cross Origin issues
 
 ### WIREFRAMES
+![Wireframe](./readme-assets/1.jpg)
+![Wireframe](./readme-assets/2.jpg)
+![Wireframe](./readme-assets/3.jpg)
+![Wireframe](./readme-assets/4.jpg)
+![Wireframe](./readme-assets/5.jpg)
 
 ### USER STORIES
 
