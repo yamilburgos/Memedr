@@ -44,4 +44,8 @@ INSERT into api_cache(meme_link)
             ('http://www.walmart.com/'),
             ('http://www.nike.com/');
 
-INSERT into save_memes(userid, memeid) VALUES(1, 2), (2, 2), (3, 1)
+INSERT into save_memes(userid, memeid, meme_link)
+    VALUES
+            (1, 2, 'http://www.google.com'),
+            (2, 2, 'http://www.amazon.com'),
+            (3, 1, 'http://www.bestbuy.com');
