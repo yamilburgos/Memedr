@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS api_cache(
 CREATE TABLE IF NOT EXISTS save_memes(
     userid INTEGER NOT NULL,
     memeid INTEGER NOT NULL,
-    meme_link TEXT NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(userid),
     FOREIGN KEY (memeid) REFERENCES api_cache(memeid)
 );
@@ -44,8 +43,8 @@ INSERT into api_cache(meme_link)
             ('http://www.walmart.com/'),
             ('http://www.nike.com/');
 
-INSERT into save_memes(userid, memeid, meme_link)
+INSERT into save_memes(userid, memeid)
     VALUES
-            (1, 2, 'http://www.google.com'),
-            (2, 2, 'http://www.amazon.com'),
-            (3, 1, 'http://www.bestbuy.com');
+            (1, 2),
+            (2, 2),
+            (3, 1);
