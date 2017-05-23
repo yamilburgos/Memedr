@@ -6,6 +6,7 @@ import axios from 'axios';
 // IMPORT COMPONENTS
 import Landing from './components/landing';
 import About from "./components/about";
+import SignUp from "./components/signup";
 
 export default class App extends Component {
   render() {
@@ -13,6 +14,7 @@ export default class App extends Component {
       <div className="App-header">
         <Landing/>
         <About/>
+        <SignUp/>
       </div>
     );
   }

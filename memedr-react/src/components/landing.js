@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 
-export default class App extends Component {
+export default class Landing extends Component {
   render() {
     return (
       <div className="bigBoarder">
@@ -9,11 +9,8 @@ export default class App extends Component {
           <h3>Gif me a Choice</h3>
 
           <div className="tempBorder">
-            <p>User Name: </p>
-            <input type="text" id="userValue"/>
-
-            <p>Password: </p>
-            <input type="text" id="passwordValue"/>
+            <p>User Name: <input type="text" id="userValue"/></p>
+            <p>Password: <input type="text" id="passwordValue"/></p>
             
             <br/><button>Log In</button>
             <br/><a href="#">Forgot your Password?</a>
@@ -21,7 +18,6 @@ export default class App extends Component {
             <br/><a href="#">Sign Up</a>
             <br/><button>About</button>
           </div>
-
       </div>
     );
   }
