@@ -5,14 +5,15 @@ CREATE DATABASE memedr_app;
 
 CREATE TABLE IF NOT EXISTS users(
     userid BIGSERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
+    username VARCHAR(20) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    location VARCHAR(255) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    location VARCHAR(100) NOT NULL,
     gender VARCHAR(6) NOT NULL,
     profile_image TEXT NOT NULL,
-    eighteen BOOLEAN NOT NULL,
-    active BOOLEAN
+    age INTEGER(5) NOT NULL,
+    active BOOLEAN DEFAULT TRUE,
+    CHECK (age>=18)
 );
 
 CREATE TABLE IF NOT EXISTS subtitles(
@@ -32,19 +33,20 @@ CREATE TABLE IF NOT EXISTS save_memes(
     FOREIGN KEY (memeid) REFERENCES api_cache(memeid)
 );
 
-INSERT into users(username, password, email, location, gender, profile_image, eighteen, active)
+INSERT into users(username, password, email, location, gender, profile_image, age)
     VALUES
-            ('GainorB', 'burger', 'gainorbostwick@gmail.com', 'New York', 'Male', 'http://www.google.com', TRUE, TRUE),
-            ('RogerB', 'burger', 'rogerbostwick@gmail.com', 'New York', 'Male', 'http://www.amazon.com', TRUE, TRUE),
-            ('EricS', 'burger', 'ericsanchez@gmail.com', 'New York', 'Male', 'http://www.bestbuy.com', TRUE, TRUE);
+            ('GainorB', 'burger', 'gainorbostwick@gmail.com', 'New York', 'Male', 'http://www.google.com', 27),
+            ('RogerB', 'burger', 'rogerbostwick@gmail.com', 'New York', 'Male', 'http://www.amazon.com', 18),
+            ('EricS', 'burger', 'ericsanchez@gmail.com', 'New York', 'Male', 'http://www.bestbuy.com', 30);
 
 INSERT into api_cache(meme_link)
     VALUES
             ('http://www.walmart.com/'),
-            ('http://www.nike.com/');
+            ('http://www.nike.com/'),
+            ('http://www.adidas.com/');
 
 INSERT into save_memes(userid, memeid)
     VALUES
-            (1, 2),
+            (1, 1),
             (2, 2),
             (3, 1);

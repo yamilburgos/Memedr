@@ -1,9 +1,9 @@
 ## QUERIES
 
 #### GRABS USERNAME FROM USERS TABLE AND RETURNS A TABLE WITH USERNAME AND A SPECIFIED MEMEID (USED TO FIND MATCHES)
-This query shows the usernames that liked the same meme (based on memeid).
+This query shows the usernames that liked a specific meme (based on memeid).
 ````
-SELECT users.username, save_memes.memeid
+SELECT users.username, users.userid, save_memes.memeid
 FROM users
 INNER JOIN save_memes ON users.userid = save_memes.userid
 WHERE save_memes.memeid = 2;
@@ -23,3 +23,9 @@ INNER JOIN save_memes ON users.userid = save_memes.userid
 WHERE users.username = 'GainorB';
 ````
 
+#### RETURNS A TABLE WITH USERNAME, USERID, GENDER, LOCATION, PROFILE IMAGE, MEMEID OF WHAT THE USERS LIKED
+````
+SELECT users.username, users.userid, users.gender, users.location, users.profile_image, save_memes.memeid
+FROM users
+INNER JOIN save_memes ON users.userid = save_memes.userid;
+````
