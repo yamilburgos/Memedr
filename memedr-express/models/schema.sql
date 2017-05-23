@@ -4,40 +4,44 @@ CREATE DATABASE memedr_app;
 \c memedr_app;
 
 CREATE TABLE IF NOT EXISTS users(
-    user_id BIGSERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE,
-    password VARCHAR(255),
-    email VARCHAR(255) UNIQUE,
-    location VARCHAR(255),
-    gender VARCHAR(6),
-    profile_image TEXT,
-    eighteen BOOLEAN,
+    userid BIGSERIAL PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    gender VARCHAR(6) NOT NULL,
+    profile_image TEXT NOT NULL,
+    eighteen BOOLEAN NOT NULL,
     active BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS subtitles(
-    subtitle_id BIGSERIAL PRIMARY KEY,
+    subtitleid BIGSERIAL PRIMARY KEY NOT NULL,
     subtitle TEXT NOT NULL
-)
+);
 
 CREATE TABLE IF NOT EXISTS api_cache(
-    meme_id BIGSERIAL PRIMARY KEY NOT NULL,
+    memeid BIGSERIAL PRIMARY KEY NOT NULL,
     meme_link TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS save_memes(
-    user_id BIGSERIAL PRIMARY KEY NOT NULL,
-    meme_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (meme_id) REFERENCES api_cache(meme_id)
+    userid INTEGER NOT NULL,
+    memeid INTEGER NOT NULL,
+    meme_link TEXT NOT NULL,
+    FOREIGN KEY (userid) REFERENCES users(userid),
+    FOREIGN KEY (memeid) REFERENCES api_cache(memeid)
 );
 
 INSERT into users(username, password, email, location, gender, profile_image, eighteen, active)
     VALUES
             ('GainorB', 'burger', 'gainorbostwick@gmail.com', 'New York', 'Male', 'http://www.google.com', TRUE, TRUE),
-            ('RogerB', 'burger', 'rogerbostwick@gmail.com', 'New York', 'Male', 'http://www.amazon.com', TRUE, TRUE);
+            ('RogerB', 'burger', 'rogerbostwick@gmail.com', 'New York', 'Male', 'http://www.amazon.com', TRUE, TRUE),
+            ('EricS', 'burger', 'ericsanchez@gmail.com', 'New York', 'Male', 'http://www.bestbuy.com', TRUE, TRUE);
 
 INSERT into api_cache(meme_link)
     VALUES
             ('http://www.walmart.com/'),
             ('http://www.nike.com/');
+
+INSERT into save_memes(userid, memeid) VALUES(1, 2), (2, 2), (3, 1)
