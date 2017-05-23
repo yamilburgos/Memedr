@@ -12,9 +12,15 @@
 
 .tempBorder {
     border: 1px solid black;
-    height: 300px;
+    height: 510px;
 }
 
-.bigBoarder {
+.bigBorder {
     border: 5px solid black;
+}
+
+.imgBorder {
+    border: 3px dashed black;
+    width: 150px;
+    height: 150px;
 }

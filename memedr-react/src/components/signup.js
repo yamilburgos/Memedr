@@ -4,34 +4,32 @@ import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom'
 export default class SignUp extends Component {
   render() {
     return (
-      <div className="bigBoarder">
+      <div className="bigBorder">
           <h2>Memedr</h2>
           <h3>Gif me a Choice</h3>
 
           <div className="tempBorder">
-            <p>User Name: </p>
-            <input type="text"/>
-            <p>Email: </p>
-            <input type="text"/>
+            <p>User Name: <input type="text"/></p>
+            <p>Email: <input type="text"/></p>
+    
+            <p>Password: <input type="text"/></p>
+            
+            <p>Confirm Password: <input type="text"/></p>
+            
 
-            <p>Password: </p>
-            <input type="text"/>
-            <p>Confirm Password: </p>
-            <input type="text"/>
-
-            <p>Location: </p> <select name="location">
+            <p>Location: <select name="location">
                 <option value="queens">Queens</option>
                 <option value="manhattan">Manhattan</option>
                 <option value="statenisland">Staten Island</option>
                 <option value="brookyln">Brooklyn</option>
                 <option value="bronx">Bronx</option>
-            </select>
+            </select></p>
 
-            <p>Sex: </p> <select name="sex">
+            <p>Sex: <select name="sex">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
-            </select>
+            </select></p>
 
             <p>Profile Image: </p> <input type="text"/>
 

@@ -7,6 +7,9 @@ import axios from 'axios';
 import Landing from './components/landing';
 import About from "./components/about";
 import SignUp from "./components/signup";
+import Profile from "./components/profile";
+import Main from "./components/main";
+import Matches from "./components/matches";
 
 export default class App extends Component {
   render() {
@@ -15,6 +18,9 @@ export default class App extends Component {
         <Landing/>
         <About/>
         <SignUp/>
+        <Profile/>
+        <Main/>
+        <Matches/>
       </div>
     );
   }

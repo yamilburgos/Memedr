@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom'
 export default class About extends Component {
   render() {
     return (
-      <div className="bigBoarder">
+      <div className="bigBorder">
           <h2>Memedr</h2>
           <h3>Gif me a Choice</h3>
 
