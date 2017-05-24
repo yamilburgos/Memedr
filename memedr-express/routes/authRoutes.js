@@ -12,7 +12,20 @@ router.post('/register', (req, res, next) => {
 
       if (err) return next(err);
 
-      res.redirect('/registered');
+      // SUCCESSFULLY REGISTERED
+      // SEND USER PROFILE JSON
+      // SPIT BACK A JSON OBJECT WITH REGISTERED USERS INFORMATION
+      // SEND AUTH "TRUE" TO SET STATE ON REACT
+      res.status(201).json({ 
+        user_profile: {
+          username: req.body.username,
+          email: req.body.email,
+          location: req.body.location,
+          gender: req.body.gender,
+          profile_image: req.body.profile_image,
+          age: req.body.age
+        }, 
+        auth: true });
 
     });
   }).catch((err) => {
