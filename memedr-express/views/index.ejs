@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   </head>
   <body>
-<h2>REGISTER</h2>
-  <form method='post' action='/auth/register'>
-    <div className="tempBorder">
-        <p>User Name: <input type="text" name="username" value="gustave"/></p>
-        <p>Email: <input type="text" name="email" value="gustave@gmail.com"/></p>
-        <p>Password: <input type="password" name="password" value="burger"/></p>
-        <p>Confirm Password: <input type="password" value="burger"/></p>
-        <p>Location: <select name="location">
-        <option value="queens">Queens</option>
-        <option value="manhattan">Manhattan</option>
-        <option value="statenisland">Staten Island</option>
-        <option value="brookyln">Brooklyn</option>
-        <option value="bronx">Bronx</option>
-        </select></p>
-        <p>Sex: <select name="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-        </select></p>
-        <p>Profile Image: <input type="url" name="profile_image" value="http://localhost:3000/"/></p>
-        <p>Age? <input type="number" name="age" value="27"/></p>
-        <input type="submit" value="Create Account">
-    </div>
-  </form>
+    <h1><%= title %> API Documentation</h1>
+    <span class="subLinks">[ github: <a href="https://git.generalassemb.ly/GainorB/memedr">https://git.generalassemb.ly/GainorB/memedr</a> | [ api: <a href="https://memedr.herokuapp.com/">https://memedr.herokuapp.com/</a> ] | live: <a href=""></a> ]</span><br>
+    No authentication is required to access this API. All resources are fully open and available.
+    <ul>
+    <li>By using, our API you agree to our Terms of Service.</li>
+    </ul>
+    <h3>GET ALL MEMES</h3>
+    <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">getMemes</span></span></div>
+    <h3>HOW TO DELETE A MEME</h3>
+    <div class="errorDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">meme/:id</span></span></div>
+    <h5>JSON FORMAT FOR DELETING</h5>
+    <div class="errorDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
+    <h5>DELETION SUCCESS RESPONSE</h5>
+    <div class="errorDiv">
+         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme Deleted"<br> }</small></div>
 
-<h2>LOGIN</h2>
-  <form method='post' action='/auth/login'>
-      <p>Username: <input type="text" name="username"/></p>
-      <p>Password: <input type="password" name="password"/></p>
-      <input type="submit" value="Login">
-  </form>
+
+    <h5>JSON FORMAT</h5>
+    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"post" : "content goes here"<br> }</small></div>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv">
+         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Success" : "Tweed Created."<br> }</small></div>
+    <h5>ERROR RESPONSE</h5>
+    <div class="errorDiv">
+         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Error" : "Tweed Not Created. Try Again."<br> }</small></div>
+    <h5>STATUS CODES</h5>
+    <div class="statusDiv"><small><p><span class="get">200 OK:</span> The request has completed successfully.</p>
+         <p><span class="get">201 Created:</span> The request has been fulfilled, resulting in the creation of a new resource.</p>
+         <p><span class="error">400 Bad Request:</span> Invalid submission.</p>
+         <p><span class="error">401 Unauthorized:</span> The user is not authorized.</p>
+         <p><span class="error">404 Page Not Found:</span> The requested page doesn't exist.</p>
+         <p><span class="error">500 Internal Server Error:</span> Internal server exception. The request didn't succeed.</p></small></div>
   </body>
 </html>

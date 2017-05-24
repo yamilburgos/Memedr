@@ -12,8 +12,10 @@ router.post('/register', (req, res, next) => {
 
       if (err) return next(err);
 
-      //res.redirect('/registered');
-
+      // SUCCESSFULLY REGISTERED
+      // SEND USER PROFILE JSON
+      // SPIT BACK A JSON OBJECT WITH REGISTERED USERS INFORMATION
+      // SEND AUTH "TRUE" TO SET STATE ON REACT
       res.status(201).json({ 
         user_profile: {
           username: req.body.username,

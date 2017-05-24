@@ -5,7 +5,7 @@ var db = require('../db/queries');
 const authHelpers = require('../services/auth/auth-helpers');
 
 router.get('/', function (req, res, next) {
-  res.render('index');
+  res.render('index', { title: "Memedr" } );
 });
 
 // SUCCESSFULLY LOGGING IN
@@ -20,14 +20,6 @@ router.get('/failure', function(req, res, next){
   res.status(403).json({ auth: false });
 });
 
-// SUCCESSFULLY REGISTERED
-// SEND USER PROFILE JSON
-// SPIT BACK A JSON OBJECT WITH REGISTERED USERS LOGIN INFORMATION
-// SEND AUTH "TRUE" TO SET STATE ON REACT
-/*router.get('/registered', authHelpers.loginRequired, function(req, res, next){
-  res.status(201).json({ user_profile: req.user, auth: true });
-});*/
-
 // WILDCARD
 // REDIRECT TO REACT BUILD FOLDER
 /*router.get('*', (req, res, next) => {
@@ -41,13 +33,16 @@ router.get('/failure', function(req, res, next){
 */
 
 // THIS ROUTE IS RESPONSIBLE FOR GETTING THE MEMES FROM THE API_CACHE TABLE
-//router.get('/getMemes', db.getMemes);
+router.get('/getMemes', db.getMemes);
 
 // THIS ROUTE IS RESPONSIBLE FOR CALLING THE GIPHY API
 // THIS IS WHERE AXIOS LIVES
 // THIS ROUTE WILL INSERT MEMES FROM AXIOS CALL INTO API_CACHE TABLE
-//router.post('requestAPI', db.requestAPI);
+router.get('/requestAPI', db.requestAPI);
 
-//
+// ADMINISTRATION
+// DELETE MEME FROM API_CACHE TABLE
+router.delete('/meme/:id', db.deleteMemeFromCache);
+
 
 module.exports = router;
