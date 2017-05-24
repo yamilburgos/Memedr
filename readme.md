@@ -13,8 +13,8 @@ Memedr is a app that brings people together based on their choice of memes. A us
 4. DELETE
     * User Profiles and Meme selections
 
-### TRELLO
-https://trello.com/b/Qv5DWmnq/memedr
+### Git Projects
+https://git.generalassemb.ly/GainorB/memedr/projects/1
 
 ### API
 1. Gify API
