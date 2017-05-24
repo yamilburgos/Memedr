@@ -5,7 +5,7 @@ var axios = require('axios');
 function getMemes(req, res, next){
     db.any('SELECT * FROM api_cache')
     .then((data) => {
-        res.status(200).json({ memes:data });
+        res.status(200).json({ memes: data });
     })
     .catch((err) => {
         return next(err);
@@ -34,10 +34,41 @@ function deleteMemeFromCache(req, res, next){
     let memeID = parseInt(req.params.id);
 
     db.result('DELETE FROM api_cache WHERE id = $1', memeID)
-      .then((result) => { res.status(200).json({ status: "Meme Deleted" }); })
+      .then((result) => { res.status(200).json({ status: `Meme ${memeID} deleted` }); })
       .catch((err) => { return next(err); });
 }
 
-// 
+// THIS FUNCTION WILL SAVE A MEME TO A USERS PROFILE
+// CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
+// INSERT INTO SAVE_MEMES TABLE
+function saveToProfile(req, res, next){
+    let memeID = parseInt(req.body.memeid);
+    console.log(memeID);
+    let userID = parseInt(req.params.id);
+    console.log(userID);
+    
+    db.none('INSERT into save_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
+      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully saved to user ${userID}'s profile` }); /*console.log(`Meme ${memeID} saved for user ${userID}`)*/ })
+      .catch((err) => { return next(err); });
+}
 
-module.exports = { getMemes, requestAPI, deleteMemeFromCache,  };
+// THIS FUNCTION WILL RETURN THE USERS THAT SAVED ANY MEME
+function getUsersWithSaves(req, res, next){
+    db.any('SELECT * FROM save_memes')
+      .then((data) => { res.status(200).json({ Showing: "Users with Saves" , data }); })
+      .catch((err) => { return next(err); });
+}
+
+// THIS FUNCTION WILL "NULLY" A USER
+// WHEN A USER DECIDES TO DELETE THEIR PROFILE, WE UPDATE THEIR PROFILE WITH "NULLY" VALUES
+// AND SWITCH STATUS TO INACTIVE
+function nullyAUser(req, res, next){
+    let userID = parseInt(req.params.id);
+
+    db.none('UPDATE users SET username=$1, email=$2, location=$3, gender=$4, profile_image=$5, age=$6, active=$7 WHERE id=$8', 
+                                ["nully", "nully@nully.com", "nully", "nully", "nully", 18, false, userID])
+      .then((data) => { res.status(200).json({ status: `User ${userID} successfully nully'd` }); })
+      .catch((err) => { return next(err); });
+}
+
+module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser  };

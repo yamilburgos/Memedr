@@ -44,5 +44,16 @@ router.get('/requestAPI', db.requestAPI);
 // DELETE MEME FROM API_CACHE TABLE
 router.delete('/meme/:id', db.deleteMemeFromCache);
 
+// SAVE A MEME TO A USER PROFILE
+// WHEN THE CHECK IS CLICKED
+router.put('/save/profile/:id', db.saveToProfile);
+
+// GET ALL USERS WITH SAVES
+router.get('/users/withsaves', db.getUsersWithSaves);
+
+// NULL A USER
+// WHEN A USER DELETES THEIR PROFILE, INSTEAD OF DELETED FROM USERS TABLE, WE NULL THEIR PROFILE
+// AND ALSO MAKE IT INACTIVE
+router.put('/users/nully/:id', db.nullyAUser);
 
 module.exports = router;
