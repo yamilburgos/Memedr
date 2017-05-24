@@ -18,7 +18,7 @@ https://trello.com/b/Qv5DWmnq/memedr
 
 ### API
 1. Gify API
-2. Meme API, etc..
+2. imgflip API 
 
 ### MVP
 1. Theme
