@@ -14,13 +14,21 @@
     </ul>
     <h3>GET ALL MEMES</h3>
     <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">getMemes</span></span></div>
+    <h3>GET ALL USERS WITH MEMES SAVED TO PROFILE</h3>
+    <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">users/withsaves</span></span></div>
     <h3>HOW TO DELETE A MEME</h3>
     <div class="errorDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">meme/:id</span></span></div>
     <h5>JSON FORMAT FOR DELETING</h5>
     <div class="errorDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
     <h5>DELETION SUCCESS RESPONSE</h5>
-    <div class="errorDiv">
-         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme Deleted"<br> }</small></div>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme Deleted"<br> }</small></div>
+    <h3>HOW TO DELETE A USER (AKA NULLY)</h3>
+    <div class="errorDiv"><span class="larger"><span class="delete">UPDATE</span> https://memedr.herokuapp.com/<span class="delete">users/nully/:id</span></span></div>
+    <h5>JSON FORMAT FOR DELETING A USER</h5>
+    <div class="errorDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
+    <h5>DELETION SUCCESS RESPONSE</h5>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User successfully nully'd"<br> }</small></div>
+
 
 
     <h5>JSON FORMAT</h5>
