@@ -5,10 +5,10 @@ CREATE DATABASE memedr_app;
 
 CREATE TABLE IF NOT EXISTS users(
     userid BIGSERIAL PRIMARY KEY,
-    username VARCHAR(20) UNIQUE NOT NULL,
+    username VARCHAR(30) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    location VARCHAR(100) NOT NULL,
+    email VARCHAR(200) UNIQUE NOT NULL,
+    location VARCHAR(200) NOT NULL,
     gender VARCHAR(6) NOT NULL,
     profile_image TEXT NOT NULL,
     age INTEGER(5) NOT NULL,
