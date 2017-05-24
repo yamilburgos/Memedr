@@ -7,10 +7,13 @@ var cors = require('cors');
 // USING EXPRESS
 var express = require('express');
 
+// SET UP PATHS (STATIC FILES)
 var path = require('path');
 // TERMINAL LOGGER
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+
+// PROCESS INCOMING FORM INPUT
 var bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
@@ -19,6 +22,7 @@ const passport = require('passport');
 var index = require('./routes/index');
 var authRoutes = require('./routes/authRoutes');
 
+// USE EXPRESS METHODS
 var app = express();
 
 // VIEW ENGINE SETUP
@@ -57,20 +61,20 @@ app.use(cors());
 app.use('/', index);
 app.use('/auth', authRoutes);
 
-// catch 404 and forward to error handler
+// CATCH 404 AND FORWARD TO ERROR HANDLER
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-// error handler
+// ERROR HANDLER
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // RENDER ERROR PAGE
   res.status(err.status || 500);
   res.render('error');
 });
