@@ -20,13 +20,13 @@ function createNewUser(req, res) {
 }
 
 function loginRedirect(req, res, next) {
-    if (req.user) res.json({ message: "You're already logged in." });
+    if (req.user) res.status(201).json({ message: "You're already logged in." });
 
     return next();
 }
 
 function loginRequired(req, res, next) {
-    if (!req.user) res.json({ auth: false, message: "Please login." });
+    if (!req.user) res.status(403).json({ auth: false, message: "Please login." });
 
     return next();
 }

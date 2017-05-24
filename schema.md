@@ -29,3 +29,27 @@ SELECT users.username, users.userid, users.gender, users.location, users.profile
 FROM users
 INNER JOIN save_memes ON users.userid = save_memes.userid;
 ````
+
+
+
+````
+INSERT into users(username, password, email, location, gender, profile_image, age)
+    VALUES
+            ('GainorB', 'burger', 'gainorbostwick@gmail.com', 'New York', 'Male', 'http://www.google.com', 27),
+            ('RogerB', 'burger', 'rogerbostwick@gmail.com', 'New York', 'Male', 'http://www.amazon.com', 18),
+            ('EricS', 'burger', 'ericsanchez@gmail.com', 'New York', 'Male', 'http://www.bestbuy.com', 30);
+````
+````
+INSERT into api_cache(meme_link)
+    VALUES
+            ('http://www.walmart.com/'),
+            ('http://www.nike.com/'),
+            ('http://www.adidas.com/');
+````
+````
+INSERT into save_memes(userid, memeid)
+    VALUES
+            (1, 1),
+            (2, 2),
+            (3, 1);
+````
