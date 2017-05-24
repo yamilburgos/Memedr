@@ -12,6 +12,17 @@ import Main from "./components/main";
 import Matches from "./components/matches";
 
 export default class App extends Component {
+	constructor(props) {
+    super(props);
+    this.state = {loggedIn: false, response: [], username: "Bobby"};
+  }
+
+	profile = (props) => {
+      return (
+        <Profile loggedOut={"This is what I am passing!"}	user={this.state.username}/>
+      );
+    }
+
   render() {
     return (
       <div className="App-header">
@@ -27,13 +38,16 @@ export default class App extends Component {
 		       		<Route path="/" exact component={Landing}></Route>
 		       		<Route path="/about" component={About}></Route>
 		       		<Route path="/signup" component={SignUp}></Route>
-		       		<Route path="/profile" component={Profile}></Route>
+							 
+		       		{/*<Route path="/profile" component={Profile} loggedIn = {this.state
+							 .loggedIn}></Route>*/}
+							 <Route path="/profile" render={this.profile}></Route>
+
 		       		<Route path="/main" component={Main}></Route>
 		       		<Route path="/matches" component={Matches}></Route>
 		       </Switch>
 		      </div>
-	      </Router>        
-
+	      </Router>
       </div>
     );
   }
