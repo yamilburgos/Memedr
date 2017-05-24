@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class SignUp extends Component {  
@@ -14,7 +14,9 @@ export default class SignUp extends Component {
         age: this.refs.age.value
     }).then(function (response) { 
            console.log("Something was sent", response);
-           window.location = "./main";
+           this.setState = {profileData: response.data.user_profile,
+              loggedIn: response.data.auth};
+         //  window.location = "./main";
       }).catch(function(response) {
            console.log("Error:", response); 
       });

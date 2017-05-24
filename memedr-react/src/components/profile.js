@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+        console.log(this.props.loggedOut);
+        console.log(this.props.user);
+
+  }
+    componentDidMount() {
+      
+  //   axios.get("").then((allData) => {
+  //     //  this.setState({ logged: allData.data.results });
+  //    });
+   }
+
   render() {
     return (
       <div className="bigBorder">
@@ -15,7 +29,7 @@ export default class Profile extends Component {
             <button>Main</button>
 
             <br/>
-            <p>Profile Image: </p>
+            <img href={""}></img>
             <p>User Name: Here's Johnnny</p>
             <p>Email: johnny.smith@gmail.com</p>
             <p>Location: Brooklyn</p>
