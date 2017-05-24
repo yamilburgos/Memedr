@@ -11,7 +11,8 @@ router.post('/register', (req, res, next) => {
 
       if (err) return next(err);
 
-      // LOGGED REGISTERED USE NEEDS AUTH "TRUE" ON REACT STATE
+      // SPIT BACK A JSON OBJECT WITH REGISTERED USERS LOGIN INFORMATION
+      // SEND AUTH "TRUE" TO SET STATE ON REACT
       res.json({
         user_profile: {
           username: req.body.username,
@@ -28,7 +29,8 @@ router.post('/register', (req, res, next) => {
     });
   }).catch((err) => {
     res.status(500).json({
-      status: 'Registration Error: Username or Email already in use.'
+      error: 'Registration Error',
+      message: 'Common Issues: Username is taken, Email is taken, or younger than 18.',
     });
   });
 });
@@ -36,10 +38,11 @@ router.post('/register', (req, res, next) => {
 // WORKS!!!
 // NEED TO FIGURE OUT SUCCESS AND FAILURE REDIRECTS
 router.post('/login', passport.authenticate('local', {
-  successRedirect: 'http://www.google.com/',
-  failureRedirect: 'http://www.amazon.com/',
+  successRedirect: '/success',
+  failureRedirect: '/failure',
   failureFlash: true
-}), (req, res, next) => {});
+  
+}), (req, res, next) => { console.log("login"); });
 
 // WORKS!!
 // SENDS AUTH "FALSE" BACK TO REACT TO SWITCH STATE OF A LOGGED IN USER
