@@ -5,8 +5,7 @@ import axios from 'axios';
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-        console.log(this.props.loggedOut);
-        console.log(this.props.user);
+        console.log(this.props.userData);
 
   }
     componentDidMount() {
@@ -33,7 +32,7 @@ export default class Profile extends Component {
             <p>User Name: Here's Johnnny</p>
             <p>Email: johnny.smith@gmail.com</p>
             <p>Location: Brooklyn</p>
-            <p>Sex: Other</p>
+            <p>Gender: Other</p>
             
             <br/><button>Edit Profile</button>
             <br/><button>Change Password</button>
