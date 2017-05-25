@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 
 export default class UserStatus extends Component {
   
   renderLogInData() {
-      let text = !this.props.loggedIn ? "False" : "True";
-      return <h3>Login Status: {text}</h3>;
-    /*if(this.props.loggedIn !== true) {
+    if(this.props.loggedIn !== true) {
      return (
-        <span>
-          <p>User Name: <input type="text" ref="username"/></p>
-          <p>Password: <input type="text" ref="password"/></p>
-            
-          <br/><button onClick={() => this.checkUserData()}>Log In</button>
-          <br/><a href="/">Forgot your Password?</a>
-          <br/><a href="/signup">Sign Up</a>
-        </span>
+        <div>
+          <NavLink to="/signup">Sign Up</NavLink>
+        </div>
       );
     }
 
-    else {
-      return (
-        <span>
-          <p>All Set! Enjoy Memedr!</p>
-        </span>
-      );
-    }*/
+    return <h3>You are now Logged In!</h3>;
 }
 
   render() {
