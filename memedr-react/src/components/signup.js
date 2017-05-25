@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
-import axios from 'axios';
 
-export default class SignUp extends Component {  
+export default class SignUp extends Component {
   newUserData() {
-    axios.post("https://memedr.herokuapp.com/auth/register", {
-        username: this.refs.username.value,
-        password: this.refs.password.value,
-        email: this.refs.email.value,
-        location: this.refs.location.value,
-        gender:  this.refs.gender.value,
-        profile_image: this.refs.image.value,
-        age: this.refs.age.value
-    }).then(function (response) { 
-           console.log("Something was sent", response);
-           this.setState = {profileData: response.data.user_profile,
-              loggedIn: response.data.auth};
-         //  window.location = "./main";
-      }).catch(function(response) {
-           console.log("Error:", response); 
-      });
+    this.props.appData([
+      this.refs.username.value,
+      this.refs.password.value,
+      this.refs.email.value,
+      this.refs.location.value,
+      this.refs.gender.value,
+      this.refs.image.value,
+      this.refs.age.value
+    ]);
   }
 
   render() {
@@ -29,11 +20,11 @@ export default class SignUp extends Component {
           <h3>Gif me a Choice</h3>
 
           <div className="tempBorder">
-            <p>User Name: <input type="text" ref="username" name="username"/></p>
-            <p>Email: <input type="text" ref="email" name="email"/></p>
-            <p>Password: <input type="text" ref="password" name="password" /></p>
+            <p>User Name: <input type="text" ref="username"/></p>
+            <p>Email: <input type="text" ref="email"/></p>
+            <p>Password: <input type="text" ref="password"/></p>
 
-            <p>Location: <select name="location" ref="location">
+            <p>Location: <select ref="location">
                 <option value="queens">Queens</option>
                 <option value="manhattan">Manhattan</option>
                 <option value="statenisland">Staten Island</option>
@@ -41,15 +32,14 @@ export default class SignUp extends Component {
                 <option value="bronx">Bronx</option>
             </select></p>
 
-            <p>Sex: <select name="gender" ref="gender">
+            <p>Sex: <select ref="gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select></p>
 
-            <p>Profile Image: </p> <input type="text" ref="image" name="profile_image"/>
-
-            <p>Are you 18 years or older? <input type="number" ref="age" name="age"/></p>
+            <p>Profile Image: </p> <input type="text" ref="image"/>
+            <p>Are you 18 years or older? <input type="number" ref="age"/></p>
             <p>Did you read the Terms of Service? <input type="checkbox"/></p>
             
             <br/><button onClick={() => this.newUserData()}>Create Account</button>

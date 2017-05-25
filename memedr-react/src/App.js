@@ -14,14 +14,47 @@ import Matches from "./components/matches";
 export default class App extends Component {
 	constructor(props) {
     super(props);
-    this.state = {loggedIn: false, response: [], username: "Bobby"};
+    this.state = {loggedIn: false, profileData: [], response: [],
+			 userData: {user:"Fiat", email:"500", color:"white"}
+			};
   }
 
-	profile = (props) => {
+	signup = () => {
       return (
-        <Profile loggedOut={"This is what I am passing!"}	user={this.state.username}/>
+        <SignUp 
+					appData={this.settingUserName.bind(this)}/>
       );
-    }
+  }
+
+	settingUserName(array) {
+		console.log('the bool ->', array);
+
+		axios.post("https://memedr.herokuapp.com/auth/register", {
+        username: array[0],
+        password: array[1],
+        email: array[2],
+        location: array[3],
+        gender:  array[4],
+        profile_image: array[5],
+        age: array[6]
+    }).then(function (response) { 
+           console.log("Something was sent", response);
+      }).catch(function(error) {
+           console.log("Error:", error); 
+      });
+	}
+
+
+
+
+
+
+	profile = (props) => {
+		console.log(this.state.loggedIn);
+      return (
+        <Profile userData={this.state.userData}/>
+      );
+  }
 
   render() {
     return (
@@ -37,7 +70,10 @@ export default class App extends Component {
 		       <Switch>
 		       		<Route path="/" exact component={Landing}></Route>
 		       		<Route path="/about" component={About}></Route>
-		       		<Route path="/signup" component={SignUp}></Route>
+
+
+		       		{/*<Route path="/signup" component={SignUp}></Route>*/}
+							 <Route path="/signup" render={() => this.signup()}></Route>
 							 
 		       		{/*<Route path="/profile" component={Profile} loggedIn = {this.state
 							 .loggedIn}></Route>*/}
