@@ -25,7 +25,7 @@ router.post('/register', (req, res, next) => {
           profile_image: req.body.profile_image,
           age: req.body.age
         }, 
-        auth: true });
+        loggedIn: true });
 
     });
   }).catch((err) => {
@@ -47,7 +47,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res) => {
   req.logout();
   res.status(403).json({
-    auth: false
+    loggedIn: false
   });
 });
 

@@ -8,26 +8,47 @@
   <body>
     <h1><%= title %> API Documentation</h1>
     <span class="subLinks">[ github: <a href="https://git.generalassemb.ly/GainorB/memedr">https://git.generalassemb.ly/GainorB/memedr</a> | [ api: <a href="https://memedr.herokuapp.com/">https://memedr.herokuapp.com/</a> ] | live: <a href=""></a> ]</span><br>
-    No authentication is required to access this API. All resources are fully open and available.
+    Authentication is required to access this API.
     <ul>
-    <li>By using, our API you agree to our Terms of Service.</li>
+        <li>Tokens are required to POST or PUT.</li>
     </ul>
-    <h3>GET ALL MEMES</h3>
+    <br>
+    <h2>GET ALL MEMES</h2>
     <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">getMemes</span></span></div>
-    <h3>GET ALL USERS WITH MEMES SAVED TO PROFILE</h3>
-    <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">users/withsaves</span></span></div>
-    <h3>HOW TO DELETE A MEME</h3>
-    <div class="errorDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">meme/:id</span></span></div>
-    <h5>JSON FORMAT FOR DELETING</h5>
+    <h2>GET ALL USERS WITH MEMES SAVED TO PROFILE</h2>
+    <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">users/withSaves</span></span></div>
+    <h2>HOW TO DELETE A MEME</h2>
+    <div class="errorDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">meme/id</span></span></div>
+    <h5>JSON FORMAT</h5>
     <div class="errorDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
-    <h5>DELETION SUCCESS RESPONSE</h5>
-    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme Deleted"<br> }</small></div>
-    <h3>HOW TO DELETE A USER (AKA NULLY)</h3>
-    <div class="errorDiv"><span class="larger"><span class="delete">UPDATE</span> https://memedr.herokuapp.com/<span class="delete">users/nully/:id</span></span></div>
-    <h5>JSON FORMAT FOR DELETING A USER</h5>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # Deleted"<br> }</small></div>
+    <h2>HOW TO DELETE A USER (AKA NULLY)</h2>
+    <div class="errorDiv"><span class="larger"><span class="delete">PUT</span> https://memedr.herokuapp.com/<span class="delete">users/nully/id</span></span></div>
+    <h5>JSON FORMAT</h5>
     <div class="errorDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
-    <h5>DELETION SUCCESS RESPONSE</h5>
-    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User successfully nully'd"<br> }</small></div>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully nully'd"<br> }</small></div>
+    <h2>HOW TO SAVE A MEME TO A USER'S PROFILE</h2>
+    <div class="createDiv"><span class="larger"><span class="create">PUT</span> https://memedr.herokuapp.com/<span class="create">users/profile/save/id</span></span></div>
+    <h5>JSON FORMAT</h5>
+    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"memeid" : #<br> }</small></div>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # successfully saved to user #'s profile"<br> }</small></div>
+    <h2>HOW TO UPDATE A USERS PROFILE</h2>
+    <div class="createDiv"><span class="larger"><span class="create">PUT</span> https://memedr.herokuapp.com/<span class="create">users/profile/update/id</span></span></div>
+    <h5>JSON FORMAT</h5>
+    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedUsername" : "",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedEmail" : "",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedLocation" : "",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedGender" : "",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedImage" : "",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedAge" : ""
+    <br> }</small></div>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully updated"<br> }</small></div>
+
+
 
 
 
