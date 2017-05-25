@@ -105,18 +105,24 @@ function updateProfile(req, res, next){
 function getMyMatches(req, res, next){
     let userID = parseInt(req.params.id);
 
-    db.any(`SELECT users.username, users.id, save_memes.memeid
+    db.any(`SELECT users.username, users.id, users.email, save_memes.memeid
             FROM users
             INNER JOIN save_memes ON users.id = save_memes.userid
             WHERE users.id = ${userID}`)
             .then((data) => {
                 let memeID = data[0].memeid;
 
-                db.any(`SELECT users.username, users.id, users.gender, users.location, users.profile_image, save_memes.memeid
+                db.any(`SELECT users.username, users.id, users.gender, users.location, users.profile_image, users.email, save_memes.memeid
                         FROM users
                         INNER JOIN save_memes ON users.id = save_memes.userid
                         WHERE save_memes.memeid = ${memeID} AND users.id != ${userID}`)
-                  .then((data) => { res.status(200).json({ status: `Users that have the same likes as ${userID}`, data }); })
+                  .then((data) => { 
+                    res.status(200).json({ status: `Users that have the same likes as User ${userID}`, data }); 
+                    
+                    return db.task(t=>t.batch(data.map(r=>t.none('INSERT INTO users_matches(userid, username, gender, location, profile_image, email)' + 'values($1, $2, $3, $4, $5, $6)', [r.id, r.username, r.gender, r.location, r.profile_image, r.email]))))
+                                .then((data) => { console.log("The matches have hit the database!") })
+                                .catch((err) => { return next(err); });
+                  })
                   .catch((err) => { return next(err); });
             })
             .catch((err) => { return next(err); });

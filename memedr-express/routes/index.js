@@ -6,28 +6,8 @@ var db = require('../db/queries');
 const authHelpers = require('../services/auth/auth-helpers');
 
 router.get('/', function (req, res, next) {
-  res.render('index', { title: "Memedr" } );
+  res.render('index', { title: "Memedr App" } );
 });
-
-/*// SUCCESSFULLY LOGGING IN
-// SEND USER PROFILE JSON
-router.get('/success', function(req, res, next){
-  res.status(201).send({ user_profile: req.user, loggedIn: true });
-});
-
-// FAILED TO LOG IN
-// SET AUTH TO FALSE
-router.get('/failure', function(req, res, next){
-  res.status(403).json({ loggedIn: false });
-});*/
-
-// WILDCARD
-// REDIRECT TO REACT BUILD FOLDER
-/*router.get('*', (req, res, next) => {
-  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
-});*/
-
-
 
 /*
 * ROUTES TO QUERY THE DATABASE

@@ -40,8 +40,9 @@ CREATE TABLE IF NOT EXISTS users_matches(
     users_matches_id BIGSERIAL PRIMARY KEY NOT NULL,
     userid INTEGER NOT NULL,
     username TEXT NOT NULL,
+    gender TEXT NOT NULL,
     location TEXT NOT NULL,
-    image TEXT NOT NULL,
+    profile_image TEXT NOT NULL,
     email TEXT NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(id)
 );
