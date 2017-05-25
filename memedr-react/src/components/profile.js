@@ -4,6 +4,7 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     console.log(this.props.userData);
+    // console.log("user id~~~~~" + this.props.userData.id);
   }
 
   render() {
@@ -25,7 +26,7 @@ export default class Profile extends Component {
             <br/><button>Edit Profile</button>
             <br/><button>Change Password</button>
 
-            <br/><a href="/profile">Delete Account (Null account entry)</a>
+            <br/><a href="https://memedr.herokuapp.com/users/nully/id"> Delete Account (Null account entry)</a>
           </div>
       </div>
     );
