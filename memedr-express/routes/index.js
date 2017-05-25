@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: "Memedr" } );
 });
 
-// SUCCESSFULLY LOGGING IN
+/*// SUCCESSFULLY LOGGING IN
 // SEND USER PROFILE JSON
 router.get('/success', function(req, res, next){
   res.status(201).send({ user_profile: req.user, loggedIn: true });
@@ -19,7 +19,7 @@ router.get('/success', function(req, res, next){
 // SET AUTH TO FALSE
 router.get('/failure', function(req, res, next){
   res.status(403).json({ loggedIn: false });
-});
+});*/
 
 // WILDCARD
 // REDIRECT TO REACT BUILD FOLDER
@@ -62,5 +62,7 @@ router.put('/users/profile/update/:id', db.updateProfile);
 // THIS ROUTE IS RESPONSIBLE FOR CALLING THE MEME API
 // THIS ROUTE WILL INSERT MEMES FROM AXIOS CALL INTO API_CACHE TABLE
 router.get('/requestAPI', db.requestAPI);
+
+// THIS ROUTE WILL MATCH USERS WITH THE SAME LIKED MEME
 
 module.exports = router;
