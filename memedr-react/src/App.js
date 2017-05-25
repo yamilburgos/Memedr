@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 
 // IMPORT COMPONENTS
+import UserStatus from "./components/userStatus";
 import Landing from './components/landing';
 import About from "./components/about";
 import SignUp from "./components/signup";
@@ -19,7 +20,7 @@ export default class App extends Component {
 
 	landingComponent = () => {
       return (
-        <Landing appData={this.loggingUserName.bind(this)}/>
+        <Landing loggedIn={this.state.loggedIn} appData={this.loggingUserName.bind(this)}/>
       );
   }
 
@@ -62,13 +63,13 @@ export default class App extends Component {
         password: signupDataArray[1],
         email: signupDataArray[2],
         location: signupDataArray[3],
-        gender:  signupDataArray[4],
+        gender: signupDataArray[4],
         profile_image: signupDataArray[5],
         age: signupDataArray[6]
     }).then((response) => { 
 					 this.setState({
 						 	response: response.data.user_profile,
-							loggedIn : response.data.loggedIn
+							loggedIn: response.data.loggedIn
 						});
       }).catch(function(error) {
            console.log("Error:", error); 
@@ -78,6 +79,8 @@ export default class App extends Component {
   render() {
     return (
       <div className="App-header">
+			 <UserStatus loggedIn={this.state.loggedIn}/>
+
 	     <Router>
 	     	<div id="wrapper">
 		        <NavLink to="/">Home</NavLink>&nbsp;&nbsp;

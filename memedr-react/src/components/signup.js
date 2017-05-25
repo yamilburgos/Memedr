@@ -16,9 +16,6 @@ export default class SignUp extends Component {
   render() {
     return (
       <div className="bigBorder">
-          <h2>Memedr</h2>
-          <h3>Gif me a Choice</h3>
-
           <div className="tempBorder">
             <p>User Name: <input type="text" ref="username"/></p>
             <p>Email: <input type="text" ref="email"/></p>

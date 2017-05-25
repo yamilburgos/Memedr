@@ -9,9 +9,6 @@ export default class Profile extends Component {
   render() {
     return (
       <div className="bigBorder">
-          <h2>Memedr</h2>
-          <h3>Gif me a Choice</h3>
-
           <div className="tempBorder">
             <br/>
             <button>Matches</button>
