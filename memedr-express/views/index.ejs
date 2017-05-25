@@ -15,57 +15,87 @@
     <br>
     <h2>GET ALL MEMES</h2>
     <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">getMemes</span></span></div>
+    
     <h2>GET ALL USERS WITH MEMES SAVED TO PROFILE</h2>
     <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">users/withSaves</span></span></div>
+    
     <h2>HOW TO DELETE A MEME</h2>
-    <div class="errorDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">meme/id</span></span></div>
+    <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">meme/id</span></span></div>
     <h5>JSON FORMAT</h5>
-    <div class="errorDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
+    <div class="deleteDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
     <h5>SUCCESS RESPONSE</h5>
-    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # Deleted"<br> }</small></div>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # Deleted"<br> }</small></div>
+    
     <h2>HOW TO DELETE A USER (AKA NULLY)</h2>
-    <div class="errorDiv"><span class="larger"><span class="delete">PUT</span> https://memedr.herokuapp.com/<span class="delete">users/nully/id</span></span></div>
+    <div class="deleteDiv"><span class="larger"><span class="put">PUT</span> https://memedr.herokuapp.com/<span class="put">users/nully/id</span></span></div>
     <h5>JSON FORMAT</h5>
-    <div class="errorDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
+    <div class="deleteDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
     <h5>SUCCESS RESPONSE</h5>
-    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully nully'd"<br> }</small></div>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully nully'd"<br> }</small></div>
+    
     <h2>HOW TO SAVE A MEME TO A USER'S PROFILE</h2>
-    <div class="createDiv"><span class="larger"><span class="create">PUT</span> https://memedr.herokuapp.com/<span class="create">users/profile/save/id</span></span></div>
+    <div class="postDiv"><span class="larger"><span class="post">POST</span> https://memedr.herokuapp.com/<span class="post">users/profile/save/id</span></span></div>
     <h5>JSON FORMAT</h5>
-    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"memeid" : #<br> }</small></div>
+    <div class="postDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;"memeid" : #<br> }</small></div>
     <h5>SUCCESS RESPONSE</h5>
-    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # successfully saved to user #'s profile"<br> }</small></div>
-    <h2>HOW TO UPDATE A USERS PROFILE</h2>
-    <div class="createDiv"><span class="larger"><span class="create">PUT</span> https://memedr.herokuapp.com/<span class="create">users/profile/update/id</span></span></div>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # successfully saved to user #'s profile"<br> }</small></div>
+    
+    <h2>HOW TO REMOVE A MEME FROM A USER'S PROFILE</h2>
+    <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">users/profile/delete/saved/id</span></span></div>
     <h5>JSON FORMAT</h5>
-    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedUsername" : "",<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedEmail" : "",<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedLocation" : "",<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedGender" : "",<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedImage" : "",<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"updatedAge" : ""
+    <div class="deleteDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #<br> }</small></div>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # removed from User #'s profile"<br> }</small></div>
+    
+    <h2>HOW TO UPDATE A USERS PROFILE</h2>
+    <div class="putDiv"><span class="larger"><span class="put">PUT</span> https://memedr.herokuapp.com/<span class="put">users/profile/update/id</span></span></div>
+    <h5>JSON FORMAT</h5>
+    <div class="putDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;"updatedUsername" : "",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;"updatedEmail" : " ",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;"updatedLocation" : " ",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;"updatedGender" : " ",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;"updatedImage" : " ",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;"updatedAge" : " "
     <br> }</small></div>
     <h5>SUCCESS RESPONSE</h5>
-    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully updated"<br> }</small></div>
-
-
-
-
-
-    <h5>JSON FORMAT</h5>
-    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"post" : "content goes here"<br> }</small></div>
-    <h5>SUCCESS RESPONSE</h5>
-    <div class="successDiv">
-         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Success" : "Tweed Created."<br> }</small></div>
-    <h5>ERROR RESPONSE</h5>
-    <div class="errorDiv">
-         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Error" : "Tweed Not Created. Try Again."<br> }</small></div>
-    <h5>STATUS CODES</h5>
-    <div class="statusDiv"><small><p><span class="get">200 OK:</span> The request has completed successfully.</p>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully updated"<br> }</small></div>
+    
+    <h2>STATUS CODES</h2>
+    <div class="statusCodesDiv"><small><p><span class="get">200 OK:</span> The request has completed successfully.</p>
          <p><span class="get">201 Created:</span> The request has been fulfilled, resulting in the creation of a new resource.</p>
          <p><span class="error">400 Bad Request:</span> Invalid submission.</p>
          <p><span class="error">401 Unauthorized:</span> The user is not authorized.</p>
          <p><span class="error">404 Page Not Found:</span> The requested page doesn't exist.</p>
          <p><span class="error">500 Internal Server Error:</span> Internal server exception. The request didn't succeed.</p></small></div>
+
+
+
+
+    <h5>JSON FORMAT</h5>
+    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"post" : "content goes here"<br> }</small></div>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv">
+         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"Success" : "Tweed Created."<br> }</small></div>
+    <h5>ERROR RESPONSE</h5>
+    <div class="errorDiv">
+         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"Error" : "Tweed Not Created. Try Again."<br> }</small></div>
+
+
+          <form method="post" action="/auth/register">
+            <p>Username: <input type="text" name="username"/></p>
+            <p>Password: <input type="text" name="password"/></p>
+            <p>email: <input type="text" name="email"/></p>
+            <p>location: <input type="text" name="location"/></p>
+            <p>gender: <input type="text" name="gender"/></p>
+            <p>profile_image: <input type="text" name="profile_image"/></p>
+            <p>age: <input type="text" name="age"/></p>
+            <input type="submit" value="Register">
+          </form>
+
+          <form method="post" action="/auth/login">
+            <p>Username: <input type="text" name="username"/></p>
+            <p>Password: <input type="text" name="password"/></p>
+            <input type="submit" value="Login">
+          </form>
   </body>
 </html>

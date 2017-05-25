@@ -37,11 +37,19 @@ router.post('/register', (req, res, next) => {
 });
 
 // LOGIN ROUTE
-router.post('/login', passport.authenticate('local', {
+/*router.post('/login', passport.authenticate('local', {
   successRedirect: '/success',
   failureRedirect: '/failure',
   failureFlash: true
-}));
+}));*/
+
+router.post('/login',
+  passport.authenticate('local'),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.status(201).send({ user_profile: req.user, loggedIn: true });
+  });
 
 // LOGOUT ROUTE
 router.get('/logout', (req, res) => {

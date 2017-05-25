@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS subtitles(
 
 CREATE TABLE IF NOT EXISTS api_cache(
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    meme_link TEXT NOT NULL,
-    meme_name TEXT NOT NULL
+    meme_link TEXT UNIQUE NOT NULL,
+    meme_name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS save_memes(
