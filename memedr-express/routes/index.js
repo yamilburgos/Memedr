@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 // SUCCESSFULLY LOGGING IN
 // SEND USER PROFILE JSON
 router.get('/success', function(req, res, next){
-  res.status(201).json({ user_profile: req.user, loggedIn: true });
+  res.status(201).send({ user_profile: req.user, loggedIn: true });
 });
 
 // FAILED TO LOG IN
@@ -50,7 +50,11 @@ router.put('/users/nully/:id', db.nullyAUser);
 
 // SAVE A MEME TO A USER PROFILE
 // WHEN THE CHECK IS CLICKED
-router.put('/users/profile/save/:id', db.saveToProfile);
+router.post('/users/profile/save/:id', db.saveToProfile);
+
+// DELETE A MEME FROM A USER PROFILE
+// WHEN THE X IS CLICKED
+router.delete('/users/profile/delete/saved/:id', db.deleteFromProfile);
 
 // UPDATE A USERS PROFILE
 router.put('/users/profile/update/:id', db.updateProfile);

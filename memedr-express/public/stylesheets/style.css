@@ -6,44 +6,6 @@ body {
   margin: 40px;
 }
 
-div {
-  border: 1px black solid;
-  padding: 10px;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.successDiv {
-  background-color: #e7fdf2;
-  border: 1px solid #cde0d7;
-}
-
-.getDiv {
-  background-color: #fbf1e6;
-  border: 1px solid #ffddb8;
-}
-
-.get {
-  color: green;
-}
-
-.create {
-  color: blue;
-}
-
-.delete {
-  color: red;
-}
-
-.createDiv {
-  background-color: #e7edfd;
-  border: 1px solid #cdd2e0;
-}
-
-.larger {
-  font-size: 20px;
-}
-
 h1 {
   margin-bottom: 5px;
   font-size: 50px;
@@ -72,16 +34,76 @@ small {
   font-size: 13px;
 }
 
-.statusDiv {
-  background-color: #f8f8f8;
-  border: 1px solid #e8e8e8;
+div {
+  border: 1px black solid;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
 }
 
-.errorDiv {
+/*
+* DIV'S
+*/
+
+/* BLUE */
+.getDiv {
+  background-color: #e7edfd;
+  border: 1px solid #cdd2e0;
+}
+
+/* ORANGE */
+.putDiv {
+  background-color: #fbf1e6;
+  border: 1px solid #ffddb8;
+}
+
+/* GREEN */
+.postDiv {
+  background-color: #e7fdf2;
+  border: 1px solid #cde0d7;
+}
+
+/* GREEN */
+.successDiv {
+  background-color: #e7fdf2;
+  border: 1px solid #cde0d7;
+}
+
+/* RED */
+.deleteDiv {
   background-color: #fbe7e7;
   border: 1px solid #ffc5c5;
 }
 
+.statusCodesDiv {
+  background-color: #f8f8f8;
+  border: 1px solid #e8e8e8;
+}
+
+/*
+* WORDS
+*/
+
+.get {
+  color: blue;
+}
+
+.post {
+  color: green;
+}
+
+.delete {
+  color: red;
+}
+
+.put {
+  color: orange;
+}
+
 .error {
   color: red;
+}
+
+.larger {
+  font-size: 20px;
 }

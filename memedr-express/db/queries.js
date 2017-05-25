@@ -42,13 +42,25 @@ function deleteMemeFromCache(req, res, next){
 // CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
 // INSERT INTO SAVE_MEMES TABLE
 function saveToProfile(req, res, next){
-    let memeID = parseInt(req.body.memeid);
-    console.log(memeID);
     let userID = parseInt(req.params.id);
     console.log(userID);
+    let memeID = parseInt(req.body.memeid);
+    console.log(memeID);
     
     db.none('INSERT into save_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
-      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully saved to user ${userID}'s profile` }); /*console.log(`Meme ${memeID} saved for user ${userID}`)*/ })
+      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully saved to user ${userID}'s profile` }); })
+      .catch((err) => { return next(err); });
+}
+
+// THIS FUNCTION WILL DELETED A SAVED MEME FROM A USERS PROFILE
+// CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
+// REMOVE FROM SAVE_MEMES TABLE
+function deleteFromProfile(req, res, next){
+    let userID = parseInt(req.params.id);
+    console.log(userID);
+
+    db.result('DELETE FROM save_memes WHERE userid = $1', userID)
+      .then((result) => { res.status(200).json({ status: `Meme removed from User ${userID}'s profile` }); })
       .catch((err) => { return next(err); });
 }
 
@@ -82,10 +94,10 @@ function updateProfile(req, res, next){
     let gender = req.body.updatedGender;
     let profile_image = req.body.updatedImage;
 
-    db.none('UPDATE users SET username=$1, email=$2, location=$3, gender=$4, profile_image=$5, age=$6 WHERE id=$7', 
-            [username, email, location, gender, profile_image, age, userID])
-      .then((data) => { res.status(200).json({ status: `User ${userID} successfully updated` }); })
+    db.none('UPDATE users SET username=$1, email=$2, location=$3, gender=$4, profile_image=$5 WHERE id=$6', 
+            [username, email, location, gender, profile_image, userID])
+      .then((data) => { res.status(200).json({ status: `User ${userID}'s profile successfully updated` }); })
       .catch((err) => { return next(err); });
 }
 
-module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser, updateProfile,  };
+module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser, updateProfile, deleteFromProfile, };
