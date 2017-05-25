@@ -4,8 +4,9 @@ import axios from 'axios'
 
 export default class Main extends Component {
 
-  handleAddSave(){
-    let memeid = this.parent.id;
+  handleAddSave(event){
+    let memeid = event.target.getAttribute('id');
+    console.log(memeid)
     // let id = {this.props.userID}
     let id = 1
     axios.post("https://memedr.herokuapp.com/users/profile/save/" + id, {
@@ -45,7 +46,7 @@ export default class Main extends Component {
           saveButton.setAttribute('class', 'saveButton')
           saveButton.innerHTML = 'save';
           saveButton.addEventListener('click',this.handleAddSave.bind(this));
-          // console.log("~~~~~~~" + saveButton.parentNode.id)
+          saveButton.setAttribute('id', element.id);
           
           // CREATE DELETE BUTTON AND ADD DELETE HANDELER AS EVENT LISTENER
           let deleteButton = document.createElement('button');
@@ -55,7 +56,7 @@ export default class Main extends Component {
          
           // CREATE MEME DIV AND SET ITS ID TO MEMEID
           let memeDiv = document.createElement('div');
-          memeDiv.setAttribute('id', element.id);
+          // memeDiv.setAttribute('id', element.id);
           // APPEND ALL PREVIOUSLY CREATED ELEMENTS TO MEME DIV
           
           memeDiv.appendChild(meme);
