@@ -16,18 +16,7 @@ router.post('/register', (req, res, next) => {
       // SEND USER PROFILE JSON
       // SPIT BACK A JSON OBJECT WITH REGISTERED USERS INFORMATION
       // SEND AUTH "TRUE" TO SET STATE ON REACT
-      res.status(201).json({ 
-        user_profile: {
-          username: req.body.username,
-          email: req.body.email,
-          location: req.body.location,
-          gender: req.body.gender,
-          profile_image: req.body.profile_image,
-          age: req.body.age
-        }, 
-        loggedIn: true });
-
-    });
+      res.status(201).json({ user_profile: req.user, loggedIn: true }); });
   }).catch((err) => {
     res.status(500).json({
       error: 'Registration Error',
@@ -44,11 +33,15 @@ router.post('/register', (req, res, next) => {
 }));*/
 
 router.post('/login',
-  passport.authenticate('local'),
+  passport.authenticate('local', { failWithError: true }),
   function(req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     res.status(201).send({ user_profile: req.user, loggedIn: true });
+  },
+  function(err, req, res, next) {
+    // handle error
+    if (err) { return res.status(401).send({ status: "Invalid Credentials", loggedIn: false }); }
   });
 
 // LOGOUT ROUTE
