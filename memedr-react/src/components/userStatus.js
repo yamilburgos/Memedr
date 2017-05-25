@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 
-export default class Landing extends Component {
-  checkUserData() {
-    this.props.appData(
-      this.refs.username.value,
-      this.refs.password.value
-    );
-  }
-
+export default class UserStatus extends Component {
+  
   renderLogInData() {
-    if(this.props.loggedIn !== true) {
+      let text = !this.props.loggedIn ? "False" : "True";
+      return <h3>Login Status: {text}</h3>;
+    /*if(this.props.loggedIn !== true) {
      return (
         <span>
           <p>User Name: <input type="text" ref="username"/></p>
@@ -28,16 +24,15 @@ export default class Landing extends Component {
           <p>All Set! Enjoy Memedr!</p>
         </span>
       );
-    }
+    }*/
 }
 
   render() {
     return (
-      <div className="bigBorder">
-          <div className="tempBorder">
-            {this.renderLogInData()}
-            <br/><form action="/about"><button>About</button></form>
-          </div>
+      <div>
+          <h2>Memedr</h2>
+          <h3>Gif me a Choice</h3>
+          {this.renderLogInData()}
       </div>
     );
   }
