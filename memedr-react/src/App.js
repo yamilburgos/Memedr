@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -78,11 +78,10 @@ export default class App extends Component {
   render() {
     return (
       <div className="App-header">
-			 <UserStatus loggedIn={this.state.loggedIn}/>
-
 	     <Router>
 	     	<div id="wrapper">
-
+				 		<UserStatus loggedIn={this.state.loggedIn}/>
+						 
 		        <NavLink to="/">Home</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/about">About</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/signup">Sign Up</NavLink>&nbsp;&nbsp;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 
 export default class Landing extends Component {
   checkUserData() {
@@ -13,19 +14,9 @@ export default class Landing extends Component {
      return (
         <span>
           <p>User Name: <input type="text" ref="username"/></p>
-          <p>Password: <input type="text" ref="password"/></p>
-            
+          <p>Password: <input type="text" ref="password"/></p>      
           <br/><button onClick={() => this.checkUserData()}>Log In</button>
-          <br/><a href="/">Forgot your Password?</a>
-          <br/><a href="/signup">Sign Up</a>
-        </span>
-      );
-    }
-
-    else {
-      return (
-        <span>
-          <p>All Set! Enjoy Memedr!</p>
+          {/*<br/><a href="/">Forgot your Password?</a>*/}
         </span>
       );
     }
@@ -36,7 +27,7 @@ export default class Landing extends Component {
       <div className="bigBorder">
           <div className="tempBorder">
             {this.renderLogInData()}
-            <br/><form action="/about"><button>About</button></form>
+            <NavLink to="/about"><button>About Page</button></NavLink>
           </div>
       </div>
     );
