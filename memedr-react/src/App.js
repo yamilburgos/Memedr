@@ -17,7 +17,7 @@ export default class App extends Component {
     this.state = { loggedIn: false, response: [] };
   }
 
-		landingComponent = () => {
+	landingComponent = () => {
       return (
         <Landing appData={this.loggingUserName.bind(this)}/>
       );
@@ -35,14 +35,18 @@ export default class App extends Component {
       );
   }
 
+	mainComponent = () => {
+      return (
+        <Main userID={this.state.response.id}/>
+      );
+  }
+
 	loggingUserName(submittedName, submittedPassword) {
 		console.log("Hello?", submittedName, submittedPassword);
 		axios.post("https://memedr.herokuapp.com/auth/login", {
         username: submittedName,
         password: submittedPassword
     }).then((response) => {
-					console.log(response);
-
 					 this.setState({
 						 	response: response.data.user_profile,
 							loggedIn : response.data.loggedIn
@@ -87,7 +91,7 @@ export default class App extends Component {
 		       		<Route path="/about" component={About}></Route>
 							<Route path="/signup" render={() => this.signupComponent()}></Route>
 							<Route path="/profile" render={() => this.profileComponent()}></Route>
-		       		<Route path="/main" component={Main}></Route>
+		       		<Route path="/main" render={() => this.mainComponent()}></Route>
 		       		<Route path="/matches" component={Matches}></Route>
 		       </Switch>
 		      </div>
