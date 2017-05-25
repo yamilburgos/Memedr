@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var secureRouter = express.Router();
 var db = require('../db/queries');
 
 const authHelpers = require('../services/auth/auth-helpers');
@@ -11,13 +12,13 @@ router.get('/', function (req, res, next) {
 // SUCCESSFULLY LOGGING IN
 // SEND USER PROFILE JSON
 router.get('/success', function(req, res, next){
-  res.status(201).json({ user_profile: req.user, auth: true });
+  res.status(201).json({ user_profile: req.user, loggedIn: true });
 });
 
 // FAILED TO LOG IN
 // SET AUTH TO FALSE
 router.get('/failure', function(req, res, next){
-  res.status(403).json({ auth: false });
+  res.status(403).json({ loggedIn: false });
 });
 
 // WILDCARD
@@ -35,25 +36,27 @@ router.get('/failure', function(req, res, next){
 // THIS ROUTE IS RESPONSIBLE FOR GETTING THE MEMES FROM THE API_CACHE TABLE
 router.get('/getMemes', db.getMemes);
 
-// THIS ROUTE IS RESPONSIBLE FOR CALLING THE GIPHY API
-// THIS IS WHERE AXIOS LIVES
-// THIS ROUTE WILL INSERT MEMES FROM AXIOS CALL INTO API_CACHE TABLE
-router.get('/requestAPI', db.requestAPI);
+// GET ALL USERS WITH SAVES
+router.get('/users/withSaves', db.getUsersWithSaves);
 
 // ADMINISTRATION
 // DELETE MEME FROM API_CACHE TABLE
 router.delete('/meme/:id', db.deleteMemeFromCache);
 
-// SAVE A MEME TO A USER PROFILE
-// WHEN THE CHECK IS CLICKED
-router.put('/save/profile/:id', db.saveToProfile);
-
-// GET ALL USERS WITH SAVES
-router.get('/users/withsaves', db.getUsersWithSaves);
-
 // NULL A USER
 // WHEN A USER DELETES THEIR PROFILE, INSTEAD OF DELETED FROM USERS TABLE, WE NULL THEIR PROFILE
 // AND ALSO MAKE IT INACTIVE
 router.put('/users/nully/:id', db.nullyAUser);
+
+// SAVE A MEME TO A USER PROFILE
+// WHEN THE CHECK IS CLICKED
+router.put('/users/profile/save/:id', db.saveToProfile);
+
+// UPDATE A USERS PROFILE
+router.put('/users/profile/update/:id', db.updateProfile);
+
+// THIS ROUTE IS RESPONSIBLE FOR CALLING THE MEME API
+// THIS ROUTE WILL INSERT MEMES FROM AXIOS CALL INTO API_CACHE TABLE
+router.get('/requestAPI', db.requestAPI);
 
 module.exports = router;

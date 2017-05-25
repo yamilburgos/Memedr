@@ -71,4 +71,21 @@ function nullyAUser(req, res, next){
       .catch((err) => { return next(err); });
 }
 
-module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser  };
+// THIS FUNCTION WILL ALLOW AN USER TO UPDATE THIER PROFILE
+function updateProfile(req, res, next){
+    let userID = parseInt(req.params.id);
+
+    // GRAB UPDATED PROFILE INFORMATION
+    let username = req.body.updatedUsername;
+    let email = req.body.updatedEmail;
+    let location = req.body.updatedLocation;
+    let gender = req.body.updatedGender;
+    let profile_image = req.body.updatedImage;
+
+    db.none('UPDATE users SET username=$1, email=$2, location=$3, gender=$4, profile_image=$5, age=$6 WHERE id=$7', 
+            [username, email, location, gender, profile_image, age, userID])
+      .then((data) => { res.status(200).json({ status: `User ${userID} successfully updated` }); })
+      .catch((err) => { return next(err); });
+}
+
+module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser, updateProfile,  };
