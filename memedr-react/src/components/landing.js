@@ -36,7 +36,7 @@ export default class Landing extends Component {
       <div className="bigBorder">
           <div className="tempBorder">
             {this.renderLogInData()}
-            <br/><button href="/about">About</button>
+            <br/><form action="/about"><button>About</button></form>
           </div>
       </div>
     );

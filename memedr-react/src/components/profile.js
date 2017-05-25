@@ -16,7 +16,7 @@ export default class Profile extends Component {
             <button>Main</button>
 
             <br/>
-            <img src={this.props.userData.profile_image} alt="profileImage.jpg"></img>
+            <img src={this.props.userData.profile_image} className="profileImage" alt="profileImage.jpg"></img>
             <p>User Name: {this.props.userData.username}</p>
             <p>Email: {this.props.userData.email}</p>
             <p>Location: {this.props.userData.location}</p>
