@@ -64,5 +64,6 @@ router.put('/users/profile/update/:id', db.updateProfile);
 router.get('/requestAPI', db.requestAPI);
 
 // THIS ROUTE WILL MATCH USERS WITH THE SAME LIKED MEME
+router.get('/users/profile/matches/:id', db.getMyMatches);
 
 module.exports = router;
