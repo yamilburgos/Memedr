@@ -7,8 +7,8 @@ export default class Main extends Component {
   handleAddSave(event){
     let memeid = event.target.getAttribute('id');
     console.log(memeid)
-    // let id = {this.props.userID}
-    let id = 1
+    let id = {this.props.userID}
+    // let id = 1
     axios.post("https://memedr.herokuapp.com/users/profile/save/" + id, {
       id:id,
       memeid:memeid
@@ -16,8 +16,8 @@ export default class Main extends Component {
   }
 
   handleDeleteSave(){
-    // let id = {this.props.userID}
-    let id = 1
+    let id = {this.props.userID}
+    // let id = 1
     axios.delete("https://memedr.herokuapp.com/users/profile/delete/saved/" + id, {
       id:id,
     });
