@@ -14,47 +14,39 @@ import Matches from "./components/matches";
 export default class App extends Component {
 	constructor(props) {
     super(props);
-    this.state = {loggedIn: false, profileData: [], response: [],
-			 userData: {user:"Fiat", email:"500", color:"white"}
-			};
+    this.state = { loggedIn: false, response: [] };
   }
 
-	signup = () => {
+	signupComponent = () => {
       return (
-        <SignUp 
-					appData={this.settingUserName.bind(this)}/>
+        <SignUp appData={this.settingUserName.bind(this)}/>
       );
   }
 
-	settingUserName(array) {
-		console.log('the bool ->', array);
+	profileComponent = () => {
+      return (
+        <Profile userData={this.state.response}/>
+      );
+  }
 
+	settingUserName(signupDataArray) {
 		axios.post("https://memedr.herokuapp.com/auth/register", {
-        username: array[0],
-        password: array[1],
-        email: array[2],
-        location: array[3],
-        gender:  array[4],
-        profile_image: array[5],
-        age: array[6]
-    }).then(function (response) { 
-           console.log("Something was sent", response);
+        username: signupDataArray[0],
+        password: signupDataArray[1],
+        email: signupDataArray[2],
+        location: signupDataArray[3],
+        gender:  signupDataArray[4],
+        profile_image: signupDataArray[5],
+        age: signupDataArray[6]
+    }).then((response) => { 
+					 this.setState({
+						 	response: response.data.user_profile,
+							loggedIn : response.data.loggedIn
+						});
       }).catch(function(error) {
            console.log("Error:", error); 
       });
 	}
-
-
-
-
-
-
-	profile = (props) => {
-		console.log(this.state.loggedIn);
-      return (
-        <Profile userData={this.state.userData}/>
-      );
-  }
 
   render() {
     return (
@@ -70,15 +62,8 @@ export default class App extends Component {
 		       <Switch>
 		       		<Route path="/" exact component={Landing}></Route>
 		       		<Route path="/about" component={About}></Route>
-
-
-		       		{/*<Route path="/signup" component={SignUp}></Route>*/}
-							 <Route path="/signup" render={() => this.signup()}></Route>
-							 
-		       		{/*<Route path="/profile" component={Profile} loggedIn = {this.state
-							 .loggedIn}></Route>*/}
-							 <Route path="/profile" render={this.profile}></Route>
-
+							<Route path="/signup" render={() => this.signupComponent()}></Route>
+							<Route path="/profile" render={() => this.profileComponent()}></Route>
 		       		<Route path="/main" component={Main}></Route>
 		       		<Route path="/matches" component={Matches}></Route>
 		       </Switch>
