@@ -17,6 +17,12 @@ export default class App extends Component {
     this.state = { loggedIn: false, response: [] };
   }
 
+		landingComponent = () => {
+      return (
+        <Landing appData={this.loggingUserName.bind(this)}/>
+      );
+  }
+
 	signupComponent = () => {
       return (
         <SignUp appData={this.settingUserName.bind(this)}/>
@@ -28,6 +34,23 @@ export default class App extends Component {
         <Profile userData={this.state.response}/>
       );
   }
+
+	loggingUserName(submittedName, submittedPassword) {
+		console.log("Hello?", submittedName, submittedPassword);
+		axios.post("https://memedr.herokuapp.com/auth/login", {
+        username: submittedName,
+        password: submittedPassword
+    }).then((response) => {
+					console.log(response);
+
+					 this.setState({
+						 	response: response.data.user_profile,
+							loggedIn : response.data.loggedIn
+						});
+      }).catch(function(error) {
+           console.log("Error:", error); 
+      });
+	}
 
 	settingUserName(signupDataArray) {
 		axios.post("https://memedr.herokuapp.com/auth/register", {
@@ -60,7 +83,7 @@ export default class App extends Component {
 		        <NavLink to="/main">Main</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/matches">Matches</NavLink>&nbsp;&nbsp;
 		       <Switch>
-		       		<Route path="/" exact component={Landing}></Route>
+							<Route path="/" exact render={() => this.landingComponent()}></Route>
 		       		<Route path="/about" component={About}></Route>
 							<Route path="/signup" render={() => this.signupComponent()}></Route>
 							<Route path="/profile" render={() => this.profileComponent()}></Route>
