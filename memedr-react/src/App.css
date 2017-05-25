@@ -24,3 +24,8 @@
     width: 150px;
     height: 150px;
 }
+
+.profileImage {
+    max-width: 500px;
+    max-height: 500px;
+}
