@@ -41,6 +41,11 @@ export default class App extends Component {
         <Main userID={this.state.response.id}/>
       );
   }
+ 	matchesComponent = () => {
+      return (
+        <Matches userID={this.state.response.id}/>
+      );
+  }
 
 	loggingUserName(submittedName, submittedPassword) {
 		axios.post("https://memedr.herokuapp.com/auth/login", {
@@ -95,7 +100,7 @@ export default class App extends Component {
 							<Route path="/signup" render={() => this.signupComponent()}></Route>
 							<Route path="/profile" render={() => this.profileComponent()}></Route>
 		       		<Route path="/main" render={() => this.mainComponent()}></Route>
-		       		<Route path="/matches" component={Matches}></Route>
+		       		<Route path="/matches" component={() => this.matchesComponent()}></Route>
 		       </Switch>
 		      </div>
 	      </Router>
