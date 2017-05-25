@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS users(
     profile_image TEXT NOT NULL,
     age INTEGER NOT NULL,
     active BOOLEAN DEFAULT TRUE,
-    CHECK (age>=18)
+    CHECK (age>=18),
+    CHECK (gender = 'male' OR gender = 'female')
 );
 
 CREATE TABLE IF NOT EXISTS subtitles(

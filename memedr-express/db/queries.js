@@ -100,4 +100,26 @@ function updateProfile(req, res, next){
       .catch((err) => { return next(err); });
 }
 
-module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser, updateProfile, deleteFromProfile, };
+// THIS FUNCTION WILL RETURN USERS THAT LIKE THE SAME MEME
+// EXCLUDING THE USER THAT DOES THE QUERY
+function getMyMatches(req, res, next){
+    let userID = parseInt(req.params.id);
+
+    db.any(`SELECT users.username, users.id, save_memes.memeid
+            FROM users
+            INNER JOIN save_memes ON users.id = save_memes.userid
+            WHERE users.id = ${userID}`)
+            .then((data) => {
+                let memeID = data[0].memeid;
+
+                db.any(`SELECT users.username, users.id, users.gender, users.location, users.profile_image, save_memes.memeid
+                        FROM users
+                        INNER JOIN save_memes ON users.id = save_memes.userid
+                        WHERE save_memes.memeid = ${memeID} AND users.id != ${userID}`)
+                  .then((data) => { res.status(200).json({ status: `Users that have the same likes as ${userID}`, data }); })
+                  .catch((err) => { return next(err); });
+            })
+            .catch((err) => { return next(err); });
+}
+
+module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser, updateProfile, deleteFromProfile, getMyMatches };

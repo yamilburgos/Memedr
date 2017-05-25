@@ -18,6 +18,13 @@
     
     <h2>GET ALL USERS WITH MEMES SAVED TO PROFILE</h2>
     <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">users/withSaves</span></span></div>
+
+    <h2>GET ALL USERS THAT MATCH</h2>
+    <div class="getDiv"><span class="larger"><span class="get">GET</span> https://memedr.herokuapp.com/<span class="get">users/profile/matches/id</span></span></div>
+    <h5>JSON FORMAT</h5>
+    <div class="statusCodesDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</small></div>
+    <h5>SUCCESS RESPONSE</h5>
+    <div class="successDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Users that have the same likes as #"<br> }</small></div>
     
     <h2>HOW TO DELETE A MEME</h2>
     <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span> https://memedr.herokuapp.com/<span class="delete">meme/id</span></span></div>
@@ -67,35 +74,5 @@
          <p><span class="error">401 Unauthorized:</span> The user is not authorized.</p>
          <p><span class="error">404 Page Not Found:</span> The requested page doesn't exist.</p>
          <p><span class="error">500 Internal Server Error:</span> Internal server exception. The request didn't succeed.</p></small></div>
-
-
-
-
-    <h5>JSON FORMAT</h5>
-    <div class="createDiv"><small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"post" : "content goes here"<br> }</small></div>
-    <h5>SUCCESS RESPONSE</h5>
-    <div class="successDiv">
-         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"Success" : "Tweed Created."<br> }</small></div>
-    <h5>ERROR RESPONSE</h5>
-    <div class="errorDiv">
-         <small>{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"Error" : "Tweed Not Created. Try Again."<br> }</small></div>
-
-
-          <form method="post" action="/auth/register">
-            <p>Username: <input type="text" name="username"/></p>
-            <p>Password: <input type="text" name="password"/></p>
-            <p>email: <input type="text" name="email"/></p>
-            <p>location: <input type="text" name="location"/></p>
-            <p>gender: <input type="text" name="gender"/></p>
-            <p>profile_image: <input type="text" name="profile_image"/></p>
-            <p>age: <input type="text" name="age"/></p>
-            <input type="submit" value="Register">
-          </form>
-
-          <form method="post" action="/auth/login">
-            <p>Username: <input type="text" name="username"/></p>
-            <p>Password: <input type="text" name="password"/></p>
-            <input type="submit" value="Login">
-          </form>
   </body>
 </html>
