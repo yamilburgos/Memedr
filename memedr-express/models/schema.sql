@@ -44,5 +44,6 @@ CREATE TABLE IF NOT EXISTS users_matches(
     location TEXT NOT NULL,
     profile_image TEXT NOT NULL,
     email TEXT NOT NULL,
+    age INTEGER NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(id)
 );
