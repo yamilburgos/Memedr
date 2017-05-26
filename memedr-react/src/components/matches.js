@@ -9,8 +9,12 @@ export default class Matches extends Component {
       id:id
     })
     .then((res) => {
-      console.log(res)
+      if(res.status !== 500){
+      console.log(res);
       res.data.data.map((element, index) => {
+        // HIDES "NO MATCHES YET" 
+        let noMatches = document.querySelector('#noMatches');
+        noMatches.style.display = 'none'
         // GRAB MATCHES UL FROM THE DOCUMENT
         let matchesUL = document.querySelector("#matchesUL");
         // CREATE MATCHES DIV ELEMENT
@@ -20,22 +24,29 @@ export default class Matches extends Component {
         profilePic.setAttribute('src', element.profile_image);
         // CREATE P TAG AND ADD USER NAME
         let userName = document.createElement('p');
-        userName.innerHTML = element.username
+        userName.innerHTML = element.username;
+        // CREATE P TAG AND ADD GENDER
+        let gender = document.createElement('p');
+        gender.innerHTML = element.gender;
         // CREATE P TAG AND ADD LOCATION
         let location = document.createElement('p');
-        location.innerHTML = element.location
+        location.innerHTML = element.location;
         // CREATE P TAG AND ADD EMAIL
-        // let email = document.createElement('p');
-        // email.innerHTML = element.email;
+        let email = document.createElement('p');
+        email.innerHTML = element.email;
         // APPEND  NEW ELEMENTS IMG AND TAGS TO DIV
         matchesDiv.appendChild(profilePic);
         matchesDiv.appendChild(userName);
+        matchesDiv.appendChild(gender);
         matchesDiv.appendChild(location);
-        // matchesDiv.appendChild(email);
+        matchesDiv.appendChild(email);
         // APPEND DIV TO MATCHES UL 
         matchesUL.appendChild(matchesDiv);
+        // REACT WARNING EXPECTS A RETURN IN THIS FUNCTION
+        return null
+    
       });
-    })
+    }})
     .catch((err) => {
       console.log(err)
     })
@@ -46,7 +57,9 @@ export default class Matches extends Component {
     return (
       <div className="bigBorder">
           <div className="tempBorder">
-            <ul id="matchesUL"></ul>
+            <ul id="matchesUL">
+            <li id="noMatches"> no matches yet</li>
+            </ul>
           </div>
       </div>
     );
