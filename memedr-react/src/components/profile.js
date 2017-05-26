@@ -65,12 +65,12 @@ export default class Profile extends Component {
 
           <br />
           <img src={this.props.userData.profile_image} className="profileImage" alt="profileImage.jpg"></img>
-          <p>Profile Image: <input type="text" ref="profile_image" value={this.props.userData.profile_image} /></p>
-          <p>Username: <input type="text" ref="username" value={this.props.userData.username} /></p>
-          <p>Email: <input type="text" ref="email" value={this.props.userData.email} /></p>
-          <p>Location: <input type="text" ref="location" value={this.props.userData.profile_image} /></p>
-          <p>Gender: <input type="text" ref="gender" value={this.props.userData.gender} /></p>
-          <p>Age: <input type="text" ref="age" value={this.props.userData.age} /></p>
+          <p>Profile Image: <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /></p>
+          <p>Username: <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
+          <p>Email: <input type="text" ref="email" defaultValue={this.props.userData.email} /></p>
+          <p>Location: <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
+          <p>Gender: <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
+          <p>Age: <input type="text" ref="age" defaultValue={this.props.userData.age} /></p>
           <br />
           <br />
           <button onClick={this.handleUpdateAccount.bind(this)}> update account </button>
