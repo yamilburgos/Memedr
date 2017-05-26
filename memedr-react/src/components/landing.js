@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Route, NavLink, Redirect } from 'react-router-dom';
 
 export default class Landing extends Component {
   checkUserData() {
@@ -20,7 +20,13 @@ export default class Landing extends Component {
         </span>
       );
     }
-}
+    
+    return <Redirect to="/about"/>;
+  }
+
+  backtoHome() {
+
+  }
 
   render() {
     return (

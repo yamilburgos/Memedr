@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 
 export default class About extends Component {
+
   render() {
     return (
       <div className="bigBorder">
