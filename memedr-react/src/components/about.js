@@ -6,14 +6,17 @@ export default class About extends Component {
   render() {
     return (
       <div className="bigBorder">
-          <NavLink to="/"><button>Go Back</button></NavLink>
+
+          <NavLink to="/"><button className="btn btn-default" type="submit">home</button></NavLink>
+
 
           <h3>About</h3>
-          <p>
-          Lorem ipsum dolor sit amet, case accumsan intellegat quo eu, at duo consul partem. Eu eum nonumy legendos. Mea ut nullam voluptua. An eam nulla doming, at solet iisque sit. Vel ad oblique recusabo, ex eius habemus voluptua qui, vivendum recteque explicari est te.
-
-          Pri te veritus blandit lobortis, ad volumus adolescens suscipiantur eam. Te dolor nostrud sit, vim id omnis aliquip. Doctus splendide maiestatis in sed, equidem intellegat et mel, ea delenit gubergren pri. Bonorum legimus his an, ad magna sententiae sea, nam ad rebum porro volutpat. Et pri conceptam maiestatis, at vitae menandri mel. Albucius voluptua definitionem cu has, et qui dicit inimicus deseruisse, quas iusto pro ad.
-          </p>
+         <p>
+           Like a Meme make a friend.
+           <br/>
+           Memedr brings people together based on their choice of memes. 
+    
+         </p>
       </div>
     );
   }

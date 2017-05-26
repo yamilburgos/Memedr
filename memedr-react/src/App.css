@@ -2,6 +2,9 @@
     margin: 0 auto;
     padding: 0;
 }
+body{
+    background-color: #68C5DB;
+}
 
 .App-header {
     text-align: center;
@@ -17,6 +20,9 @@
 
 .bigBorder {
     border: 5px solid black;
+    text-align: left;
+    background-color: #0197F6;
+    min-height: 500px;
 }
 
 .imgBorder {
