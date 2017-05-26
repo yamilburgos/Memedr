@@ -9,12 +9,19 @@ export default class Profile extends Component {
   }
 
   handleDeleteAccount(){
-    let id = this.props.userData.id;
-    axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id )
-    .catch((err)=>{
-      return err
-    })
-    
+    var x=window.confirm("Are you sure you want to delete your account?")
+    if (x){
+        window.alert("Account Deleted")
+          let id = this.props.userData.id;
+          axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id )
+          .catch((err)=>{
+            return err
+          })
+        console.log('account delete')
+        window.location.href = "http://localhost:3000/"
+      }
+   
+   
     
   
   }
