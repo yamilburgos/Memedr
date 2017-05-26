@@ -41,7 +41,7 @@ router.post('/login',
 // LOGOUT ROUTE
 router.get('/logout', (req, res) => {
   req.logout();
-  res.status(403).json({
+  res.status(200).json({
     loggedIn: false
   });
 });
