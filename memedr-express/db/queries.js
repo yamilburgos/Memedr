@@ -71,18 +71,6 @@ function getUsersWithSaves(req, res, next){
       .catch((err) => { return next(err); });
 }
 
-// THIS FUNCTION WILL "NULLY" A USER
-// WHEN A USER DECIDES TO DELETE THEIR PROFILE, WE UPDATE THEIR PROFILE WITH "NULLY" VALUES
-// AND SWITCH STATUS TO INACTIVE
-function nullyAUser(req, res, next){
-    let userID = parseInt(req.params.id);
-
-    db.none('UPDATE users SET username=$1, email=$2, location=$3, gender=$4, profile_image=$5, age=$6, active=$7 WHERE id=$8', 
-                                ["nully", "nully@nully.com", "nully", "nully", "nully", 18, false, userID])
-      .then((data) => { res.status(200).json({ status: `User ${userID} successfully nully'd` }); })
-      .catch((err) => { return next(err); });
-}
-
 // THIS FUNCTION WILL DELETE A USER
 function deleteAccount(req, res, next){
     let userID = parseInt(req.params.id);
@@ -137,6 +125,21 @@ function getMyMatches(req, res, next){
             .catch((err) => { return next(err); });
 }
 
+// THIS FUNCTION WILL SUBMIT A SUBTITLE TO THE SUBTITLES TABLE
+function submitSubTitle(req, res, next){
+    let subtitle = req.body.subtitle;
+
+    db.none('INSERT into subtitles(subtitle)' + 'VALUES($1)', subtitle)
+      .then((data) => { res.status(200).json({ status: `Subtitle Inserted` }); })
+      .catch((err) => { return next(err); });
+}
+
+function getSubTitles(req, res, next){
+    db.any('SELECT * FROM subtitles')
+      .then((data) => { res.status(200).json({ Showing: "Subtitles" , data }); })
+      .catch((err) => { return next(err); });
+}
+
 module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, 
-                   getUsersWithSaves, nullyAUser, updateProfile, deleteFromProfile, 
-                   getMyMatches, deleteAccount, };
+                   getUsersWithSaves, updateProfile, deleteFromProfile, 
+                   getMyMatches, deleteAccount, submitSubTitle, getSubTitles };

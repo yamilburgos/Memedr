@@ -23,11 +23,6 @@ router.get('/users/withSaves', db.getUsersWithSaves);
 // DELETE MEME FROM API_CACHE TABLE
 router.delete('/meme/:id', db.deleteMemeFromCache);
 
-// NULL A USER
-// WHEN A USER DELETES THEIR PROFILE, INSTEAD OF DELETED FROM USERS TABLE, WE NULL THEIR PROFILE
-// AND ALSO MAKE IT INACTIVE
-router.put('/users/nully/:id', db.nullyAUser);
-
 // DELETE A USER
 // IF A USER DECIDES TO DELETE THEIR ACCOUNT
 router.delete('/users/profile/delete/:id', db.deleteAccount);
@@ -49,5 +44,11 @@ router.get('/requestAPI', db.requestAPI);
 
 // THIS ROUTE WILL MATCH USERS WITH THE SAME LIKED MEME
 router.get('/users/profile/matches/:id', db.getMyMatches);
+
+// THIS ROUTE WILL SUBMIT A SUBTITLE TO THE SUBTITLES TABLE
+router.post('/new/subtitle', db.submitSubTitle);
+
+// THIS ROUTE WILL GET THE SUBTITLES
+router.get('/getSubtitles', db.getSubTitles);
 
 module.exports = router;

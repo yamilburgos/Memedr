@@ -32,7 +32,7 @@ a:hover {
 
 div {
   border: 1px black solid;
-  padding: 15px;
+  padding: 15px 5px;
   margin-top: 10px;
   width: 100%;
   border-radius: 5px;
