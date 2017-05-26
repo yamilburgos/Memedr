@@ -39,7 +39,10 @@ export default class App extends Component {
 
 	signupComponent = () => {
       return (
-        <SignUp loggedIn={this.state.loggedIn} appData={this.settingUserName.bind(this)}/>
+        <SignUp
+          loggedIn={this.state.loggedIn}
+          errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
+          appData={this.settingUserName.bind(this)}/>
       );
   }
 
@@ -68,6 +71,7 @@ export default class App extends Component {
   }
 
 	loggingUserName(submittedName, submittedPassword) {
+    this.setState({logMessage: ""})
 		axios.post("https://memedr.herokuapp.com/auth/login", {
         username: submittedName,
         password: submittedPassword
@@ -83,6 +87,7 @@ export default class App extends Component {
 	}
 
 	settingUserName(signupDataArray) {
+    this.setState({logMessage: ""})
 		axios.post("https://memedr.herokuapp.com/auth/register", {
         username: signupDataArray[0],
         password: signupDataArray[1],
@@ -91,10 +96,12 @@ export default class App extends Component {
         gender: signupDataArray[4],
         profile_image: signupDataArray[5],
         age: signupDataArray[6]
-    }).then((response) => { 
+    }).then((response) => {
+      console.log(response.data);
 					 this.setState({
 						 	response: response.data.user_profile,
-							loggedIn: response.data.loggedIn
+							loggedIn: response.data.loggedIn,
+              logMessage: response.data.message
 						});
       }).catch(function(error) {
            console.log(error); 
@@ -106,7 +113,8 @@ export default class App extends Component {
     .then((response) => {
 				this.setState({
           response: [],
-					loggedIn: response.data.loggedIn
+					loggedIn: response.data.loggedIn,
+          logMessage: ""
 				});
       })
     .catch(function(error) {
