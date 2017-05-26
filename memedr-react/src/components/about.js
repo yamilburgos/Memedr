@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // eslint-disable-next-line
 import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 
 export default class About extends Component {

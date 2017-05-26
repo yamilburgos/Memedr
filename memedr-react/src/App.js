@@ -51,7 +51,9 @@ export default class App extends Component {
 
 	mainComponent = () => {
       return (
-        <Main userID={this.state.response.id}/>
+        <Main
+          loggedIn={this.state.loggedIn}
+          userID={this.state.response.id}/>
       );
   }
  	matchesComponent = () => {

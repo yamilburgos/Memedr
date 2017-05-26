@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // eslint-disable-next-line
 import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
