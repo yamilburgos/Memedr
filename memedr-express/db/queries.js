@@ -75,9 +75,16 @@ function getUsersWithSaves(req, res, next){
 function deleteAccount(req, res, next){
     let userID = parseInt(req.params.id);
 
-    db.result('DELETE FROM users WHERE id = $1', userID)
-      .then((data) => { res.status(200).json({ status: `User ${userID} successfully deleted` }); })
-      .catch((err) => { return next(err); });
+    db.result('DELETE FROM save_memes WHERE save_memes.userid = $1', userID)
+      .then((data) => { 
+          db.result('DELETE FROM users_matches WHERE users_matches.userid = $1', userID)
+            .then((data) => {
+                db.result('DELETE FROM users WHERE id = $1', userID)
+                  .then((data) => {
+                    res.status(200).json({ status: `User ${userID} successfully deleted` });
+                  }).catch((err) => { return next(err); });
+            }).catch((err) => { return next(err); });
+    }).catch((err) => { return next(err); });
 }
 
 // THIS FUNCTION WILL ALLOW AN USER TO UPDATE THIER PROFILE
