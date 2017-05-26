@@ -3,6 +3,10 @@ import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 
 export default class UserStatus extends Component {
   
+  logoutUserData() {
+    this.props.appData();
+  }
+
   renderLogInData() {
     if(this.props.loggedIn !== true) {
      return (
@@ -12,7 +16,8 @@ export default class UserStatus extends Component {
       );
     }
 
-    return <h3>You are now Logged In!</h3>;
+    return <button onClick={() => this.logoutUserData()}>LogOut</button>;
+
 }
 
   render() {
