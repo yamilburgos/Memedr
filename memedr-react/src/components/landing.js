@@ -22,6 +22,7 @@ export default class Landing extends Component {
             <input type="text" ref="password"/>      
             
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.checkUserData()}>Log In</button>
+            <p>{this.props.errorMessage}</p>
             {/*<br/><a href="/">Forgot your Password?</a>*/}
           </div>
         </span>

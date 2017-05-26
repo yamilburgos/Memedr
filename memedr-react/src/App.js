@@ -15,7 +15,7 @@ import Matches from "./components/matches";
 export default class App extends Component {
 	constructor(props) {
     super(props);
-    this.state = { loggedIn: false, response: [] };
+    this.state = { loggedIn: false, response: [], logMessage: "" };
   }
 
   userStatusComponent = () => {
@@ -30,7 +30,10 @@ export default class App extends Component {
 
 	landingComponent = () => {
       return (
-        <Landing loggedIn={this.state.loggedIn} appData={this.loggingUserName.bind(this)}/>
+        <Landing 
+          loggedIn={this.state.loggedIn}
+          errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
+          appData={this.loggingUserName.bind(this)}/>
       );
   }
 
@@ -41,7 +44,6 @@ export default class App extends Component {
   }
 
 	profileComponent = () => {
-      console.log(this.state);
       return (
         <Profile 
           loggedIn={this.state.loggedIn}
@@ -70,10 +72,10 @@ export default class App extends Component {
         username: submittedName,
         password: submittedPassword
     }).then((response) => {
-           console.log(response);
 					 this.setState({
 						 	response: response.data.user_profile,
-							loggedIn: response.data.loggedIn
+							loggedIn: response.data.loggedIn,
+              logMessage: response.data.status
 						});
       }).catch(function(error) {
            console.log("Error:", error); 
@@ -102,11 +104,10 @@ export default class App extends Component {
   logoutUserName() {
 		axios.get("https://memedr.herokuapp.com/auth/logout")
     .then((response) => {
-          console.log(response);
-					 this.setState({
-              response: [],
-							loggedIn: response.data.loggedIn
-						});
+				this.setState({
+          response: [],
+					loggedIn: response.data.loggedIn
+				});
       })
     .catch(function(error) {
            console.log("Error:", error); 
