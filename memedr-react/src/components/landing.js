@@ -11,7 +11,7 @@ export default class Landing extends Component {
 
   renderLogInData() {
     if(this.props.loggedIn !== true) {
-     return (
+      return (
         <span>
           <div className="logInContainer">
             <p>Username</p> 

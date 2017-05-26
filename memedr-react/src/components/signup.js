@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // eslint-disable-next-line
+import { BrowserRouter as Route, NavLink } from 'react-router-dom';
 
 export default class SignUp extends Component {
   newUserData() {
@@ -40,6 +41,7 @@ export default class SignUp extends Component {
             <p>Did you read the Terms of Service? <input type="checkbox"/></p>
             
             <br/><button onClick={() => this.newUserData()}>Create Account</button>
+            <p>{this.props.errorMessage}</p>
         </span>
       );
     }
@@ -49,6 +51,7 @@ export default class SignUp extends Component {
     return (
       <div className="bigBorder">
           <div className="tempBorder">
+            <NavLink to="/"><button className="btn btn-default homeButtonInAbout" type="submit">home</button></NavLink>
             {this.renderSignUpData()}
           </div>
       </div>
