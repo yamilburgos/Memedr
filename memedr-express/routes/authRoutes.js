@@ -26,12 +26,6 @@ router.post('/register', (req, res, next) => {
 });
 
 // LOGIN ROUTE
-/*router.post('/login', passport.authenticate('local', {
-  successRedirect: '/success',
-  failureRedirect: '/failure',
-  failureFlash: true
-}));*/
-
 router.post('/login',
   passport.authenticate('local', { failWithError: true }),
   function(req, res) {
