@@ -2,27 +2,41 @@ import React, { Component } from 'react'; // eslint-disable-next-line
 import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
+import Meme from './meme';
+
 export default class Main extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      disabled: false,
+      memes: []
     }
   }
 
-  handleAddSave(event){
-    // SET SAVE BUTTON DISABLE TO TRUE ON CLICK
-    // let disableSave = event.target;
-    // // if (this.state.canSave === true) {
-    // disableSave.disabled = this.state.disabled;
-    // SET CAN SAVE TO FALSE TO DISBALE SAVE MEME
-    
-    this.setState({
-      disabled: true,
-    });
+  componentWillMount(){
+    axios.get("https://memedr.herokuapp.com/getMemes")
+      .then((res) => {
 
+        //let memesArr = res.data.memes;
+        this.setState({ memes:res.data.memes })
+
+      }).catch((err) =>  {return err })
+  }
+
+  renderMemes(){
+/*    axios.get("https://memedr.herokuapp.com/getMemes")
+      .then((res) => {
+
+        let memesArr = res.data.memes;
+
+        this.setState({ memes:memesArr })
+
+      }).catch((err) =>  {return err })*/
+  }
+
+  handleAddSave(event){
     console.log('click save' + this.state.disabled);
-    // SAVE MEME AND USER ID TO SAVES TABLE
+
     let memeid = event.target.getAttribute('id');
     console.log(memeid);
     let id = this.props.userID;
@@ -33,19 +47,38 @@ export default class Main extends Component {
   }
 
   handleDeleteSave() {
-   // SET CAN SAVE TO TRUE TO ENABLE SAVE MEME
-   this.setState({
-    disabled: false,
-    }) 
-   // DELETE SAVE FROM SAVE TABLE
     let id = this.props.userID;
     axios.delete("https://memedr.herokuapp.com/users/profile/delete/saved/" + id, {
       id:id,
     });
   }
 
-  loadingAllDivs() {
-    {/*console.log('component WILL MOUNT!!!')*/}
+  checkUserStatus() {
+    if (!this.props.loggedIn) {    
+      return <Redirect to="/"/>;
+    }
+  }
+
+  render() {
+    return (
+      <div className="bigBorder">
+          <div className="tempBorder">
+           {this.checkUserStatus()}
+            <br/>
+            <button>Matches</button>
+            <button>Saves</button>
+            <button>Main</button>
+
+            <Meme memes={this.state.memes} />
+          </div>
+      </div>
+    );
+  }
+}
+
+
+/*loadingAllDivs() {
+
     axios.get("https://memedr.herokuapp.com/getMemes")
       .then((res)=>{
         // console.log(res)
@@ -91,28 +124,4 @@ export default class Main extends Component {
           memeUL.appendChild(memeDiv);
         });
       });
-  };
-
-  checkUserStatus() {
-    if (!this.props.loggedIn) {    
-      return <Redirect to="/"/>;
-    }
-
-    return this.loadingAllDivs();
-  }
-
-  render() {
-    return (
-      <div className="bigBorder">
-          <div className="tempBorder">
-           {this.checkUserStatus()}
-            <br/>
-            <button>Matches</button>
-            <button>Saves</button>
-            <button>Main</button>
-            <ul id="memeUL"></ul>
-          </div>
-      </div>
-    );
-  }
-}
+  };*/
