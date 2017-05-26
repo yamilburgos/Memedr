@@ -10,7 +10,6 @@ export default class Matches extends Component {
     })
     .then((res) => {
       if(res.status !== 500){
-      console.log(res);
       res.data.data.map((element, index) => {
         // HIDES "NO MATCHES YET" 
         let noMatches = document.querySelector('#noMatches');
@@ -56,7 +55,6 @@ export default class Matches extends Component {
    }
 
   checkUserStatus() {
-    console.log("Matches: ", this.props.loggedIn);
     if (!this.props.loggedIn) {    
       return <Redirect to="/"/>;
     }
