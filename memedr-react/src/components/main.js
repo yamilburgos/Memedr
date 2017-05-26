@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; // eslint-disable-next-line
 import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -87,7 +87,6 @@ export default class Main extends Component {
           memeDiv.appendChild(deleteButton);
           memeDiv.appendChild(saveButton);
           
-          console.log(memeDiv);
           // APPEND MEMEDIV TO THE MEME UL
           memeUL.appendChild(memeDiv);
         });
