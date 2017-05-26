@@ -21,11 +21,7 @@ export default class Landing extends Component {
       );
     }
     
-    return <Redirect to="/about"/>;
-  }
-
-  backtoHome() {
-
+    return <Redirect to="/main"/>;
   }
 
   render() {

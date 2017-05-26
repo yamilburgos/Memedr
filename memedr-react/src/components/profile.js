@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.props.userData;
-  }
-
   handleDeleteAccount() {
     var x = window.confirm("Are you sure you want to delete your account?")
     if(x) {
@@ -39,18 +34,9 @@ export default class Profile extends Component {
   }
 
   checkUserStatus() {
-    if(this.props.loggedIn !== true) {
-     return (
-        <span>
-          <p>User Name: <input type="text" ref="username"/></p>
-          <p>Password: <input type="text" ref="password"/></p>      
-          <br/><button onClick={() => this.checkUserData()}>Log In</button>
-          {/*<br/><a href="/">Forgot your Password?</a>*/}
-        </span>
-      );
+    if (!this.props.loggedIn) {    
+      return <Redirect to="/"/>;
     }
-    
-    return <Redirect to="/about"/>;
   }
 
   render() {
