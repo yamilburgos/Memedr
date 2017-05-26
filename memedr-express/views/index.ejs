@@ -7,52 +7,55 @@
   </head>
   <body>
     <h1><%= title %> API Documentation</h1>
-    <span class="subLinks">[ github: <a href="https://git.generalassemb.ly/GainorB/memedr">https://git.generalassemb.ly/GainorB/memedr</a> | [ api: <a href="https://memedr.herokuapp.com/">https://memedr.herokuapp.com/</a> ] | live: <a href="https://memedrapp.herokuapp.com/">https://memedrapp.herokuapp.com/</a> ]</span><br>
+    <span class="subLinks">[ github: <a href="https://git.generalassemb.ly/GainorB/memedr">https://git.generalassemb.ly/GainorB/memedr</a> | [ api: <a href="https://memedr.herokuapp.com/">https://memedr.herokuapp.com/</a> ] | [ live: <a href="https://memedrapp.herokuapp.com/">https://memedrapp.herokuapp.com/</a> ]</span><br>
     Authentication is required to access this API.
     <br>
-    <h2>get all memes</h2>
+    <h2>get all memes <small>returns all memes in api_cache table</small></h2>
     <div class="getDiv"><span class="larger"><span class="get">GET</span>https://memedr.herokuapp.com/<span class="get">getMemes</span></span></div>
     
-    <h2>get all users with memes saved to profile</h2>
+    <h2>get all users with memes saved <small>returns all users that saved a meme to their profile</small></h2>
     <div class="getDiv"><span class="larger"><span class="get">GET</span>https://memedr.herokuapp.com/<span class="get">users/withSaves</span></span></div>
 
-    <h2>get all users that have a match</h2>
-    <div class="getDiv"><span class="larger"><span class="get">GET</span>https://memedr.herokuapp.com/<span class="get">users/profile/matches/id</span></span></div>
+    <h2>get all subtitles <small>returns all subtitles</small></h2>
+    <div class="getDiv"><span class="larger"><span class="get">GET</span>https://memedr.herokuapp.com/<span class="get">getSubtitles</span></span></div>
+
+    <h2>get all users with a match <small>returns all users that share a liked meme</small></h2>
+    <div class="getDiv"><span class="larger"><span class="get">GET</span>https://memedr.herokuapp.com/<span class="get">users/profile/matches/{id}</span></span></div>
     <h5>json format</h5>
     <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</div>
     <h5>success response</h5>
     <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Users that have the same likes as User #"<br> }</div>
     
-    <h2>how to delete a meme</h2>
-    <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span>https://memedr.herokuapp.com/<span class="delete">meme/id</span></span></div>
+    <h2>how to delete a meme <small>removes a meme from the api_cache table</small></h2>
+    <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span>https://memedr.herokuapp.com/<span class="delete">meme/{id}</span></span></div>
     <h5>json format</h5>
     <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</div>
     <h5>success response</h5>
     <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # Deleted"<br> }</div>
     
-    <h2>how to delete a user (aka nully)</h2>
-    <div class="deleteDiv"><span class="larger"><span class="put">PUT</span>https://memedr.herokuapp.com/<span class="put">users/nully/id</span></span></div>
+    <h2>how to delete a user <small>removes a user from the users table</small></h2>
+    <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span>https://memedr.herokuapp.com/<span class="delete">users/profile/delete/{id}</span></span></div>
     <h5>json format</h5>
     <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #<br> }</div>
     <h5>success response</h5>
-    <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully nully'd"<br> }</div>
+    <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully deleted"<br> }</div>
     
-    <h2>how to save a meme to a user's profile</h2>
-    <div class="postDiv"><span class="larger"><span class="post">POST</span>https://memedr.herokuapp.com/<span class="post">users/profile/save/id</span></span></div>
+    <h2>how to save a meme <small>allows you to save a meme to a specific profile</small></h2>
+    <div class="postDiv"><span class="larger"><span class="post">POST</span>https://memedr.herokuapp.com/<span class="post">users/profile/save/{id}</span></span></div>
     <h5>json format</h5>
     <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;"memeid" : #<br> }</div>
     <h5>success response</h5>
     <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # successfully saved to user #'s profile"<br> }</div>
     
-    <h2>how to remove a meme from a user's profile</h2>
-    <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span>https://memedr.herokuapp.com/<span class="delete">users/profile/delete/saved/id</span></span></div>
+    <h2>how to remove liked memes from a profile <small>removes all saved memes from a users profile</small></h2>
+    <div class="deleteDiv"><span class="larger"><span class="delete">DELETE</span>https://memedr.herokuapp.com/<span class="delete">users/profile/delete/saved/{id}</span></span></div>
     <h5>json format</h5>
     <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #<br> }</div>
     <h5>success response</h5>
-    <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # removed from User #'s profile"<br> }</div>
+    <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme removed from User #'s profile"<br> }</div>
     
-    <h2>how to update a user's profile</h2>
-    <div class="putDiv"><span class="larger"><span class="put">PUT</span>https://memedr.herokuapp.com/<span class="put">users/profile/update/id</span></span></div>
+    <h2>how to update a user's profile <small>updates a users profile</small></h2>
+    <div class="putDiv"><span class="larger"><span class="put">PUT</span>https://memedr.herokuapp.com/<span class="put">users/profile/update/{id}</span></span></div>
     <h5>json format</h5>
     <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"id" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;"updatedUsername" : "",<br>
     &nbsp;&nbsp;&nbsp;&nbsp;"updatedEmail" : " ",<br>
@@ -63,6 +66,13 @@
     <br> }</div>
     <h5>success response</h5>
     <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "User # successfully updated"<br> }</div>
+
+    <h2>how to submit a subtitle <small>inserts a subtitle into the subtitles table</small></h2>
+    <div class="postDiv"><span class="larger"><span class="post">POST</span>https://memedr.herokuapp.com/<span class="post">new/subtitle</span></span></div>
+    <h5>json format</h5>
+    <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"subtitle" : " "<br> }</div>
+    <h5>success response</h5>
+    <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Subtitle inserted"<br> }</div>
     
     <h2>status codes</h2>
     <div class="statusCodesDiv"><p><span class="statustext">200 OK:</span> The request has completed successfully.</p>
