@@ -28,6 +28,10 @@ router.delete('/meme/:id', db.deleteMemeFromCache);
 // AND ALSO MAKE IT INACTIVE
 router.put('/users/nully/:id', db.nullyAUser);
 
+// DELETE A USER
+// IF A USER DECIDES TO DELETE THEIR ACCOUNT
+router.delete('/users/profile/delete/:id', db.deleteAccount);
+
 // SAVE A MEME TO A USER PROFILE
 // WHEN THE CHECK IS CLICKED
 router.post('/users/profile/save/:id', db.saveToProfile);

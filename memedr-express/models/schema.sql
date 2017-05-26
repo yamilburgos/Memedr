@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS users(
     email VARCHAR(200) UNIQUE NOT NULL,
     location VARCHAR(200) NOT NULL,
     gender VARCHAR(6) NOT NULL,
-    profile_image TEXT NOT NULL,
+    profile_image TEXT NOT NULL DEFAULT 'https://memedr.herokuapp.com/images/default.jpg',
     age INTEGER NOT NULL,
     active BOOLEAN DEFAULT TRUE,
     CHECK (age>=18),

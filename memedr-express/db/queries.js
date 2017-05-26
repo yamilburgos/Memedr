@@ -20,7 +20,7 @@ function requestAPI(req, res, next){
     axios.get(url)
          .then((data) => {
              // TO GET MEME LINK: data.data.data.memes["0"].url
-             // TO GET MEME CAPTION: data.data.data.memes["0"].name
+             // TO GET MEME NAME: data.data.data.memes["0"].name
              //console.log(data.data.data.memes);
 
             return db.task(t=>t.batch(data.data.data.memes.map(r=>t.none('INSERT INTO api_cache(meme_link, meme_name)' + 'values($1, $2)', [r.url, r.name]))))
@@ -83,6 +83,15 @@ function nullyAUser(req, res, next){
       .catch((err) => { return next(err); });
 }
 
+// THIS FUNCTION WILL DELETE A USER
+function deleteAccount(req, res, next){
+    let userID = parseInt(req.params.id);
+
+    db.result('DELETE FROM users WHERE id = $1', userID)
+      .then((data) => { res.status(200).json({ status: `User ${userID} successfully deleted` }); })
+      .catch((err) => { return next(err); });
+}
+
 // THIS FUNCTION WILL ALLOW AN USER TO UPDATE THIER PROFILE
 function updateProfile(req, res, next){
     let userID = parseInt(req.params.id);
@@ -128,4 +137,6 @@ function getMyMatches(req, res, next){
             .catch((err) => { return next(err); });
 }
 
-module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, getUsersWithSaves, nullyAUser, updateProfile, deleteFromProfile, getMyMatches };
+module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, 
+                   getUsersWithSaves, nullyAUser, updateProfile, deleteFromProfile, 
+                   getMyMatches, deleteAccount, };
