@@ -43,8 +43,8 @@ export default class App extends Component {
 	profileComponent = () => {
       return (
         <Profile 
+          loggedIn={this.state.loggedIn}
           userData={this.state.response}
-          userlogStatus={this.state.loggedIn}
         />
       );
   }
@@ -58,12 +58,6 @@ export default class App extends Component {
       return (
         <Matches userID={this.state.response.id}/>
       );
-  }
-
-  clearStateData = () => {
-    this.setState({
-						 	loggedIn: false, response: []
-						});
   }
 
 	loggingUserName(submittedName, submittedPassword) {
@@ -104,6 +98,7 @@ export default class App extends Component {
     .then((response) => {
           console.log(response);
 					 this.setState({
+              response: [],
 							loggedIn: response.data.loggedIn
 						});
       })

@@ -10,15 +10,15 @@ export default class Profile extends Component {
 
   handleDeleteAccount() {
     var x = window.confirm("Are you sure you want to delete your account?")
-    if(x){
+    if(x) {
       window.alert("Account Deleted")
       let id = this.props.userData.id;
       axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id)
         .catch((err) => {
-          return err
+          return err;
         })
       console.log('account delete')
-      window.location.href = "http://localhost:3000/"
+      window.location.href = "http://localhost:3000/";
     }
   }
 
@@ -39,9 +39,18 @@ export default class Profile extends Component {
   }
 
   checkUserStatus() {
-      if(this.props.userlogStatus !== true) {
-        return <Redirect to="/"/>;
-      }
+    if(this.props.loggedIn !== true) {
+     return (
+        <span>
+          <p>User Name: <input type="text" ref="username"/></p>
+          <p>Password: <input type="text" ref="password"/></p>      
+          <br/><button onClick={() => this.checkUserData()}>Log In</button>
+          {/*<br/><a href="/">Forgot your Password?</a>*/}
+        </span>
+      );
+    }
+    
+    return <Redirect to="/about"/>;
   }
 
   render() {
