@@ -3,7 +3,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   font-weight: lighter;
-  margin: 40px;
+  margin: 30px;
 }
 
 h1 {
@@ -30,15 +30,16 @@ a:hover {
   color: red;
 }
 
-small {
-  font-size: 13px;
-}
-
 div {
   border: 1px black solid;
-  padding: 10px;
+  padding: 15px;
   margin-top: 10px;
   width: 100%;
+  border-radius: 5px;
+}
+
+div:hover {
+  border: 1px solid #999999;
 }
 
 /*
@@ -85,19 +86,43 @@ div {
 */
 
 .get {
-  color: blue;
+  color: white;
+  background-color: #2878c9;
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin: 3px;
 }
 
 .post {
-  color: green;
+  color: white;
+  background-color: #4cca5b;
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin: 3px;
 }
 
 .delete {
-  color: red;
+  color: white;
+  background-color: #e73737;
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin: 3px;
 }
 
 .put {
-  color: orange;
+  color: white;
+  background-color: #e0ac3d;
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin: 3px;
+}
+
+.get:hover,
+.post:hover,
+.delete:hover,
+.put:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .error {
@@ -106,4 +131,8 @@ div {
 
 .larger {
   font-size: 20px;
+}
+
+.statustext {
+  color: green;
 }
