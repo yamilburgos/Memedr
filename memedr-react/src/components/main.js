@@ -3,12 +3,28 @@ import axios from 'axios'
 // import { BrowserRouter as Router, Route, NavLink, Link } from 'react-router-dom';
 
 export default class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: false,
+    }
+  }
 
   handleAddSave(event){
+    // SET SAVE BUTTON DISABLE TO TRUE ON CLICK
+    // let disableSave = event.target;
+    // // if (this.state.canSave === true) {
+    // disableSave.disabled = this.state.disabled;
+    // SET CAN SAVE TO FALSE TO DISBALE SAVE MEME
+    
+    this.setState({
+      disabled: true,
+    })
+    console.log('click save' + this.state.disabled)
+    // SAVE MEME AND USER ID TO SAVES TABLE
     let memeid = event.target.getAttribute('id');
     console.log(memeid)
     let id = this.props.userID
-    // let id = 1
     axios.post("https://memedr.herokuapp.com/users/profile/save/" + id, {
       id:id,
       memeid:memeid
@@ -16,8 +32,12 @@ export default class Main extends Component {
   }
 
   handleDeleteSave(){
+   // SET CAN SAVE TO TRUE TO ENABLE SAVE MEME
+   this.setState({
+    disabled: false,
+    }) 
+   // DELETE SAVE FROM SAVE TABLE
     let id = this.props.userID
-    // let id = 1
     axios.delete("https://memedr.herokuapp.com/users/profile/delete/saved/" + id, {
       id:id,
     });
@@ -48,6 +68,9 @@ export default class Main extends Component {
           saveButton.addEventListener('click',this.handleAddSave.bind(this));
           saveButton.setAttribute('id', element.id);
           
+          // DISABLE SAVE BUTTON
+          saveButton.disabled = this.state.disabled
+          
           // CREATE DELETE BUTTON AND ADD DELETE HANDELER AS EVENT LISTENER
           let deleteButton = document.createElement('button');
           deleteButton.innerHTML = 'delete';
@@ -56,9 +79,8 @@ export default class Main extends Component {
          
           // CREATE MEME DIV AND SET ITS ID TO MEMEID
           let memeDiv = document.createElement('div');
-          // memeDiv.setAttribute('id', element.id);
+         
           // APPEND ALL PREVIOUSLY CREATED ELEMENTS TO MEME DIV
-          
           memeDiv.appendChild(meme);
           memeDiv.appendChild(name);
           memeDiv.appendChild(deleteButton);
