@@ -21,7 +21,7 @@ export default class App extends Component {
   userStatusComponent = () => {
       return (
         <UserStatus 
-          userlogStatus={this.state.loggedIn} 
+          loggedIn={this.state.loggedIn} 
           logout={this.logoutUserName.bind(this)}
           signUp={<NavLink to="/signup">Sign Up</NavLink>}
         />
@@ -41,10 +41,11 @@ export default class App extends Component {
   }
 
 	profileComponent = () => {
+      console.log(this.state);
       return (
         <Profile 
           loggedIn={this.state.loggedIn}
-          userData={this.state.response}
+          userData={(this.state.response !== undefined) ? this.state.response : []}
         />
       );
   }
@@ -53,12 +54,14 @@ export default class App extends Component {
       return (
         <Main
           loggedIn={this.state.loggedIn}
-          userID={this.state.response.id}/>
+          userID={(this.state.response !== undefined) ? this.state.response.id : 1}/>
       );
   }
  	matchesComponent = () => {
       return (
-        <Matches userID={this.state.response.id}/>
+        <Matches
+         loggedIn={this.state.loggedIn}
+         userID={(this.state.response !== undefined) ? this.state.response.id : 1}/>
       );
   }
 
@@ -67,6 +70,7 @@ export default class App extends Component {
         username: submittedName,
         password: submittedPassword
     }).then((response) => {
+           console.log(response);
 					 this.setState({
 						 	response: response.data.user_profile,
 							loggedIn: response.data.loggedIn

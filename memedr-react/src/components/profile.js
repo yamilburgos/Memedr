@@ -34,6 +34,7 @@ export default class Profile extends Component {
   }
 
   checkUserStatus() {
+    console.log(!this.props.loggedIn);
     if (!this.props.loggedIn) {    
       return <Redirect to="/"/>;
     }

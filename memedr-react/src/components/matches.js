@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-export default class Matches extends Component {
-  
-  componentDidMount(){
-    let id = this.props.userID
-    // let id = 1
+import React, { Component } from 'react'; // eslint-disable-next-line
+import { Route, Redirect } from 'react-router-dom';
+import axios from 'axios';
+
+export default class Matches extends Component {  
+  loadingAllMatches(){
+    let id = this.props.userID;
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
       id:id
     })
@@ -14,7 +14,7 @@ export default class Matches extends Component {
       res.data.data.map((element, index) => {
         // HIDES "NO MATCHES YET" 
         let noMatches = document.querySelector('#noMatches');
-        noMatches.style.display = 'none'
+        noMatches.style.display = 'none';
         // GRAB MATCHES UL FROM THE DOCUMENT
         let matchesUL = document.querySelector("#matchesUL");
         // CREATE MATCHES DIV ELEMENT
@@ -51,15 +51,24 @@ export default class Matches extends Component {
       });
     }})
     .catch((err) => {
-      console.log(err)
-    })
-   };
+      console.log(err);
+    });
+   }
 
+  checkUserStatus() {
+    console.log("Matches: ", this.props.loggedIn);
+    if (!this.props.loggedIn) {    
+      return <Redirect to="/"/>;
+    }
+
+    return this.loadingAllMatches();
+  }
 
   render() {
     return (
       <div className="bigBorder">
           <div className="tempBorder">
+            {this.checkUserStatus()}
             <ul id="matchesUL">
             <li id="noMatches"> no matches yet</li>
             </ul>

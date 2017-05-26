@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class UserStatus extends Component {
   renderLogInData() {
-    if(this.props.userlogStatus !== true) {
+    if(this.props.loggedIn !== true) {
       return <button>{this.props.signUp}</button>;
     }
 
