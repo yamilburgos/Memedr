@@ -66,10 +66,9 @@ export default class Main extends Component {
           
           // APPEND MEMEDIV TO THE MEME UL
           memeUL.appendChild(memeDiv);
-        })
-      })
-
-  }
+        });
+      });
+  };
 
 
 
