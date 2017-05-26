@@ -34,16 +34,20 @@ export default class Matches extends Component {
         // CREATE P TAG AND ADD EMAIL
         let email = document.createElement('p');
         email.innerHTML = element.email;
+        // CREATE P TAG AND ADD AGE
+        let age = document.createElement('p');
+        age.innerHTML = element.age;
         // APPEND  NEW ELEMENTS IMG AND TAGS TO DIV
         matchesDiv.appendChild(profilePic);
         matchesDiv.appendChild(userName);
         matchesDiv.appendChild(gender);
         matchesDiv.appendChild(location);
         matchesDiv.appendChild(email);
+        matchesDiv.appendChild(age);
         // APPEND DIV TO MATCHES UL 
         matchesUL.appendChild(matchesDiv);
         // REACT WARNING EXPECTS A RETURN IN THIS FUNCTION
-        return null
+        return null;
       });
     }})
     .catch((err) => {
