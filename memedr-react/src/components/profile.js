@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.userData);
+    this.props.userData;
     // console.log("user id~~~~~" + this.props.userData.id);
+  }
+
+  handleDeleteAccount(){
+    let id = this.props.userData.id;
+    axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id )
+    .catch((err)=>{
+      return err
+    })
+    
+    
+  
   }
 
   render() {
@@ -24,9 +36,11 @@ export default class Profile extends Component {
             <p>Gender: {this.props.userData.gender}</p>
             
             <br/><button>Edit Profile</button>
-            <br/><button>Change Password</button>
-
-            <br/><a href="https://memedr.herokuapp.com/users/nully/id"> Delete Account (Null account entry)</a>
+            {/*<br/><button>Change Password</button>*/}
+            
+            <br/>
+            <br/>
+            <button onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
           </div>
       </div>
     );
