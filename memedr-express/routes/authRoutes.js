@@ -18,7 +18,7 @@ router.post('/register', (req, res, next) => {
       // SEND AUTH "TRUE" TO SET STATE ON REACT
       res.status(201).json({ user_profile: req.user, loggedIn: true }); });
   }).catch((err) => {
-    res.status(500).json({
+    res.status(200).json({
       error: 'Registration Error',
       message: 'Common Issues: Username is taken, Email is taken, or younger than 18.',
     });
@@ -35,7 +35,7 @@ router.post('/login',
   },
   function(err, req, res, next) {
     // handle error
-    if (err) { return res.status(401).send({ status: "Invalid Credentials", loggedIn: false }); }
+    if (err) { return res.status(200).send({ status: "Invalid Credentials", loggedIn: false }); }
   });
 
 // LOGOUT ROUTE
