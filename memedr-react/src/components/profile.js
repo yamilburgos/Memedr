@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.props.userData;
-  }
-
   handleDeleteAccount() {
     var x = window.confirm("Are you sure you want to delete your account?")
-    if(x){
+    if(x) {
       window.alert("Account Deleted")
       let id = this.props.userData.id;
       axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id)
         .catch((err) => {
-          return err
+          return err;
         })
       console.log('account delete')
-      window.location.href = "http://localhost:3000/"
+      window.location.href = "http://localhost:3000/";
     }
   }
 
@@ -37,10 +33,17 @@ export default class Profile extends Component {
       }).catch((err) => { return err; });
   }
 
+  checkUserStatus() {
+    if (!this.props.loggedIn) {    
+      return <Redirect to="/"/>;
+    }
+  }
+
   render() {
     return (
       <div className="bigBorder">
         <div className="tempBorder">
+          {this.checkUserStatus()}
           <br />
           <button>Matches</button>
           <button>Saves</button>

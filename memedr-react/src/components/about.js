@@ -6,7 +6,7 @@ export default class About extends Component {
   render() {
     return (
       <div className="bigBorder">
-          <NavLink to="/"><button>Back to Home</button></NavLink>
+          <NavLink to="/"><button>Go Back</button></NavLink>
 
           <h3>About</h3>
           <p>

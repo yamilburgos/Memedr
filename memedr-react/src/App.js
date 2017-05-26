@@ -20,7 +20,11 @@ export default class App extends Component {
 
   userStatusComponent = () => {
       return (
-        <UserStatus loggedIn={this.state.loggedIn} appData={this.logoutUserName.bind(this)}/>
+        <UserStatus 
+          userlogStatus={this.state.loggedIn} 
+          logout={this.logoutUserName.bind(this)}
+          signUp={<NavLink to="/signup">Sign Up</NavLink>}
+        />
       );
   }
 
@@ -38,7 +42,10 @@ export default class App extends Component {
 
 	profileComponent = () => {
       return (
-        <Profile userData={this.state.response}/>
+        <Profile 
+          loggedIn={this.state.loggedIn}
+          userData={this.state.response}
+        />
       );
   }
 
@@ -91,6 +98,7 @@ export default class App extends Component {
     .then((response) => {
           console.log(response);
 					 this.setState({
+              response: [],
 							loggedIn: response.data.loggedIn
 						});
       })
@@ -107,8 +115,6 @@ export default class App extends Component {
 						<Route render={() => this.userStatusComponent()}></Route>
 
 		        <NavLink to="/">Home</NavLink>&nbsp;&nbsp;
-		        <NavLink to="/about">About</NavLink>&nbsp;&nbsp;
-		        <NavLink to="/signup">Sign Up</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/profile">Profile</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/main">Main</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/matches">Matches</NavLink>&nbsp;&nbsp;
@@ -119,7 +125,7 @@ export default class App extends Component {
 							<Route path="/profile" render={() => this.profileComponent()}></Route>
 		       		<Route path="/main" render={() => this.mainComponent()}></Route>
 		       		<Route path="/matches" component={() => this.matchesComponent()}></Route>
-		       </Switch>
+            </Switch>
 		      </div>
 	      </Router>
       </div>
