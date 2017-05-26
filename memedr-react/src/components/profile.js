@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 export default class Profile extends Component {
@@ -37,10 +38,17 @@ export default class Profile extends Component {
       }).catch((err) => { return err; });
   }
 
+  checkUserStatus() {
+      if(this.props.userlogStatus !== true) {
+        return <Redirect to="/"/>;
+      }
+  }
+
   render() {
     return (
       <div className="bigBorder">
         <div className="tempBorder">
+          {this.checkUserStatus()}
           <br />
           <button>Matches</button>
           <button>Saves</button>

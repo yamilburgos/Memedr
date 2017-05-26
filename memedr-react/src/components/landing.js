@@ -33,7 +33,7 @@ export default class Landing extends Component {
       <div className="bigBorder">
           <div className="tempBorder">
             {this.renderLogInData()}
-            <NavLink to="/about"><button>About Page</button></NavLink>
+            <NavLink to="/about"><button>About Us</button></NavLink>
           </div>
       </div>
     );
