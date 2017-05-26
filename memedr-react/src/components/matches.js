@@ -44,7 +44,6 @@ export default class Matches extends Component {
         matchesUL.appendChild(matchesDiv);
         // REACT WARNING EXPECTS A RETURN IN THIS FUNCTION
         return null
-    
       });
     }})
     .catch((err) => {
