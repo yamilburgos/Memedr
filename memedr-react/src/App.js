@@ -70,13 +70,13 @@ export default class App extends Component {
         username: submittedName,
         password: submittedPassword
     }).then((response) => {
-           console.log(response);
+           //console.log(response);
 					 this.setState({
 						 	response: response.data.user_profile,
 							loggedIn: response.data.loggedIn
 						});
       }).catch(function(error) {
-           console.log("Error:", error); 
+           //console.log("Error:", error); 
       });
 	}
 
@@ -95,14 +95,14 @@ export default class App extends Component {
 							loggedIn: response.data.loggedIn
 						});
       }).catch(function(error) {
-           console.log(error); 
+           //console.log(error); 
       });
 	}
 
   logoutUserName() {
 		axios.get("https://memedr.herokuapp.com/auth/logout")
     .then((response) => {
-          console.log(response);
+          //console.log(response);
 					 this.setState({
               response: [],
 							loggedIn: response.data.loggedIn

@@ -2,7 +2,7 @@ import React, { Component } from 'react'; // eslint-disable-next-line
 import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-import Meme from './meme';
+import MemeList from './memelist';
 
 export default class Main extends Component {
   constructor(props) {
@@ -69,7 +69,7 @@ export default class Main extends Component {
             <button>Saves</button>
             <button>Main</button>
 
-            <Meme memes={this.state.memes} />
+            <MemeList memes={this.state.memes} />
           </div>
       </div>
     );
