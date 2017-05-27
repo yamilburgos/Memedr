@@ -25,14 +25,14 @@ export default class Main extends Component {
   }
 
   likeMeme(id, memeid) {
-    axios.post("https://memedrapp.herokuapp.com/users/profile/like/" + id, {
-      id, memeid
+    axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
+      id: id, memeid: memeid
     }).catch((err) => { return err });
   }
 
   unLikeMeme(id, memeid) {
-    axios.put("https://memedrapp.herokuapp.com/users/profile/unlike/" + id, {
-      id, memeid
+    axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
+      id: id, memeid: memeid
     }).catch((err) => { return err });
   }
 
