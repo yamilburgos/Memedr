@@ -58,7 +58,7 @@ export default class Main extends Component {
     return (
       <div className="bigBorder">
         <div className="tempBorder">
-          {this.checkUserStatus()}
+          {this.getAllMemes()}
           <br />
           <button>Matches</button>
           <button>Saves</button>
