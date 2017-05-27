@@ -1,15 +1,57 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import '../App.css';
+
+import MatchesList from './matcheslist';
 
 export default class Matches extends Component {
-  loadingAllMatches() {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      matches: [{}],
+    }
+  }
+
+  componentWillMount() {
     let id = this.props.userID;
+
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
       id: id
-    })
-      .then((res) => {
-        if (res.status !== 500) {
+    }).then((res) => {
+
+      this.setState({ matches: res.data.data });
+      //console.log(this.state.matches);
+
+    }).catch((err) => { return err });
+  }
+
+  checkUserStatus() {
+    if (!this.props.loggedIn) {
+      return <Redirect to="/" />;
+    }
+  }
+
+  render() {
+    return (
+      <div className="bigBorder">
+        <div className="tempBorder">
+          {this.checkUserStatus()}
+          <br />
+          <button>Matches</button>
+          <button>Saves</button>
+          <button>Main</button>
+
+          <MatchesList matches={this.state.matches} deleteMatch={this.deleteMatch} />
+        </div>
+      </div>
+    );
+  }
+}
+
+/*
+if (res.status !== 500) {
           res.data.data.map((element, index) => {
             // HIDES "NO MATCHES YET" 
             let noMatches = document.querySelector('#noMatches');
@@ -21,6 +63,7 @@ export default class Matches extends Component {
             // CREATE IMG AND ADD USER PROFILE URL
             let profilePic = document.createElement('img');
             profilePic.setAttribute('src', element.profile_image);
+            profilePic.setAttribute('class', "profileImage");
             // CREATE P TAG AND ADD USER NAME
             let userName = document.createElement('p');
             userName.innerHTML = element.username;
@@ -47,32 +90,4 @@ export default class Matches extends Component {
             matchesUL.appendChild(matchesDiv);
             // REACT WARNING EXPECTS A RETURN IN THIS FUNCTION
             return null;
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  checkUserStatus() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
-
-    return this.loadingAllMatches();
-  }
-
-  render() {
-    return (
-      <div className="bigBorder">
-        <div className="tempBorder">
-          {this.checkUserStatus()}
-          <ul id="matchesUL">
-            <li id="noMatches">no matches yet</li>
-          </ul>
-        </div>
-      </div>
-    );
-  }
-}
+*/

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import axios from 'axios';
+import '../App.css';
 
 import Meme from './meme';
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import '../App.css';
 
 export default class Profile extends Component {
   handleDeleteAccount() {

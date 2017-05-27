@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import { BrowserRouter as Route, NavLink } from 'react-router-dom';
+import '../App.css';
 
 export default class SignUp extends Component {
   newUserData() {
