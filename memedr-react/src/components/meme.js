@@ -18,9 +18,9 @@ export default class Meme extends Component {
 
     renderMemes() {
         return (
-            <div>
-                <p><img src={this.props.memeLink} alt={this.props.memeName} id={this.props.memeID} /></p>
-                <p>{this.props.memeName}</p>
+            <div className="memeDiv">
+                <p><img src={this.props.memeLink} className="memeImage" alt={this.props.memeName} id={this.props.memeID} /></p>
+                <p className="memeName">{this.props.memeName}</p>
             </div>
         );
     }

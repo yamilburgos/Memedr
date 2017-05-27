@@ -39,6 +39,19 @@ ul{
     height: 150px;
 }
 
+.memeImage {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.memeName {
+    font-size: 20px;
+}
+
+.memeDiv {
+    padding: 10px;
+}
+
 .profileImage {
     max-width: 300px;
     max-height: 300px;

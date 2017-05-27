@@ -9,7 +9,6 @@ export default class MatchesList extends Component {
         return (
             <div>
                 {this.props.matches.map((element, index) => {
-                    //console.log(element);
                     return (
                         <Match key={index}
                         username={element.username} 

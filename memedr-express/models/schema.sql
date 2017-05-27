@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS api_cache(
     meme_name TEXT UNIQUE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS save_memes(
-    save_meme_id BIGSERIAL PRIMARY KEY NOT NULL,
+CREATE TABLE IF NOT EXISTS liked_memes(
+    liked_meme_id BIGSERIAL PRIMARY KEY NOT NULL,
     userid INTEGER NOT NULL,
     memeid INTEGER NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(id),

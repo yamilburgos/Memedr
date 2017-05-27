@@ -38,36 +38,36 @@ function deleteMemeFromCache(req, res, next){
       .catch((err) => { return next(err); });
 }
 
-// THIS FUNCTION WILL SAVE A MEME TO A USERS PROFILE
+// THIS FUNCTION WILL LIKE A MEME TO A USERS PROFILE
 // CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
-// INSERT INTO SAVE_MEMES TABLE
+// INSERT INTO LIKED_MEMES TABLE
 function saveToProfile(req, res, next){
     let userID = parseInt(req.params.id);
     console.log(userID);
     let memeID = parseInt(req.body.memeid);
     console.log(memeID);
     
-    db.none('INSERT into save_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
-      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully saved to user ${userID}'s profile` }); })
+    db.none('INSERT into liked_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
+      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully "liked" to user ${userID}'s profile` }); })
       .catch((err) => { return next(err); });
 }
 
-// THIS FUNCTION WILL DELETED A SAVED MEME FROM A USERS PROFILE
+// THIS FUNCTION WILL DELETED A LIKED MEME FROM A USERS PROFILE
 // CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
 // REMOVE FROM SAVE_MEMES TABLE
 function deleteFromProfile(req, res, next){
     let userID = parseInt(req.params.id);
     console.log(userID);
 
-    db.result('DELETE FROM save_memes WHERE userid = $1', userID)
+    db.result('DELETE FROM liked_memes WHERE userid = $1', userID)
       .then((result) => { res.status(200).json({ status: `Meme removed from User ${userID}'s profile` }); })
       .catch((err) => { return next(err); });
 }
 
-// THIS FUNCTION WILL RETURN THE USERS THAT SAVED ANY MEME
-function getUsersWithSaves(req, res, next){
-    db.any('SELECT * FROM save_memes')
-      .then((data) => { res.status(200).json({ Showing: "Users with Saves" , data }); })
+// THIS FUNCTION WILL RETURN THE USERS THAT LIKED ANY MEME
+function getUsersWithLikes(req, res, next){
+    db.any('SELECT * FROM liked_memes')
+      .then((data) => { res.status(200).json({ Showing: "Users with Likes" , data }); })
       .catch((err) => { return next(err); });
 }
 
@@ -75,7 +75,7 @@ function getUsersWithSaves(req, res, next){
 function deleteAccount(req, res, next){
     let userID = parseInt(req.params.id);
 
-    db.result('DELETE FROM save_memes WHERE save_memes.userid = $1', userID)
+    db.result('DELETE FROM liked_memes WHERE liked_memes.userid = $1', userID)
       .then((data) => { 
           db.result('DELETE FROM users_matches WHERE users_matches.userid = $1', userID)
             .then((data) => {
@@ -110,17 +110,17 @@ function updateProfile(req, res, next){
 function getMyMatches(req, res, next){
     let userID = parseInt(req.params.id);
 
-    db.any(`SELECT users.username, users.id, users.email, save_memes.memeid
+    db.any(`SELECT users.username, users.id, users.email, liked_memes.memeid
             FROM users
-            INNER JOIN save_memes ON users.id = save_memes.userid
+            INNER JOIN liked_memes ON users.id = liked_memes.userid
             WHERE users.id = ${userID}`)
             .then((data) => {
                 let memeID = data[0].memeid;
 
-                db.any(`SELECT users.username, users.id, users.gender, users.location, users.profile_image, users.email, users.age, save_memes.memeid
+                db.any(`SELECT users.username, users.id, users.gender, users.location, users.profile_image, users.email, users.age, liked_memes.memeid
                         FROM users
-                        INNER JOIN save_memes ON users.id = save_memes.userid
-                        WHERE save_memes.memeid = ${memeID} AND users.id != ${userID}`)
+                        INNER JOIN liked_memes ON users.id = liked_memes.userid
+                        WHERE liked_memes.memeid = ${memeID} AND users.id != ${userID}`)
                   .then((data) => { 
                     res.status(200).json({ status: `Users that have the same likes as User ${userID}`, data }); 
                     
@@ -149,5 +149,5 @@ function getSubTitles(req, res, next){
 }
 
 module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, 
-                   getUsersWithSaves, updateProfile, deleteFromProfile, 
+                   getUsersWithLikes, updateProfile, deleteFromProfile, 
                    getMyMatches, deleteAccount, submitSubTitle, getSubTitles };

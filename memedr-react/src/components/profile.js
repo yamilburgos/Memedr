@@ -13,15 +13,12 @@ export default class Profile extends Component {
         .catch((err) => {
           return err;
         })
-      //console.log('account deleted');
-      window.location.href = "http://localhost:3000/";
+      window.location.href = "https://memedrapp.herokuapp.com/";
     }
   }
 
   handleUpdateAccount() {
     let id = this.props.userData.id;
-    //console.log(id);
-    //console.log('account updated');
 
     axios.put("https://memedr.herokuapp.com/users/profile/update/" + id, {
       id: id,
