@@ -17,7 +17,8 @@ export default class MatchesList extends Component {
                         location={element.location}
                         profile_image={element.profile_image}
                         email={element.email}
-                        age={element.age} />
+                        age={element.age} 
+                        deleteMatch={this.props.deleteMatch} />
                     )
                 })}
             </div>
