@@ -17,9 +17,10 @@ export default class App extends Component {
     super(props);
 
     this.state = { 
-      loggedIn: false, 
-      response: [], 
-      logMessage: "" 
+      loggedIn: false,
+      response: [],
+      memes: [],
+      logMessage: ""
     };
   }
 
@@ -27,8 +28,8 @@ export default class App extends Component {
     return (
       <UserStatus
         loggedIn={this.state.loggedIn}
-        logout={this.logoutUserName.bind(this)}
         signUp={<NavLink to="/signup">Sign Up</NavLink>}
+        logout={this.logoutUserName.bind(this)}
       />
     );
   }
@@ -53,6 +54,17 @@ export default class App extends Component {
     );
   }
 
+  mainComponent = () => {
+    return (
+      <Main
+        loggedIn={this.state.loggedIn}
+        userData={(this.state.response !== undefined) ? this.state.response : []}
+        memes={this.state.memes}
+        setMemeList={this.mainMemeList.bind(this)}
+      />
+    );
+  }
+
   profileComponent = () => {
     return (
       <Profile
@@ -62,14 +74,6 @@ export default class App extends Component {
     );
   }
 
-  mainComponent = () => {
-    return (
-      <Main
-        loggedIn={this.state.loggedIn}
-        response={this.state.response}
-      />
-    );
-  }
   matchesComponent = () => {
     return (
       <Matches
@@ -79,8 +83,22 @@ export default class App extends Component {
     );
   }
 
+  logoutUserName() {
+    axios.get("https://memedr.herokuapp.com/auth/logout")
+      .then((response) => {
+        this.setState({
+          response: [],
+          loggedIn: response.data.loggedIn,
+          logMessage: ""
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+  }
+
   loggingUserName(submittedName, submittedPassword) {
     this.setState({ logMessage: "" })
+
     axios.post("https://memedr.herokuapp.com/auth/login", {
       username: submittedName,
       password: submittedPassword
@@ -97,6 +115,7 @@ export default class App extends Component {
 
   settingUserName(signupDataArray) {
     this.setState({ logMessage: "" })
+
     axios.post("https://memedr.herokuapp.com/auth/register", {
       username: signupDataArray[0],
       password: signupDataArray[1],
@@ -116,17 +135,14 @@ export default class App extends Component {
     });
   }
 
-  logoutUserName() {
-    axios.get("https://memedr.herokuapp.com/auth/logout")
+  mainMemeList() {
+    axios.get("https://memedr.herokuapp.com/getMemes")
       .then((response) => {
         this.setState({
-          response: [],
-          loggedIn: response.data.loggedIn,
-          logMessage: ""
+          memes: response.data.memes
         });
-      })
-      .catch(function (error) {
-        console.log(error);
+      }).catch(function(error) { 
+        console.log(error); 
       });
   }
 

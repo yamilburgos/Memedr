@@ -33,7 +33,6 @@ export default class Profile extends Component {
     var x = window.confirm("Are you sure you want to delete your account?");
     if (x) {
       window.alert("Account Deleted");
-
       let id = this.props.userData.id;
 
       axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id)
@@ -49,7 +48,6 @@ export default class Profile extends Component {
     var x = window.confirm("Are you sure you want to update your account?");
     if (x) {
       window.alert("Account Updated");
-
       let id = this.props.userData.id;
 
       axios.put("https://memedr.herokuapp.com/users/profile/update/" + id, {
