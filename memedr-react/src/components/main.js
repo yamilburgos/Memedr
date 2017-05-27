@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import { Route, Redirect } from 'react-router-dom';
+import { Route, NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
@@ -16,45 +16,42 @@ export default class Main extends Component {
     }
   }
 
-  componentWillMount() {
-    axios.get("https://memedr.herokuapp.com/getMemes")
-      .then((res) => {
+  getAllMemes(){
+    if (!this.props.loggedIn) {
+      return <Redirect to="/" />;
+    }
 
-        this.setState({ memes: res.data.memes })
-
-      }).catch((err) => { return err });
+    return this.props.setMemeList();
   }
 
   likeMeme(id, memeid) {
-    
-    document.querySelectorAll('.memeDiv').forEach((element, index) => {
-        let x =element.getAttribute('id').split('_')[1];
 
-        if(x !== memeid) {
-          element.parentNode.setAttribute("class", "hideMemeDiv");
-        }  
+    document.querySelectorAll('.memeDiv').forEach((element, index) => {
+      let x = element.getAttribute('id').split('_')[1];
+
+      if (x !== memeid) {
+        element.parentNode.setAttribute("class", "hideMemeDiv");
+      }
     });
 
     axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
-      id: id, memeid: memeid
-    }).catch((err) => { return err });
+      id: id,
+      memeid: memeid
+    })
+      .catch((err) => { return err });
   }
 
   unLikeMeme(id, memeid) {
 
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
-        element.parentNode.removeAttribute("class", "hideMemeDiv");
-      });
+      element.parentNode.removeAttribute("class", "hideMemeDiv");
+    });
 
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
-      id: id, memeid: memeid
-    }).catch((err) => { return err });
-  }
-
-  checkUserStatus() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
+      id: id,
+      memeid: memeid
+    })
+      .catch((err) => { return err });
   }
 
   render() {
@@ -67,6 +64,9 @@ export default class Main extends Component {
           <button>Saves</button>
           <button>Main</button>
 
+          {this.getAllMemes()}
+          <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
+          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
           <MemeList memes={this.state.memes}
             response={this.state.response}
             likeMeme={this.likeMeme}

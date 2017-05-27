@@ -15,7 +15,14 @@ import Matches from "./components/matches";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedIn: false, response: [], logMessage: "", disabled: false };
+
+    this.state = { 
+      loggedIn: false,
+      response: [],
+      memes: [],
+      logMessage: "",
+      disabled: false
+    };
 
     this.toggleDisabled = this.toggleDisabled.bind(this);
   }
@@ -27,6 +34,7 @@ export default class App extends Component {
         logout={this.logoutUserName.bind(this)}
         disabled={this.state.disabled}
         signUp={<NavLink to="/signup">Sign Up</NavLink>}
+        logout={this.logoutUserName.bind(this)}
       />
     );
   }
@@ -43,7 +51,8 @@ export default class App extends Component {
         loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
-        appData={this.loggingUserName.bind(this)} />
+        logUserName={this.loggingUserName.bind(this)} 
+      />
     );
   }
 
@@ -53,16 +62,7 @@ export default class App extends Component {
         loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
-        appData={this.settingUserName.bind(this)} />
-    );
-  }
-
-  profileComponent = () => {
-    return (
-      <Profile
-        loggedIn={this.state.loggedIn}
-        disabled={this.state.disabled}
-        userData={(this.state.response !== undefined) ? this.state.response : []}
+        setUserName={this.settingUserName.bind(this)} 
       />
     );
   }
@@ -71,23 +71,53 @@ export default class App extends Component {
     return (
       <Main
         loggedIn={this.state.loggedIn}
+        disabled={this.state.disabled}
+        userData={(this.state.response !== undefined) ? this.state.response : []}
+        memes={this.state.memes}
+        setMemeList={this.mainMemeList.bind(this)}
+      />
+    );
+  }
+
+  profileComponent = () => {
+    return (
+      <Profile
+        loggedIn={this.state.loggedIn}
         response={this.state.response}
         disabled={this.state.disabled}
         toggleDisabled={this.toggleDisabled}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1} />
+        userID={(this.state.response !== undefined) ? this.state.response.id : 1}
+        userData={(this.state.response !== undefined) ? this.state.response : []}
+      />
     );
   }
+
   matchesComponent = () => {
     return (
       <Matches
         loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1} />
+        userID={(this.state.response !== undefined) ? this.state.response.id : 1} 
+      />
     );
+  }
+
+  logoutUserName() {
+    axios.get("https://memedr.herokuapp.com/auth/logout")
+      .then((response) => {
+        this.setState({
+          response: [],
+          loggedIn: response.data.loggedIn,
+          logMessage: ""
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
   }
 
   loggingUserName(submittedName, submittedPassword) {
     this.setState({ logMessage: "" })
+
     axios.post("https://memedr.herokuapp.com/auth/login", {
       username: submittedName,
       password: submittedPassword
@@ -104,6 +134,7 @@ export default class App extends Component {
 
   settingUserName(signupDataArray) {
     this.setState({ logMessage: "" })
+
     axios.post("https://memedr.herokuapp.com/auth/register", {
       username: signupDataArray[0],
       password: signupDataArray[1],
@@ -113,7 +144,6 @@ export default class App extends Component {
       profile_image: signupDataArray[5],
       age: signupDataArray[6]
     }).then((response) => {
-      //console.log(response.data);
       this.setState({
         response: response.data.user_profile,
         loggedIn: response.data.loggedIn,
@@ -124,17 +154,14 @@ export default class App extends Component {
     });
   }
 
-  logoutUserName() {
-    axios.get("https://memedr.herokuapp.com/auth/logout")
+  mainMemeList() {
+    axios.get("https://memedr.herokuapp.com/getMemes")
       .then((response) => {
         this.setState({
-          response: [],
-          loggedIn: response.data.loggedIn,
-          logMessage: ""
+          memes: response.data.memes
         });
-      })
-      .catch(function (error) {
-        console.log(error);
+      }).catch(function(error) { 
+        console.log(error); 
       });
   }
 
@@ -144,11 +171,6 @@ export default class App extends Component {
         <Router>
           <div id="wrapper">
             <Route render={() => this.userStatusComponent()}></Route>
-
-            <NavLink to="/">Home</NavLink>&nbsp;&nbsp;
-		        <NavLink to="/profile">Profile</NavLink>&nbsp;&nbsp;
-		        <NavLink to="/main">Main</NavLink>&nbsp;&nbsp;
-		        <NavLink to="/matches">Matches</NavLink>&nbsp;&nbsp;
 		       <Switch>
               <Route path="/" exact render={() => this.landingComponent()}></Route>
               <Route path="/about" component={About}></Route>
