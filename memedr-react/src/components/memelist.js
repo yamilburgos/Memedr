@@ -5,10 +5,6 @@ import '../App.css';
 import Meme from './meme';
 
 export default class MemeList extends Component {
-      constructor(props) {
-        super(props);
-      }
-
     render() {
         return (
             <div>
