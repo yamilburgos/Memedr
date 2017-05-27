@@ -15,13 +15,18 @@ export default class Main extends Component {
     }
   }
 
-  componentWillMount() {
+  checkUserStatus() {
+    if (!this.props.loggedIn) {
+      return <Redirect to="/" />;
+    }
+
     axios.get("https://memedr.herokuapp.com/getMemes")
-      .then((res) => {
-
-        this.setState({ memes: res.data.memes })
-
-      }).catch((err) => { return err });
+      .then((response) => {
+        this.setState({
+          memes: response.data.memes
+        });
+      })
+      .catch((err) => { return err });
   }
 
   likeMeme(id, memeid) {
@@ -34,12 +39,6 @@ export default class Main extends Component {
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
       id: id, memeid: memeid
     }).catch((err) => { return err });
-  }
-
-  checkUserStatus() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
   }
 
   render() {

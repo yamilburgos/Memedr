@@ -14,27 +14,27 @@ export default class Matches extends Component {
     }
   }
 
-  componentWillMount() {
+  checkUserStatus() {
+    if (!this.props.loggedIn) {
+      return <Redirect to="/" />;
+    }
+
     let id = this.props.userID;
 
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
       id: id
     }).then((res) => {
 
-      this.setState({ matches: res.data.data });
+      this.setState({ 
+        matches: res.data.data 
+      });
       //console.log(this.state.matches);
 
-    }).catch((err) => { return err });
+    }).catch((err) => { return err });  
   }
 
-  deleteMatch(){
+  deleteMatch() {
     console.log("delete clicked");
-  }
-
-  checkUserStatus() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
   }
 
   render() {

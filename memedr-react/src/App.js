@@ -130,7 +130,6 @@ export default class App extends Component {
           <div id="wrapper">
             <Route render={() => this.userStatusComponent()}></Route>
 
-            <NavLink to="/">Home</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/profile">Profile</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/main">Main</NavLink>&nbsp;&nbsp;
 		        <NavLink to="/matches">Matches</NavLink>&nbsp;&nbsp;
