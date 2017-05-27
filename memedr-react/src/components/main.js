@@ -25,14 +25,14 @@ export default class Main extends Component {
   }
 
   likeMeme(id, memeid) {
-    axios.post("https://memedr.herokuapp.com/users/profile/save/" + id, {
+    axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
       id: id,
       memeid: memeid
     });
   }
 
   unLikeMeme(id) {
-    axios.delete("https://memedr.herokuapp.com/users/profile/delete/saved/" + id, {
+    axios.delete("https://memedr.herokuapp.com/users/profile/remove/like/" + id, {
       id: id
     });
   }

@@ -10,14 +10,28 @@ router.get('/', function (req, res, next) {
 });
 
 /*
-* ROUTES TO QUERY THE DATABASE
+* GET ROUTES
 */
+
+// THIS ROUTE IS RESPONSIBLE FOR CALLING THE MEME API
+// THIS ROUTE WILL INSERT MEMES FROM AXIOS CALL INTO API_CACHE TABLE
+router.get('/requestAPI', db.requestAPI);
 
 // THIS ROUTE IS RESPONSIBLE FOR GETTING THE MEMES FROM THE API_CACHE TABLE
 router.get('/getMemes', db.getMemes);
 
-// GET ALL USERS WITH SAVES
-router.get('/users/withSaves', db.getUsersWithSaves);
+// GET ALL USERS WITH LIKES
+router.get('/users/withLikes', db.getUsersWithLikes);
+
+// THIS ROUTE WILL GET THE SUBTITLES
+router.get('/getSubtitles', db.getSubTitles);
+
+// THIS ROUTE WILL MATCH USERS WITH THE SAME LIKED MEME
+router.get('/users/profile/matches/:id', db.getMyMatches);
+
+/*
+* DELETE ROUTES
+*/
 
 // ADMINISTRATION
 // DELETE MEME FROM API_CACHE TABLE
@@ -27,28 +41,26 @@ router.delete('/meme/:id', db.deleteMemeFromCache);
 // IF A USER DECIDES TO DELETE THEIR ACCOUNT
 router.delete('/users/profile/delete/:id', db.deleteAccount);
 
-// SAVE A MEME TO A USER PROFILE
-// WHEN THE CHECK IS CLICKED
-router.post('/users/profile/save/:id', db.saveToProfile);
-
 // DELETE A MEME FROM A USER PROFILE
 // WHEN THE X IS CLICKED
-router.delete('/users/profile/delete/saved/:id', db.deleteFromProfile);
+router.delete('/users/profile/remove/like/:id', db.deleteFromProfile);
 
-// UPDATE A USERS PROFILE
-router.put('/users/profile/update/:id', db.updateProfile);
+/*
+* POST ROUTES
+*/
 
-// THIS ROUTE IS RESPONSIBLE FOR CALLING THE MEME API
-// THIS ROUTE WILL INSERT MEMES FROM AXIOS CALL INTO API_CACHE TABLE
-router.get('/requestAPI', db.requestAPI);
-
-// THIS ROUTE WILL MATCH USERS WITH THE SAME LIKED MEME
-router.get('/users/profile/matches/:id', db.getMyMatches);
+// LIKE A MEME TO A USER PROFILE
+// WHEN THE LIKE IS CLICKED
+router.post('/users/profile/like/:id', db.saveToProfile);
 
 // THIS ROUTE WILL SUBMIT A SUBTITLE TO THE SUBTITLES TABLE
 router.post('/new/subtitle', db.submitSubTitle);
 
-// THIS ROUTE WILL GET THE SUBTITLES
-router.get('/getSubtitles', db.getSubTitles);
+/*
+* PUT ROUTES
+*/
+
+// UPDATE A USERS PROFILE
+router.put('/users/profile/update/:id', db.updateProfile);
 
 module.exports = router;

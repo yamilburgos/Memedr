@@ -83,7 +83,7 @@ export default class App extends Component {
         logMessage: response.data.status
       });
     }).catch(function (error) {
-      console.log("Error: " + error);
+      console.log(error);
     });
   }
 
@@ -105,7 +105,7 @@ export default class App extends Component {
         logMessage: response.data.message
       });
     }).catch(function (error) {
-      console.log("Error: " + error);
+      console.log(error);
     });
   }
 
@@ -119,7 +119,7 @@ export default class App extends Component {
         });
       })
       .catch(function (error) {
-        console.log("Error: " + error);
+        console.log(error);
       });
   }
 
