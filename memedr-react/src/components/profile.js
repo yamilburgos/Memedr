@@ -8,7 +8,9 @@ export default class Profile extends Component {
     var x = window.confirm("Are you sure you want to delete your account?");
     if (x) {
       window.alert("Account Deleted");
+
       let id = this.props.userData.id;
+
       axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id)
         .catch((err) => {
           return err;
@@ -18,17 +20,23 @@ export default class Profile extends Component {
   }
 
   handleUpdateAccount() {
-    let id = this.props.userData.id;
+    var x = window.confirm("Are you sure you want to update your account?");
+    if (x) {
+      window.alert("Account Updated");
 
-    axios.put("https://memedr.herokuapp.com/users/profile/update/" + id, {
-      id: id,
-      updatedUsername: this.refs.username.value,
-      updatedEmail: this.refs.email.value,
-      updatedLocation: this.refs.location.value,
-      updatedGender: this.refs.gender.value,
-      updatedImage: this.refs.profile_image.value,
-      updatedAge: this.refs.age.value,
-    }).catch((err) => { return err; });
+      let id = this.props.userData.id;
+
+      axios.put("https://memedr.herokuapp.com/users/profile/update/" + id, {
+        id: id,
+        updatedUsername: this.refs.username.value,
+        updatedEmail: this.refs.email.value,
+        updatedLocation: this.refs.location.value,
+        updatedGender: this.refs.gender.value,
+        updatedImage: this.refs.profile_image.value,
+        updatedAge: this.refs.age.value,
+      }).catch((err) => { return err; });
+      window.location.href = "https://memedrapp.herokuapp.com/";
+    }
   }
 
   checkUserStatus() {

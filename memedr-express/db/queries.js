@@ -41,27 +41,31 @@ function deleteMemeFromCache(req, res, next){
 // THIS FUNCTION WILL LIKE A MEME TO A USERS PROFILE
 // CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
 // INSERT INTO LIKED_MEMES TABLE
-function saveToProfile(req, res, next){
+function likeMeme(req, res, next){
     let userID = parseInt(req.params.id);
+    console.log(`add a like`);
     console.log(userID);
     let memeID = parseInt(req.body.memeid);
     console.log(memeID);
     
     db.none('INSERT into liked_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
       .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully "liked" to user ${userID}'s profile` }); })
-      .catch((err) => { return next(err); });
+      .catch((err) => { console.log(err); });
 }
 
 // THIS FUNCTION WILL DELETED A LIKED MEME FROM A USERS PROFILE
 // CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
-// REMOVE FROM SAVE_MEMES TABLE
-function deleteFromProfile(req, res, next){
+// REMOVE FROM LIKED_MEMES TABLE
+function unLikeMeme(req, res, next){
     let userID = parseInt(req.params.id);
+    console.log(`remove a like`);
     console.log(userID);
+    let memeID = parseInt(req.body.memeid);
+    console.log(memeID);
 
-    db.result('DELETE FROM liked_memes WHERE userid = $1', userID)
-      .then((result) => { res.status(200).json({ status: `Meme removed from User ${userID}'s profile` }); })
-      .catch((err) => { return next(err); });
+    db.result('DELETE FROM liked_memes WHERE userid = $1 AND memeid = $2', [userID, memeID])
+      .then((result) => { res.status(200).json({ status: `Meme ${memeID} removed from User ${userID}'s profile` }); })
+      .catch((err) => { console.log(err); });
 }
 
 // THIS FUNCTION WILL RETURN THE USERS THAT LIKED ANY MEME
@@ -148,6 +152,6 @@ function getSubTitles(req, res, next){
       .catch((err) => { return next(err); });
 }
 
-module.exports = { getMemes, requestAPI, deleteMemeFromCache, saveToProfile, 
-                   getUsersWithLikes, updateProfile, deleteFromProfile, 
+module.exports = { getMemes, requestAPI, deleteMemeFromCache, likeMeme, unLikeMeme,
+                   getUsersWithLikes, updateProfile, 
                    getMyMatches, deleteAccount, submitSubTitle, getSubTitles };

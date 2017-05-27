@@ -25,8 +25,17 @@ export default class Meme extends Component {
         );
     }
 
-    handleLike(e){ this.setState({ disabled: true, liked: true }); let memeid = e.target.getAttribute('id'); this.props.likeMeme(this.props.response.id, memeid); }
-    handleUnLike(){ this.setState({ disabled: false, liked: false }); this.props.unLikeMeme(this.props.response.id); }
+    handleLike(e){ 
+        this.setState({ disabled: true, liked: true }); 
+        let memeid = e.target.getAttribute('id'); 
+        this.props.likeMeme(this.props.response.id, memeid); 
+    }
+
+    handleUnLike(e){ 
+        this.setState({ disabled: false, liked: false }); 
+        let memeid = e.target.getAttribute('id'); 
+        this.props.unLikeMeme(this.props.response.id, memeid); 
+    }
 
     renderButtons(){
         if(!this.state.disabled){
@@ -38,7 +47,7 @@ export default class Meme extends Component {
         } else {
             return (
                 <p>
-                    <button onClick={this.handleUnLike}>UnLike</button>
+                    <button id={this.props.memeID} onClick={this.handleUnLike}>UnLike</button>
                 </p>
             )
         }
