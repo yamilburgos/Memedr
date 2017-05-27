@@ -34,7 +34,6 @@ export default class App extends Component {
         logout={this.logoutUserName.bind(this)}
         disabled={this.state.disabled}
         signUp={<NavLink to="/signup">Sign Up</NavLink>}
-        logout={this.logoutUserName.bind(this)}
       />
     );
   }
