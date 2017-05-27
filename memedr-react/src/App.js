@@ -58,7 +58,8 @@ export default class App extends Component {
 	mainComponent = () => {
       return (
         <Main
-          loggedIn={this.state.loggedIn}
+          loggedIn={this.state.loggedIn} 
+          response={this.state.response} 
           userID={(this.state.response !== undefined) ? this.state.response.id : 1}/>
       );
   }

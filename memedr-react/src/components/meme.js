@@ -24,8 +24,8 @@ export default class Meme extends Component {
         );
     }
 
-    handleLike(){ this.setState({ disabled: true })}
-    handleUnLike(){ this.setState({ disabled: false })}
+    handleLike(){ this.setState({ disabled: true }); this.props.likeMeme(this.props.response.id); }
+    handleUnLike(){ this.setState({ disabled: false }); this.props.unLikeMeme(this.props.response.id); }
 
     renderButtons(){
         if(!this.state.disabled){
