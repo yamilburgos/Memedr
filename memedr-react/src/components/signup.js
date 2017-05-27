@@ -4,7 +4,7 @@ import '../App.css';
 
 export default class SignUp extends Component {
   newUserData() {
-    this.props.appData([
+    this.props.setUserName([
       this.refs.username.value,
       this.refs.password.value,
       this.refs.email.value,

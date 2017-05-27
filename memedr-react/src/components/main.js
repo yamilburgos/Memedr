@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import { Route, Redirect } from 'react-router-dom';
+import { Route, NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
@@ -11,7 +11,6 @@ export default class Main extends Component {
 
     this.state = {
       memes: [],
-      response: this.props.response,
     }
   }
 
@@ -19,11 +18,11 @@ export default class Main extends Component {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
-
+        
     axios.get("https://memedr.herokuapp.com/getMemes")
-      .then((response) => {
+      .then((res) => {
         this.setState({
-          memes: response.data.memes
+          memes: res.data.memes
         });
       })
       .catch((err) => { return err });
@@ -31,14 +30,18 @@ export default class Main extends Component {
 
   likeMeme(id, memeid) {
     axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
-      id: id, memeid: memeid
-    }).catch((err) => { return err });
+      id: id,
+      memeid: memeid
+    })
+    .catch((err) => { return err });
   }
 
   unLikeMeme(id, memeid) {
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
-      id: id, memeid: memeid
-    }).catch((err) => { return err });
+      id: id,
+      memeid: memeid
+    })
+    .catch((err) => { return err });
   }
 
   render() {
@@ -46,12 +49,9 @@ export default class Main extends Component {
       <div className="bigBorder">
         <div className="tempBorder">
           {this.checkUserStatus()}
-          <br />
-          <button>Matches</button>
-          <button>Saves</button>
-          <button>Main</button>
-
-          <MemeList memes={this.state.memes} response={this.state.response} likeMeme={this.likeMeme} unLikeMeme={this.unLikeMeme} />
+          <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
+          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
+          <MemeList memes={this.state.memes} response={this.props.response} likeMeme={this.likeMeme} unLikeMeme={this.unLikeMeme} />
         </div>
       </div>
     );

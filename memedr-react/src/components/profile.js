@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import { Route, Redirect } from 'react-router-dom';
+import { Route, NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
@@ -12,9 +12,8 @@ export default class Profile extends Component {
     return (
         <span>
           <br />
-          <button>Matches</button>
-          <button>Saves</button>
-          <button>Main</button>
+          <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
+          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
           <br />
           <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
           <p>Profile Image: <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /></p>
@@ -41,6 +40,7 @@ export default class Profile extends Component {
         .catch((err) => {
           return err;
         })
+      
       window.location.href = "https://memedrapp.herokuapp.com/";
     }
   }
@@ -61,7 +61,7 @@ export default class Profile extends Component {
         updatedImage: this.refs.profile_image.value,
         updatedAge: this.refs.age.value,
       }).catch((err) => { return err; });
-      window.location.href = "https://memedrapp.herokuapp.com/";
+        window.location.href = "https://memedrapp.herokuapp.com/";
     }
   }
 

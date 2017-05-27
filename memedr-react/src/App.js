@@ -15,7 +15,12 @@ import Matches from "./components/matches";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedIn: false, response: [], logMessage: "" };
+
+    this.state = { 
+      loggedIn: false, 
+      response: [], 
+      logMessage: "" 
+    };
   }
 
   userStatusComponent = () => {
@@ -33,7 +38,8 @@ export default class App extends Component {
       <Landing
         loggedIn={this.state.loggedIn}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
-        appData={this.loggingUserName.bind(this)} />
+        logUserName={this.loggingUserName.bind(this)} 
+      />
     );
   }
 
@@ -42,7 +48,8 @@ export default class App extends Component {
       <SignUp
         loggedIn={this.state.loggedIn}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
-        appData={this.settingUserName.bind(this)} />
+        setUserName={this.settingUserName.bind(this)} 
+      />
     );
   }
 
@@ -60,14 +67,15 @@ export default class App extends Component {
       <Main
         loggedIn={this.state.loggedIn}
         response={this.state.response}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1} />
+      />
     );
   }
   matchesComponent = () => {
     return (
       <Matches
         loggedIn={this.state.loggedIn}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1} />
+        userID={(this.state.response !== undefined) ? this.state.response.id : 1} 
+      />
     );
   }
 
@@ -98,7 +106,6 @@ export default class App extends Component {
       profile_image: signupDataArray[5],
       age: signupDataArray[6]
     }).then((response) => {
-      //console.log(response.data);
       this.setState({
         response: response.data.user_profile,
         loggedIn: response.data.loggedIn,
@@ -129,10 +136,6 @@ export default class App extends Component {
         <Router>
           <div id="wrapper">
             <Route render={() => this.userStatusComponent()}></Route>
-
-		        <NavLink to="/profile">Profile</NavLink>&nbsp;&nbsp;
-		        <NavLink to="/main">Main</NavLink>&nbsp;&nbsp;
-		        <NavLink to="/matches">Matches</NavLink>&nbsp;&nbsp;
 		       <Switch>
               <Route path="/" exact render={() => this.landingComponent()}></Route>
               <Route path="/about" component={About}></Route>
