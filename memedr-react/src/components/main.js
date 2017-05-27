@@ -21,20 +21,19 @@ export default class Main extends Component {
 
         this.setState({ memes: res.data.memes })
 
-      }).catch((err) => { return err })
+      }).catch((err) => { return err });
   }
 
   likeMeme(id, memeid) {
-    axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
-      id: id,
-      memeid: memeid
-    });
+    axios.post("https://memedrapp.herokuapp.com/users/profile/like/" + id, {
+      id, memeid
+    }).catch((err) => { return err });
   }
 
-  unLikeMeme(id) {
-    axios.delete("https://memedr.herokuapp.com/users/profile/remove/like/" + id, {
-      id: id
-    });
+  unLikeMeme(id, memeid) {
+    axios.put("https://memedrapp.herokuapp.com/users/profile/unlike/" + id, {
+      id, memeid
+    }).catch((err) => { return err });
   }
 
   checkUserStatus() {

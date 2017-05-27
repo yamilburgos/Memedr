@@ -30,28 +30,12 @@ router.get('/getSubtitles', db.getSubTitles);
 router.get('/users/profile/matches/:id', db.getMyMatches);
 
 /*
-* DELETE ROUTES
-*/
-
-// ADMINISTRATION
-// DELETE MEME FROM API_CACHE TABLE
-router.delete('/meme/:id', db.deleteMemeFromCache);
-
-// DELETE A USER
-// IF A USER DECIDES TO DELETE THEIR ACCOUNT
-router.delete('/users/profile/delete/:id', db.deleteAccount);
-
-// DELETE A MEME FROM A USER PROFILE
-// WHEN THE X IS CLICKED
-router.delete('/users/profile/remove/like/:id', db.deleteFromProfile);
-
-/*
 * POST ROUTES
 */
 
 // LIKE A MEME TO A USER PROFILE
 // WHEN THE LIKE IS CLICKED
-router.post('/users/profile/like/:id', db.saveToProfile);
+router.post('/users/profile/like/:id', db.likeMeme);
 
 // THIS ROUTE WILL SUBMIT A SUBTITLE TO THE SUBTITLES TABLE
 router.post('/new/subtitle', db.submitSubTitle);
@@ -62,5 +46,21 @@ router.post('/new/subtitle', db.submitSubTitle);
 
 // UPDATE A USERS PROFILE
 router.put('/users/profile/update/:id', db.updateProfile);
+
+// UNLIKE A MEME FROM A USER PROFILE
+// WHEN THE UNLIKE IS CLICKED
+router.put('/users/profile/unlike/:id', db.unLikeMeme);
+
+/*
+* DELETE ROUTES
+*/
+
+// ADMINISTRATION
+// DELETE MEME FROM API_CACHE TABLE
+router.delete('/meme/:id', db.deleteMemeFromCache);
+
+// DELETE A USER
+// IF A USER DECIDES TO DELETE THEIR ACCOUNT
+router.delete('/users/profile/delete/:id', db.deleteAccount);
 
 module.exports = router;
