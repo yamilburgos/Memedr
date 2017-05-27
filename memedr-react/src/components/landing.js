@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import { BrowserRouter as Route, NavLink, Redirect } from 'react-router-dom';
+import '../App.css';
 
 export default class Landing extends Component {
   checkUserData() {

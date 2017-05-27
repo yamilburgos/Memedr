@@ -39,9 +39,15 @@ ul{
 }
 
 .profileImage {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 300px;
+    max-height: 300px;
+    border: 2px dashed black;
 }
+
+.profileImage:hover{
+    border: 2px dashed white;
+}
+
 /*ABOUT*/
 .homeButtonInAbout {
     display: block;
