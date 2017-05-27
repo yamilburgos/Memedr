@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import { Route, Redirect } from 'react-router-dom';
+import { Route, NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
@@ -14,27 +14,27 @@ export default class Matches extends Component {
     }
   }
 
-  componentWillMount() {
+  checkUserStatus() {
+    if (!this.props.loggedIn) {
+      return <Redirect to="/" />;
+    }
+
     let id = this.props.userID;
 
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
       id: id
     }).then((res) => {
 
-      this.setState({ matches: res.data.data });
+      this.setState({ 
+        matches: res.data.data 
+      });
       //console.log(this.state.matches);
 
-    }).catch((err) => { return err });
+    }).catch((err) => { return err });  
   }
 
-  deleteMatch(){
+  deleteMatch() {
     console.log("delete clicked");
-  }
-
-  checkUserStatus() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
   }
 
   render() {
@@ -43,10 +43,8 @@ export default class Matches extends Component {
         <div className="tempBorder">
           {this.checkUserStatus()}
           <br />
-          <button>Matches</button>
-          <button>Saves</button>
-          <button>Main</button>
-
+          <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
+          <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
           <MatchesList matches={this.state.matches} deleteMatch={this.deleteMatch} />
         </div>
       </div>

@@ -4,7 +4,7 @@ import '../App.css';
 
 export default class Landing extends Component {
   checkUserData() {
-    this.props.appData(
+    this.props.logUserName(
       this.refs.username.value,
       this.refs.password.value
     );
