@@ -10,6 +10,7 @@ export default class Profile extends Component {
       window.alert("Account Deleted");
 
       let id = this.props.userData.id;
+      console.log("delete me, id: " + id);
 
       axios.delete("https://memedr.herokuapp.com/users/profile/delete/" + id)
         .catch((err) => {

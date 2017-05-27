@@ -11,6 +11,8 @@ export default class Matches extends Component {
 
     this.state = {
       matches: [{}],
+      disabled: this.props.disabled, 
+      liked: this.props.liked
     }
   }
 

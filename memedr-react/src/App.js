@@ -15,7 +15,9 @@ import Matches from "./components/matches";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedIn: false, response: [], logMessage: "" };
+    this.state = { loggedIn: false, response: [], logMessage: "", disabled: false };
+
+    this.toggleDisabled = this.toggleDisabled.bind(this);
   }
 
   userStatusComponent = () => {
@@ -23,15 +25,23 @@ export default class App extends Component {
       <UserStatus
         loggedIn={this.state.loggedIn}
         logout={this.logoutUserName.bind(this)}
+        disabled={this.state.disabled}
         signUp={<NavLink to="/signup">Sign Up</NavLink>}
       />
     );
+  }
+
+  toggleDisabled(){
+    this.setState({
+      disabled: !this.state.disabled,
+    });
   }
 
   landingComponent = () => {
     return (
       <Landing
         loggedIn={this.state.loggedIn}
+        disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         appData={this.loggingUserName.bind(this)} />
     );
@@ -41,6 +51,7 @@ export default class App extends Component {
     return (
       <SignUp
         loggedIn={this.state.loggedIn}
+        disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         appData={this.settingUserName.bind(this)} />
     );
@@ -50,6 +61,7 @@ export default class App extends Component {
     return (
       <Profile
         loggedIn={this.state.loggedIn}
+        disabled={this.state.disabled}
         userData={(this.state.response !== undefined) ? this.state.response : []}
       />
     );
@@ -60,6 +72,8 @@ export default class App extends Component {
       <Main
         loggedIn={this.state.loggedIn}
         response={this.state.response}
+        disabled={this.state.disabled}
+        toggleDisabled={this.toggleDisabled}
         userID={(this.state.response !== undefined) ? this.state.response.id : 1} />
     );
   }
@@ -67,6 +81,7 @@ export default class App extends Component {
     return (
       <Matches
         loggedIn={this.state.loggedIn}
+        disabled={this.state.disabled}
         userID={(this.state.response !== undefined) ? this.state.response.id : 1} />
     );
   }

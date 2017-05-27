@@ -34,7 +34,7 @@
     <h5>json format</h5>
     <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;"memeid" : #<br> }</div>
     <h5>success response</h5>
-    <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # successfully "liked" to user #'s profile"<br> }</div>
+    <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme # successfully saved to user #'s profile"<br> }</div>
 
     <h2>how to submit a subtitle <small>inserts a subtitle into the subtitles table</small></h2>
     <div class="postDiv"><span class="larger"><span class="post">POST</span>https://memedr.herokuapp.com/<span class="post">new/subtitle</span></span></div>
@@ -61,7 +61,7 @@
     <h2>how to remove a liked meme from a profile <small>removes a specified meme from a users profile</small></h2>
     <div class="putDiv"><span class="larger"><span class="put">PUT</span>https://memedr.herokuapp.com/<span class="put">users/profile/unlike/{id}</span></span></div>
     <h5>json format</h5>
-    <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #<br> }</div>
+    <div class="statusCodesDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"userid" : #,<br>&nbsp;&nbsp;&nbsp;&nbsp;"memeid" : #<br> }</div>
     <h5>success response</h5>
     <div class="successDiv">{ <br>&nbsp;&nbsp;&nbsp;&nbsp;"status" : "Meme removed from User #'s profile"<br> }</div>
 

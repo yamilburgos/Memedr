@@ -6,19 +6,18 @@ export default class Meme extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { disabled: false, liked: false };
+        //this.state = { disabled: this.props.disabled };
 
         this.renderMemes = this.renderMemes.bind(this);
         this.renderButtons = this.renderButtons.bind(this);
 
         this.handleLike = this.handleLike.bind(this);
         this.handleUnLike = this.handleUnLike.bind(this);
-
     }
 
     renderMemes() {
         return (
-            <div className="memeDiv">
+            <div className="memeDiv" id={"memeid_"+this.props.memeID}>
                 <p><img src={this.props.memeLink} className="memeImage" alt={this.props.memeName} id={this.props.memeID} /></p>
                 <p className="memeName">{this.props.memeName}</p>
             </div>
@@ -26,19 +25,21 @@ export default class Meme extends Component {
     }
 
     handleLike(e){ 
-        this.setState({ disabled: true, liked: true }); 
+        //this.setState({ disabled: true }); 
+        this.props.toggleDisabled(this);
         let memeid = e.target.getAttribute('id'); 
         this.props.likeMeme(this.props.response.id, memeid); 
     }
 
     handleUnLike(e){ 
-        this.setState({ disabled: false, liked: false }); 
+        //this.setState({ disabled: false }); 
+        this.props.toggleDisabled(this);
         let memeid = e.target.getAttribute('id'); 
         this.props.unLikeMeme(this.props.response.id, memeid); 
     }
 
     renderButtons(){
-        if(!this.state.disabled){
+        if(!this.props.disabled){
             return (
                 <p>
                     <button id={this.props.memeID} onClick={this.handleLike}>Like</button>
