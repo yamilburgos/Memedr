@@ -1,16 +1,9 @@
 var db = require('../db/config');
 var axios = require('axios');
 
-// THIS FUNCTION WILL RETURN ALL THE MEMES FROM THE API_CACHE TABLE
-function getMemes(req, res, next){
-    db.any('SELECT * FROM api_cache')
-    .then((data) => {
-        res.status(200).json({ memes: data });
-    })
-    .catch((err) => {
-        return next(err);
-    });
-}
+/*
+* GET ROUTES
+*/
 
 // REQUEST THE API AND FILLS THE DATABASE WITH 100 MEMES
 // MEME LINKS AND MEME NAMES
@@ -29,43 +22,15 @@ function requestAPI(req, res, next){
          }).catch((err) => { return next(err); });
 }
 
-// THIS FUNCTION WILL DELETE A SPECIFIC MEME FROM THE API_CACHE TABLE
-function deleteMemeFromCache(req, res, next){
-    let memeID = parseInt(req.params.id);
-
-    db.result('DELETE FROM api_cache WHERE id = $1', memeID)
-      .then((result) => { res.status(200).json({ status: `Meme ${memeID} deleted` }); })
-      .catch((err) => { return next(err); });
-}
-
-// THIS FUNCTION WILL LIKE A MEME TO A USERS PROFILE
-// CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
-// INSERT INTO LIKED_MEMES TABLE
-function likeMeme(req, res, next){
-    let userID = parseInt(req.params.id);
-    console.log(`add a like`);
-    console.log(userID);
-    let memeID = parseInt(req.body.memeid);
-    console.log(memeID);
-    
-    db.none('INSERT into liked_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
-      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully "liked" to user ${userID}'s profile` }); })
-      .catch((err) => { console.log(err); });
-}
-
-// THIS FUNCTION WILL DELETED A LIKED MEME FROM A USERS PROFILE
-// CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
-// REMOVE FROM LIKED_MEMES TABLE
-function unLikeMeme(req, res, next){
-    let userID = parseInt(req.params.id);
-    console.log(`remove a like`);
-    console.log(userID);
-    let memeID = parseInt(req.body.memeid);
-    console.log(memeID);
-
-    db.result('DELETE FROM liked_memes WHERE userid = $1 AND memeid = $2', [userID, memeID])
-      .then((result) => { res.status(200).json({ status: `Meme ${memeID} removed from User ${userID}'s profile` }); })
-      .catch((err) => { console.log(err); });
+// THIS FUNCTION WILL RETURN ALL THE MEMES FROM THE API_CACHE TABLE
+function getMemes(req, res, next){
+    db.any('SELECT * FROM api_cache')
+    .then((data) => {
+        res.status(200).json({ memes: data });
+    })
+    .catch((err) => {
+        return next(err);
+    });
 }
 
 // THIS FUNCTION WILL RETURN THE USERS THAT LIKED ANY MEME
@@ -75,37 +40,9 @@ function getUsersWithLikes(req, res, next){
       .catch((err) => { return next(err); });
 }
 
-// THIS FUNCTION WILL DELETE A USER
-function deleteAccount(req, res, next){
-    let userID = parseInt(req.params.id);
-
-    db.result('DELETE FROM liked_memes WHERE liked_memes.userid = $1', userID)
-      .then((data) => { 
-          db.result('DELETE FROM users_matches WHERE users_matches.userid = $1', userID)
-            .then((data) => {
-                db.result('DELETE FROM users WHERE id = $1', userID)
-                  .then((data) => {
-                    res.status(200).json({ status: `User ${userID} successfully deleted` });
-                  }).catch((err) => { return next(err); });
-            }).catch((err) => { return next(err); });
-    }).catch((err) => { return next(err); });
-}
-
-// THIS FUNCTION WILL ALLOW AN USER TO UPDATE THIER PROFILE
-function updateProfile(req, res, next){
-    let userID = parseInt(req.params.id);
-
-    // GRAB UPDATED PROFILE INFORMATION
-    let username = req.body.updatedUsername;
-    let email = req.body.updatedEmail;
-    let location = req.body.updatedLocation;
-    let gender = req.body.updatedGender;
-    let profile_image = req.body.updatedImage;
-    let age = req.body.updatedAge;
-
-    db.none('UPDATE users SET username=$1, email=$2, location=$3, gender=$4, profile_image=$5, age=$6 WHERE id=$7', 
-            [username, email, location, gender, profile_image, age, userID])
-      .then((data) => { res.status(200).json({ status: `User ${userID}'s profile successfully updated` }); })
+function getSubTitles(req, res, next){
+    db.any('SELECT * FROM subtitles')
+      .then((data) => { res.status(200).json({ Showing: "Subtitles" , data }); })
       .catch((err) => { return next(err); });
 }
 
@@ -137,6 +74,26 @@ function getMyMatches(req, res, next){
             .catch((err) => { return next(err); });
 }
 
+
+/*
+* POST ROUTES
+*/
+
+// THIS FUNCTION WILL LIKE A MEME TO A USERS PROFILE
+// CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
+// INSERT INTO LIKED_MEMES TABLE
+function likeMeme(req, res, next){
+    let userID = parseInt(req.params.id);
+    console.log(`add a like`);
+    console.log(userID);
+    let memeID = parseInt(req.body.memeid);
+    console.log(memeID);
+    
+    db.none('INSERT into liked_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
+      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully "liked" to user ${userID}'s profile` }); })
+      .catch((err) => { console.log(err); });
+}
+
 // THIS FUNCTION WILL SUBMIT A SUBTITLE TO THE SUBTITLES TABLE
 function submitSubTitle(req, res, next){
     let subtitle = req.body.subtitle;
@@ -146,11 +103,74 @@ function submitSubTitle(req, res, next){
       .catch((err) => { return next(err); });
 }
 
-function getSubTitles(req, res, next){
-    db.any('SELECT * FROM subtitles')
-      .then((data) => { res.status(200).json({ Showing: "Subtitles" , data }); })
+
+/*
+* PUT ROUTES
+*/
+
+// THIS FUNCTION WILL ALLOW AN USER TO UPDATE THIER PROFILE
+function updateProfile(req, res, next){
+    let userID = parseInt(req.params.id);
+
+    // GRAB UPDATED PROFILE INFORMATION
+    let username = req.body.updatedUsername;
+    let email = req.body.updatedEmail;
+    let location = req.body.updatedLocation;
+    let gender = req.body.updatedGender;
+    let profile_image = req.body.updatedImage;
+    let age = req.body.updatedAge;
+
+    db.none('UPDATE users SET username=$1, email=$2, location=$3, gender=$4, profile_image=$5, age=$6 WHERE id=$7', 
+            [username, email, location, gender, profile_image, age, userID])
+      .then((data) => { res.status(200).json({ status: `User ${userID}'s profile successfully updated` }); })
       .catch((err) => { return next(err); });
 }
+
+// THIS FUNCTION WILL DELETED A LIKED MEME FROM A USERS PROFILE
+// CAPTURE THE LOGGED IN USERS ID, CAPTURE MEME ID
+// REMOVE FROM LIKED_MEMES TABLE
+function unLikeMeme(req, res, next){
+    let userID = parseInt(req.params.id);
+    console.log(`remove a like`);
+    console.log(userID);
+    let memeID = parseInt(req.body.memeid);
+    console.log(memeID);
+
+    db.result('DELETE FROM liked_memes WHERE userid = $1 AND memeid = $2', [userID, memeID])
+      .then((result) => { res.status(200).json({ status: `Meme ${memeID} removed from User ${userID}'s profile` }); })
+      .catch((err) => { console.log(err); });
+}
+
+
+/*
+* DELETE ROUTES
+*/
+
+// THIS FUNCTION WILL DELETE A SPECIFIC MEME FROM THE API_CACHE TABLE
+function deleteMemeFromCache(req, res, next){
+    let memeID = parseInt(req.params.id);
+
+    db.result('DELETE FROM api_cache WHERE id = $1', memeID)
+      .then((result) => { res.status(200).json({ status: `Meme ${memeID} deleted` }); })
+      .catch((err) => { return next(err); });
+}
+
+// THIS FUNCTION WILL DELETE A USER
+function deleteAccount(req, res, next){
+    let userID = parseInt(req.params.id);
+
+    db.result('DELETE FROM liked_memes WHERE liked_memes.userid = $1', userID)
+      .then((data) => { 
+          db.result('DELETE FROM users_matches WHERE users_matches.userid = $1', userID)
+            .then((data) => {
+                db.result('DELETE FROM users WHERE id = $1', userID)
+                  .then((data) => {
+                    res.status(200).json({ status: `User ${userID} successfully deleted` });
+                  }).catch((err) => { return next(err); });
+            }).catch((err) => { return next(err); });
+    }).catch((err) => { return next(err); });
+}
+
 
 module.exports = { getMemes, requestAPI, deleteMemeFromCache, likeMeme, unLikeMeme,
                    getUsersWithLikes, updateProfile, 
