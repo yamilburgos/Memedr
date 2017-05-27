@@ -8,8 +8,6 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
 
-    //console.log(this.props.response);
-
     this.state = {
       memes: [],
       response: this.props.response,
@@ -25,20 +23,16 @@ export default class Main extends Component {
       }).catch((err) => { return err })
   }
 
-  likeMeme(id) {
-    console.log('like Meme clicked');
-
-    //let memeid = event.target.getAttribute('id');
-    //console.log("memeid " + memeid);
-    /*axios.post("https://memedr.herokuapp.com/users/profile/save/" + id, {
+  likeMeme(id, memeid) {
+    axios.post("https://memedr.herokuapp.com/users/profile/save/" + id, {
       id: id,
       memeid: memeid
-    });*/
+    });
   }
 
   unLikeMeme(id) {
     axios.delete("https://memedr.herokuapp.com/users/profile/delete/saved/" + id, {
-      id: id,
+      id: id
     });
   }
 

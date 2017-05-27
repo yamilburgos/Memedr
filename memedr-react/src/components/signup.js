@@ -15,33 +15,33 @@ export default class SignUp extends Component {
   }
 
   renderSignUpData() {
-    if(!this.props.loggedIn) {
-     return (
+    if (!this.props.loggedIn) {
+      return (
         <span>
-            <p>User Name: <input type="text" ref="username"/></p>
-            <p>Email: <input type="text" ref="email"/></p>
-            <p>Password: <input type="text" ref="password"/></p>
+          <p>User Name: <input type="text" ref="username" /></p>
+          <p>Email: <input type="text" ref="email" /></p>
+          <p>Password: <input type="text" ref="password" /></p>
 
-            <p>Location: <select ref="location">
-              <option value="queens">Queens</option>
-              <option value="manhattan">Manhattan</option>
-              <option value="statenisland">Staten Island</option>
-              <option value="brookyln">Brooklyn</option>
-              <option value="bronx">Bronx</option>
-            </select></p>
+          <p>Location: <select ref="location">
+            <option value="queens">Queens</option>
+            <option value="manhattan">Manhattan</option>
+            <option value="statenisland">Staten Island</option>
+            <option value="brookyln">Brooklyn</option>
+            <option value="bronx">Bronx</option>
+          </select></p>
 
-            <p>Sex: <select ref="gender">
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-               <option value="other">Other</option>
-            </select></p>
+          <p>Sex: <select ref="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select></p>
 
-            <p>Profile Image: </p> <input type="text" ref="image"/>
-            <p>Are you 18 years or older? <input type="number" ref="age"/></p>
-            <p>Did you read the Terms of Service? <input type="checkbox"/></p>
-            
-            <br/><button onClick={() => this.newUserData()}>Create Account</button>
-            <p>{this.props.errorMessage}</p>
+          <p>Profile Image: </p> <input type="text" ref="image" />
+          <p>Are you 18 years or older? <input type="number" ref="age" /></p>
+          <p>Did you read the Terms of Service? <input type="checkbox" /></p>
+
+          <br /><button onClick={() => this.newUserData()}>Create Account</button>
+          <p>{this.props.errorMessage}</p>
         </span>
       );
     }
@@ -50,10 +50,10 @@ export default class SignUp extends Component {
   render() {
     return (
       <div className="bigBorder">
-          <div className="tempBorder">
-            <NavLink to="/"><button className="btn btn-default homeButtonInAbout" type="submit">home</button></NavLink>
-            {this.renderSignUpData()}
-          </div>
+        <div className="tempBorder">
+          <NavLink to="/"><button className="btn btn-default homeButtonInAbout" type="submit">home</button></NavLink>
+          {this.renderSignUpData()}
+        </div>
       </div>
     );
   }
