@@ -10,11 +10,14 @@ CREATE TABLE IF NOT EXISTS users(
     email VARCHAR(200) UNIQUE NOT NULL,
     location VARCHAR(200) NOT NULL,
     gender VARCHAR(6) NOT NULL,
-    profile_image TEXT NOT NULL DEFAULT 'https://memedr.herokuapp.com/images/default.jpg',
+    profile_image TEXT NOT NULL,
     age INTEGER NOT NULL,
     active BOOLEAN DEFAULT TRUE,
     CHECK (age>=18),
-    CHECK (gender = 'male' OR gender = 'female')
+    CHECK (gender = 'male' OR gender = 'female'),
+    CHECK (location = 'queens' OR location = 'manhattan' 
+        OR location = 'staten island' OR location = 'brooklyn' 
+        OR location = 'bronx')
 );
 
 CREATE TABLE IF NOT EXISTS subtitles(
@@ -38,7 +41,7 @@ CREATE TABLE IF NOT EXISTS save_memes(
 
 CREATE TABLE IF NOT EXISTS users_matches(
     users_matches_id BIGSERIAL PRIMARY KEY NOT NULL,
-    userid INTEGER NOT NULL,
+    userid INTEGER NOT NULL UNIQUE,
     username TEXT NOT NULL,
     gender TEXT NOT NULL,
     location TEXT NOT NULL,

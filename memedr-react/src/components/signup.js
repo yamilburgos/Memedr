@@ -37,7 +37,7 @@ export default class SignUp extends Component {
             <option value="other">Other</option>
           </select></p>
 
-          <p>Profile Image: </p> <input type="text" ref="image" />
+          <p>Profile Image: </p> <input type="text" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
           <p>Are you 18 years or older? <input type="number" ref="age" /></p>
           <p>Did you read the Terms of Service? <input type="checkbox" /></p>
 

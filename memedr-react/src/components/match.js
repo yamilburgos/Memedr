@@ -6,14 +6,17 @@ export default class Match extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { noLongerLike: false };
+        this.handleDelete = this.handleDelete.bind(this);
+        this.renderMatches = this.renderMatches.bind(this);
     }
+
+    handleDelete(){ this.props.deleteMatch(); }
 
     renderMatches() {
         return (
             <div>
                 <h1>{this.props.username} <small>{this.props.age}, {this.props.gender}, {this.props.location}</small></h1>
-                <p><img src={this.props.profile_image} alt={this.props.username} className="profileImage" /></p>
+                <p><img src={this.props.profile_image} alt={this.props.username} className="profileImageMatches" onClick={this.handleDelete}/></p>
             </div>
         )
     }
