@@ -20,7 +20,9 @@ export default class MemeList extends Component {
                             memeID={element.id}
                             likeMeme={this.props.likeMeme}
                             unLikeMeme={this.props.unLikeMeme}
-                            response={this.props.response} 
+                            response={this.props.response}
+                            disabled={this.props.disabled}
+                            toggleDisabled={this.props.toggleDisabled} 
                         />
                     )
                 })}

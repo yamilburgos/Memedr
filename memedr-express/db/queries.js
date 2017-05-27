@@ -57,6 +57,7 @@ function getMyMatches(req, res, next){
             WHERE users.id = ${userID}`)
             .then((data) => {
                 let memeID = data[0].memeid;
+                console.log(data);
 
                 db.any(`SELECT users.username, users.id, users.gender, users.location, users.profile_image, users.email, users.age, liked_memes.memeid
                         FROM users
@@ -90,7 +91,7 @@ function likeMeme(req, res, next){
     console.log(memeID);
     
     db.none('INSERT into liked_memes(userid, memeid)' + 'VALUES($1, $2)', [userID, memeID])
-      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully "liked" to user ${userID}'s profile` }); })
+      .then((data) => { res.status(200).json({ status: `Meme ${memeID} successfully saved to user ${userID}'s profile` }); })
       .catch((err) => { console.log(err); });
 }
 
