@@ -178,11 +178,7 @@ ul{
 }
 
 /* ABOUT */
-#homeButtonInAbout {
-   display:flex;
-   align-self:center;
-   margin-top: 4%;
-}
+
 .homeButton {
     /*margin-top: 13px;*/
 }
@@ -243,7 +239,7 @@ ul{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,.5);
 }
 .logInContainer p {
-    margin: 20px 0 15px 0;
+    /*margin: 20px 0 15px 0;*/
     font-size: 25px;
 }
 #usernameInput {
@@ -263,10 +259,7 @@ ul{
     height: 50px;
     font-size:20px;
 }
-#aboutButtonDiv {
-    display:flex;
-    align-self:center;
-}
+
 #signInError {
     color:red;
     opacity: .5;

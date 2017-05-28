@@ -26,8 +26,12 @@ export default class Match extends Component {
         } else {
             return (         
                 <div>
-                    <h1>{this.props.username} <small>{this.props.age}, {this.props.gender}, {this.props.location}</small></h1>
-                    <p><img src={this.props.profile_image} alt={this.props.username} className="profileImageMatches" onClick={this.handleDelete} /></p>
+                    <div id="matchesDiv">
+                        <h1 id="matchUserName">{this.props.username}</h1> 
+                        <h3 id="matchUserStats">{this.props.age}, {this.props.gender}, {this.props.location}</h3>
+                        <p><img id="matchesId"src={this.props.profile_image} alt={this.props.username} className="profileImageMatches" onClick={this.handleDelete} /></p>
+                        <p id="matchesEmail">{this.props.email}</p>
+                    </div>
                 </div>
             )
         }
