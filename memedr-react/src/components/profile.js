@@ -47,10 +47,10 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div>
-        <div className="profileContainer bigBorder container">
-        {this.checkUserStatus()}
 
+       <div>
+        <div className="profileContainer container">
+        {this.checkUserStatus()}
             <div id="profileImageDiv">
                 <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
             </div>
