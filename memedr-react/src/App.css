@@ -267,6 +267,13 @@ ul{
     cursor:default;
     animation: fadein_out 1.5s 1;
 }
+
+.aboutMemedr {
+    margin-top: 0;
+    padding-top:0;
+}
+
+
 /*MATCHES PAGE*/
 #matchesDiv{
     display: flex;
@@ -285,8 +292,24 @@ ul{
     padding:3%;
     margin:0;
 }
-
-
+/*SIGN UP*/
+.signUpDiv {
+    flex-direction:column;
+    width:300px;
+    margin-bottom:0;
+    padding:10px 15px 0 15px;
+    
+}
+.signUpDiv input {
+    display:flex;
+    background-color: rgba(0,0,0,.2);
+    text-align:center;
+    color:#01abaa;  
+    border:none;
+}
+.createAccountButton {
+    width:21%;
+}
 
 
 
