@@ -17,7 +17,9 @@ export default class MatchesList extends Component {
                             profile_image={element.profile_image}
                             email={element.email}
                             age={element.age}
-                            deleteMatch={this.props.deleteMatch} />
+                            deleteMatch={this.props.deleteMatch} 
+                            dataSlideTo={index}
+                        />
                     )
                 })}
             </div>

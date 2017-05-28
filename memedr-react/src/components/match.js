@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import axios from 'axios';
 import '../App.css';
 
 export default class Match extends Component {
@@ -39,7 +38,9 @@ export default class Match extends Component {
 
     render() {
         return (
-            <div> {this.renderMatches()}</div>
+            <div>
+                {this.renderMatches()}
+            </div>
         )
     }
 }

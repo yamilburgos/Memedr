@@ -7,6 +7,13 @@ import MemeList from './memelist';
 
 export default class Main extends Component {
 
+  constructor(props){
+    super(props);
+
+    this.likeMeme = this.likeMeme.bind(this);
+    this.unLikeMeme = this.unLikeMeme.bind(this);
+  }
+
   getAllMemes() {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
@@ -16,7 +23,6 @@ export default class Main extends Component {
   }
 
   likeMeme(id, memeid) {
-
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
       let x = element.getAttribute('id').split('_')[1];
 
@@ -28,12 +34,10 @@ export default class Main extends Component {
     axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
       id: id,
       memeid: memeid
-    })
-      .catch((err) => { return err });
+    }).catch((err) => { return err });
   }
 
   unLikeMeme(id, memeid) {
-
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
       element.parentNode.removeAttribute("class", "hideMemeDiv");
     });
@@ -41,8 +45,7 @@ export default class Main extends Component {
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
       id: id,
       memeid: memeid
-    })
-      .catch((err) => { return err });
+    }).catch((err) => { return err });
   }
 
   render() {
@@ -50,15 +53,16 @@ export default class Main extends Component {
       <div className="bigBorder">
         <div className="tempBorder">
           {this.getAllMemes()}
-          <NavLink to="/profile"><button className="btn btn-info" type="submit">Profile</button></NavLink>
-          <NavLink to="/matches"><button className="btn btn-info" type="submit">Matches</button></NavLink>
+          <div className="navButtons">
+            <NavLink to="/profile"><button className="btn btn-info" type="submit">My Profile</button></NavLink>&nbsp;
+            <NavLink to="/matches"><button className="btn btn-info" type="submit">My Matches</button></NavLink>
+          </div>
           <MemeList memes={this.props.memes}
                     response={this.props.response}
                     likeMeme={this.likeMeme}
                     unLikeMeme={this.unLikeMeme}
                     disabled={this.props.disabled}
-                    toggleDisabled={this.props.toggleDisabled}
-          />
+                    toggleDisabled={this.props.toggleDisabled} />
         </div>
       </div>
     );
