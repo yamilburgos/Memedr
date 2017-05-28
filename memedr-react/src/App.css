@@ -9,6 +9,15 @@ body{
 ul{
     list-style: none;
 }
+
+/*NAV BUTTONS*/
+.navButtons {
+    margin-top: 15px;
+    display:flex;
+    align-self:center;
+    width: 200px;
+}
+
 /* TITLE */
 .title {
     -webkit-text-stroke: 2px black;

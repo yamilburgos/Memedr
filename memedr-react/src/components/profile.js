@@ -52,7 +52,7 @@ export default class Profile extends Component {
 
        <div className="bigBorder">
         <div className="profileContainer container">
-        {this.checkUserStatus()}
+          {this.checkUserStatus()}
             <div id="profileImageDiv">
                 <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
             </div>
@@ -71,9 +71,10 @@ export default class Profile extends Component {
               </div>
             </div>
          </div>
-          <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
-          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
-          <br />
+           <div className="navButtons">
+                <NavLink to="/main"><button className="btn btn-info" type="submit">Main</button></NavLink>
+                <NavLink to="/matches"><button className="btn btn-info" type="submit">Matches</button></NavLink>
+           </div> 
        
       </div>
     );
