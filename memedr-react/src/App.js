@@ -24,9 +24,7 @@ export default class App extends Component {
       disabled: false
     };
 
-
     this.toggleDisabled = this.toggleDisabled.bind(this);
-
   }
 
   userStatusComponent = () => {
@@ -75,7 +73,9 @@ export default class App extends Component {
         disabled={this.state.disabled}
         userData={(this.state.response !== undefined) ? this.state.response : []}
         memes={this.state.memes}
+        response={this.state.response}
         setMemeList={this.mainMemeList.bind(this)}
+        toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
   }
