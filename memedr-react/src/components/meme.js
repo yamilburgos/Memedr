@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import axios from 'axios';
 import '../App.css';
+var Carousel = require('react-responsive-carousel').Carousel;
 
 export default class Meme extends Component {
     constructor(props) {
@@ -37,15 +38,15 @@ export default class Meme extends Component {
     renderButtons(){
         if(!this.props.disabled){
             return (
-                <p>
-                    <button id={this.props.memeID} onClick={this.handleLike}>Like</button>
-                </p>
+                <div className = "likeUnlikeDiv">
+                    <button className="btn btn-info" id={this.props.memeID} onClick={this.handleLike}>Like</button>
+                </div>
             )
         } else {
             return (
-                <p>
-                    <button id={this.props.memeID} onClick={this.handleUnLike}>UnLike</button>
-                </p>
+                <div className = "likeUnlikeDiv">
+                    <button className="btn btn-danger" id={this.props.memeID} onClick={this.handleUnLike}>UnLike</button>
+                </div>
             )
         }
     }

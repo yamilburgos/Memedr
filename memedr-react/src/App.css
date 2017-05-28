@@ -11,11 +11,11 @@ ul{
 }
 /* TITLE */
 .title {
+    -webkit-text-stroke: 2px black;
     margin-top: -5px;
     margin-bottom: -5px;
     font-family: impact, Charcoal, sans-serif;
     color:white;
-    text-shadow: -2px -0px #000000, 0 2px #000000, 2px 0 #000000, 0 -2px #000000;
     user-select: none;
     cursor: default;
     font-size: 100px;
@@ -64,14 +64,86 @@ ul{
 }
 
 .memeDiv {
-    padding: 10px;
+    /*border:solid red 1px;*/
+    display:block;
+    /*flex-direction: column;*/
+    align-content:center;
+    margin: 0 auto;
+    max-width: 450px;
+    text-align: center;
+    color: white;
+    background-color: rgba(0,0,0,.8);
+    padding:15px;
+    padding-top: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
 }
 
+.memeName {
+    padding-top: 10px;
+}
+
+.likeUnlikeDiv {
+    display: block;
+    width:60px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    align-content: center;
+    padding-top: 20px;
+}
 
 /* PROFILE PAGE*/
 
 .hideMemeDiv {
     display: none;
+}
+.profileContainer {
+    display:flex;
+    line-height: 15px;
+    height:360px;
+    max-width:800px;
+    margin-top: 3%;
+    background-color: rgba(0,0,0,.8);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
+    padding:2%;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+#profileImageDiv {
+    width:300px;
+    margin:0;
+    margin-right:50px;
+
+}
+
+#profileInfoDiv {
+    display:column;
+    margin-top: 8%;
+    margin:0;
+    font-size: 20px;
+    width:225px;
+}
+#profileInfoDiv p {
+    width:225;
+}
+#profileInfoDiv input {
+    display:flex;
+    background-color: rgba(0,0,0,.2);
+    text-align:center;
+    min-width:10px;
+    color:#01abaa;  
+    border:none;
+}
+#updateDeleteButtons {
+    position:relative;
+    width: 150px;
+    margin:0;
+    padding:0;
+    left:110%;
+    top:-100%;
+}
+#updateDeleteButtons button {
+    margin-top: 15px;
+    width:150px;
 }
 
 .profileImage {
@@ -100,8 +172,12 @@ ul{
 #homeButtonInAbout {
    display:flex;
    align-self:center;
-   margin-top: 2%;
+   margin-top: 4%;
 }
+.homeButton {
+    /*margin-top: 13px;*/
+}
+
 #aboutMemedrDiv {
     line-height: 15px;
     height:360px;
@@ -111,6 +187,7 @@ ul{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
     padding:5%;
     color: #ffffff;
+    margin-bottom: 0;
 }
 #aboutMemedrDiv h3 {
     font-size:40px;
@@ -133,9 +210,7 @@ ul{
     min-height:100px;
     margin-top:50px;
 }
-.homeButton {
-    margin-top: 13px;
-}
+
 
 
 /* LOG IN */
@@ -150,6 +225,7 @@ ul{
     background-color: rgba(0,0,0,.8);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
     padding:5%;
+    margin-bottom: 0;
     height:360px;
     transition:.3s;
 }
@@ -172,7 +248,7 @@ ul{
 }
 
 .logInContainer button {
-    margin-top: 10%;
+   /* margin-top: 10%;*/
 }
 .btn-sample {
     height: 50px;
@@ -189,6 +265,13 @@ ul{
     cursor:default;
     animation: fadein_out 1.5s 1;
 }
+
+
+
+
+
+
+
 @keyframes fadein_out {
     0%      { opacity:.5; }
     50%     { opacity:.2; }
