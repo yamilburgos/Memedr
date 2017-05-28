@@ -13,12 +13,12 @@ Memedr is a app that brings people together based on their choice of memes. A us
 4. DELETE
     * User Profiles and Meme selections
 
-### TRELLO
-https://trello.com/b/Qv5DWmnq/memedr
+### Git Projects
+https://git.generalassemb.ly/GainorB/memedr/projects/1
 
 ### API
 1. Gify API
-2. Meme API, etc..
+2. imgflip API 
 
 ### MVP
 1. Theme
@@ -73,12 +73,12 @@ https://trello.com/b/Qv5DWmnq/memedr
 ![Wireframe](./readme-assets/5.jpg)
 
 ### USER STORIES
-1. As a user, I like to create an account to save my favorite GIFs.
-2. As a user, I like to share my saved GIFs with friends and family.
-3. As a user, I like to be able to change my username and password when needed.
-4. As a user, I like to be matched with people who like similar GIFs.
+1. As a user, I like to create an account and select my favorite gif.
+2. As a user, I like to be matched with other users with the same favorite.
+3. As a user, I would like to delete my favorite and choose another.
+4. As a user, I like to be able to change my username and password when needed.
 5. As a user, I like to reset my password if I were to forget it.
-6. As a user, I like to be able to like or dislike a GIF image when displayed.
+
 
 ### DOWNLOAD PROJECT & INSTALL
 1. Git clone or download this project
