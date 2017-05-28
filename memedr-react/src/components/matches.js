@@ -23,34 +23,31 @@ export default class Matches extends Component {
   }
 
   componentDidMount() {
-    _isMounted = true;
-
-    if (!_isMounted) {
-      return
-    }
     let id = this.props.userID;
-
-    if (!_isMounted) {
-      return
+    if (_isMounted) {
+      return;
     }
-    axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
+    axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {id})
+         .then((res) => {
+            let matches = res.data.data;
+            this.setState({ matches }); })
+        .catch((err) => { return err });
+    /*axios.interceptors.response.use("https://memedr.herokuapp.com/users/profile/matches/" + id, {
       id: id
-    }).then((res) => {
-
-      let matches = res.data.data;
-
-      this.setState({
-        matches: matches,
-      });
-    }).catch((err) => { return err });
+    }, (response) => {
+      console.log(response)
+    }, (error) => {
+      console.log(error)
+      return Promise.reject(error);
+    })*/
   }
 
   componentWillUnmount() {
     _isMounted = false;
   }
 
-  deleteMatch(e) {
-    console.log(e);
+  deleteMatch(username) {
+    console.log(username);
     console.log("delete clicked");
   }
 

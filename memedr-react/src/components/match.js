@@ -10,8 +10,10 @@ export default class Match extends Component {
         this.renderMatches = this.renderMatches.bind(this);
     }
 
-    handleDelete() { 
-        this.props.deleteMatch();
+    handleDelete(e) { 
+        let username = e.target.getAttribute('alt');
+        console.log(username); 
+        this.props.deleteMatch(username);
     }
 
     renderMatches() {
