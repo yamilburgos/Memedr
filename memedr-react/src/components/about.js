@@ -8,15 +8,15 @@ export default class About extends Component {
     return (
       <div className="bigBorder container"> 
           <div id="aboutMemedrDiv">
-            <h3>About Memedr</h3>
+            <h3>About</h3> <br /> <span className="title">Memedr</span>
               <div id="aboutText">
-                <p>Like a Meme make a friend</p>
+                <p>Like a meme make a friend</p>
                 <br />
-                <p>Memedr matches you with other users who like the same memes</p>
+                <p>Memedr matches you with other users who like the same memes as you do</p>
               </div>
           </div>
           <div id="homeButtonInAbout">
-            <NavLink to="/"><button className="btn btn-info" type="submit">Home</button></NavLink>
+            <NavLink to="/"><button className="homeButton btn btn-info" type="submit">Home</button></NavLink>
           </div>
       </div>
     );

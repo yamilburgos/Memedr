@@ -10,7 +10,9 @@ export default class Match extends Component {
         this.renderMatches = this.renderMatches.bind(this);
     }
 
-    handleDelete(){ this.props.deleteMatch(); }
+    handleDelete() { 
+        this.props.deleteMatch();
+    }
 
     renderMatches() {
         return (
@@ -21,11 +23,9 @@ export default class Match extends Component {
         )
     }
 
-    render(){
-        return(
-            <div>
-                {this.renderMatches()}
-            </div>
+    render() {
+        return (
+            <div> {this.renderMatches()} </div>
         )
     }
 }

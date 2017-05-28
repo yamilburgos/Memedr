@@ -13,7 +13,7 @@ export default class UserStatus extends Component {
   render() {
     return (
       <div>
-          <h2 id="title">Memedr</h2>
+          <h2 className="title">Memedr</h2>
           {this.renderLogInData()}
       </div>
     );
