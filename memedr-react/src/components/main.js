@@ -50,8 +50,8 @@ export default class Main extends Component {
       <div className="bigBorder">
         <div className="tempBorder">
           {this.getAllMemes()}
-          <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
-          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
+          <NavLink to="/profile"><button className="btn btn-info" type="submit">Profile</button></NavLink>
+          <NavLink to="/matches"><button className="btn btn-info" type="submit">Matches</button></NavLink>
           <MemeList memes={this.props.memes}
                     response={this.props.response}
                     likeMeme={this.likeMeme}
