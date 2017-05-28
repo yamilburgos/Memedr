@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../App.css';
 
 import MatchesList from './matcheslist';
-let _isMounted = false;
+/*let _isMounted = false;*/
 
 export default class Matches extends Component {
   constructor(props) {
@@ -22,35 +22,27 @@ export default class Matches extends Component {
     }
   }
 
-  componentDidMount() {
-    _isMounted = true;
-
-    if (!_isMounted) {
+  componentWillMount() {
+    /*if (!_isMounted) {
       return
-    }
+    }*/
+
+    let url = "https://memedr.herokuapp.com/users/profile/matches/";
     let id = this.props.userID;
 
-    if (!_isMounted) {
-      return
-    }
-    axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
-      id: id
-    }).then((res) => {
-
-      let matches = res.data.data;
-
-      this.setState({
-        matches: matches,
-      });
-    }).catch((err) => { return err });
+    axios.get(url + id, {id})
+      .then((res) => {
+        let matches = res.data.data;
+        this.setState({ matches:matches }); })
+      .catch((err) => { return err });
   }
 
-  componentWillUnmount() {
+  /*componentWillUnmount() {
     _isMounted = false;
-  }
+  }*/
 
-  deleteMatch(e) {
-    console.log(e);
+  deleteMatch(username) {
+    console.log(username);
     console.log("delete clicked");
   }
 
