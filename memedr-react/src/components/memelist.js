@@ -2,7 +2,7 @@ import React, { Component } from 'react'; // eslint-disable-next-line
 import axios from 'axios';
 import '../App.css';
 import Meme from './meme';
-var Carousel = require('react-responsive-carousel').Carousel;
+
 
 
 export default class MemeList extends Component {

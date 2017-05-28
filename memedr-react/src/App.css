@@ -267,8 +267,24 @@ ul{
     cursor:default;
     animation: fadein_out 1.5s 1;
 }
-
-
+/*MATCHES PAGE*/
+#matchesDiv{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    /*border:solid green 1px;*/
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: rgba(0,0,0,.8);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
+    height:360px;
+    transition:.3s;
+}
+#matchesDiv h1, h3{
+    padding:3%;
+    margin:0;
+}
 
 
 
