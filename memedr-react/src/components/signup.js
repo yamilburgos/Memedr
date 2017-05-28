@@ -28,6 +28,7 @@ export default class SignUp extends Component {
         <p>password <input type="password" ref="password" /></p>
 
 
+
         <p>location <select ref="location">
           <option value="queens">Queens</option>
           <option value="manhattan">Manhattan</option>
