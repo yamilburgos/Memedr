@@ -14,11 +14,11 @@ export default class Landing extends Component {
     if(this.props.loggedIn !== true) {
       return (
         <span>
-          <div className="logInContainer">
-            
+          <div className="logInContainer"> 
+            <h3 id="welcome">Welcome!</h3>
             <input type="text" id="usernameInput" placeholder="username" ref="username"/>
             <input type="password" placeholder="password" ref="password"/>      
-            <NavLink to="/signup">Don't have an account? Sign Up!</NavLink>
+            <NavLink to="/signup">Don't have an account? Sign Up!</NavLink><br/>
             <button type="button" className="btn btn-info btn-lg" onClick={() => this.checkUserData()}>Log In</button>
             <p id="signInError">{this.props.errorMessage}</p>
           </div>

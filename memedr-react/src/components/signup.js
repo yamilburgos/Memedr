@@ -23,11 +23,11 @@ export default class SignUp extends Component {
     return (
       <div className="container">
       <div>
-        <p>username: <input type="text" ref="username" /></p>
-        <p>email: <input type="text" ref="email" /></p>
-        <p>password: <input type="text" ref="password" /></p>
+        <p>username <input required type="text" ref="username" /></p>
+        <p>email <input type="email" ref="email" /></p>
+        <p>password <input type="password" ref="password" /></p>
 
-        <p>location: <select ref="location">
+        <p>location <select ref="location">
           <option value="queens">Queens</option>
           <option value="manhattan">Manhattan</option>
           <option value="statenisland">Staten Island</option>
@@ -35,14 +35,14 @@ export default class SignUp extends Component {
           <option value="bronx">Bronx</option>
         </select></p>
 
-        <p>gender: <select ref="gender">
+        <p>gender <select ref="gender">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select></p>
 
-        <p>profile image link: </p> <input type="text" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
-        <p>age ( must be 18 + ) <input type="number" ref="age" /></p>
+        <p>profile image link </p> <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
+        <p>age ( must be 18 + ) <input type="number" ref="age"  min="18" max="100" /></p>
         <p>Did you read the Terms of Service? <input type="checkbox" /></p>
 
         <button className="btn btn-primary createAccountButton" onClick={() => this.newUserData()}>Create Account</button>

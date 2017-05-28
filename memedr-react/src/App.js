@@ -20,11 +20,13 @@ export default class App extends Component {
       loggedIn: false,
       response: [],
       memes: [],
+      matches: [{}],
       logMessage: "",
       disabled: false
     };
 
     this.toggleDisabled = this.toggleDisabled.bind(this);
+    this.getMyMatches = this.getMyMatches.bind(this);
   }
 
   userStatusComponent = () => {
@@ -40,7 +42,7 @@ export default class App extends Component {
 
   toggleDisabled() {
     this.setState({
-      disabled: !this.state.disabled,
+      disabled: !this.state.disabled
     });
   }
 
@@ -98,7 +100,11 @@ export default class App extends Component {
       <Matches
         loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
+        userData={(this.state.response !== undefined) ? this.state.response : []}
         userID={(this.state.response !== undefined) ? this.state.response.id : 1}
+        setMatchesList={this.getMyMatches.bind(this)}
+        matches={this.state.matches}
+        toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
   }
@@ -161,8 +167,23 @@ export default class App extends Component {
         this.setState({
           memes: response.data.memes
         });
-      }).catch(function (error) {
+      }).catch((error) => {
         console.log(error);
+      });
+  }
+
+  getMyMatches() {
+    //let id = this.props.userID;
+    let id = this.state.response.id;
+
+    axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {id})
+      .then((res) => {
+        //let matches = res.data.data;
+        this.setState({ 
+          matches: res.data.data 
+        }); 
+      }).catch((err) => { 
+        console.log(err); 
       });
   }
 
@@ -178,7 +199,7 @@ export default class App extends Component {
               <Route path="/signup" render={() => this.signupComponent()}></Route>
               <Route path="/profile" render={() => this.profileComponent()}></Route>
               <Route path="/main" render={() => this.mainComponent()}></Route>
-              <Route path="/matches" component={() => this.matchesComponent()}></Route>
+              <Route path="/matches" render={() => this.matchesComponent()}></Route>
             </Switch>
           </div>
         </Router>

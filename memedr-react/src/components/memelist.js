@@ -1,15 +1,13 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import axios from 'axios';
 import '../App.css';
+
 import Meme from './meme';
-
-
 
 export default class MemeList extends Component {
     render() {
         return (
             <div>
-        
                 {this.props.memes.map((element, index) => {
                     return (
                         <Meme key={index}
