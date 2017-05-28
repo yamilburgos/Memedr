@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../App.css';
 
 import MatchesList from './matcheslist';
+let _isMounted = false;
 
 export default class Matches extends Component {
   constructor(props) {
@@ -11,10 +12,7 @@ export default class Matches extends Component {
 
     this.state = {
       matches: [{}],
-
-      disabled: this.props.disabled, 
-
-      liked: this.props.liked
+      disabled: this.props.disabled,
     }
   }
 
@@ -22,32 +20,36 @@ export default class Matches extends Component {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
+  }
 
+  getMatches() {
+    let id = this.props.userID;
+
+    if (!_isMounted) {
+      return
+    } 
+      axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
+        id: id
+      }).then((res) => {
+
+        let matches = res.data.data;
+
+        this.setState({
+          matches: matches,
+        });
+      }).catch((err) => { return err });
   }
 
   componentDidMount() {
-
-
-    let id = this.props.userID;
-
-    axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
-      id: id
-    }).then((res) => {
-      this.setState({ 
-        matches: res.data.data 
-      });
-
-
-      this.setState({ 
-        matches: res.data.data 
-      });
-      //console.log(this.state.matches);
-
-
-    }).catch((err) => { return err });  
+    _isMounted = true;
   }
 
-  deleteMatch() {
+  componentWillUnmount() {
+    _isMounted = false;
+  }
+
+  deleteMatch(e) {
+    console.log(e);
     console.log("delete clicked");
   }
 
@@ -59,7 +61,9 @@ export default class Matches extends Component {
           <br />
           <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
           <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
-          <MatchesList matches={this.state.matches} deleteMatch={this.deleteMatch} />
+          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
+          <MatchesList matches={this.state.matches}
+            deleteMatch={this.deleteMatch} />
         </div>
       </div>
     );

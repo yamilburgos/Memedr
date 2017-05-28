@@ -16,7 +16,7 @@ export default class Main extends Component {
     }
   }
 
-  getAllMemes(){
+  getAllMemes() {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
@@ -59,20 +59,14 @@ export default class Main extends Component {
       <div className="bigBorder">
         <div className="tempBorder">
           {this.getAllMemes()}
-          <br />
-          <button>Matches</button>
-          <button>Saves</button>
-          <button>Main</button>
-
-          {this.getAllMemes()}
           <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
           <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
           <MemeList memes={this.state.memes}
-            response={this.state.response}
-            likeMeme={this.likeMeme}
-            unLikeMeme={this.unLikeMeme}
-            disabled={this.props.disabled}
-            toggleDisabled={this.props.toggleDisabled}
+                    response={this.state.response}
+                    likeMeme={this.likeMeme}
+                    unLikeMeme={this.unLikeMeme}
+                    disabled={this.props.disabled}
+                    toggleDisabled={this.props.toggleDisabled}
           />
         </div>
       </div>

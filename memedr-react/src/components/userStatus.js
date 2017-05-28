@@ -3,7 +3,7 @@ import '../App.css';
 
 export default class UserStatus extends Component {
   renderLogInData() {
-    if(this.props.loggedIn !== true) {
+    if (this.props.loggedIn !== true) {
       return <button>{this.props.signUp}</button>;
     }
 
@@ -13,8 +13,8 @@ export default class UserStatus extends Component {
   render() {
     return (
       <div>
-          <h2 className="title">Memedr</h2>
-          {this.renderLogInData()}
+        <h2 className="title">Memedr</h2>
+        {this.renderLogInData()}
       </div>
     );
   }

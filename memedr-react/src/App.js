@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -16,7 +16,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       loggedIn: false,
       response: [],
       memes: [],
@@ -33,17 +33,14 @@ export default class App extends Component {
     return (
       <UserStatus
         loggedIn={this.state.loggedIn}
-
-        logout={this.logoutUserName.bind(this)}
         disabled={this.state.disabled}
-
         signUp={<NavLink to="/signup">Sign Up</NavLink>}
         logout={this.logoutUserName.bind(this)}
       />
     );
   }
 
-  toggleDisabled(){
+  toggleDisabled() {
     this.setState({
       disabled: !this.state.disabled,
     });
@@ -55,7 +52,7 @@ export default class App extends Component {
         loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
-        logUserName={this.loggingUserName.bind(this)} 
+        logUserName={this.loggingUserName.bind(this)}
       />
     );
   }
@@ -66,7 +63,7 @@ export default class App extends Component {
         loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
-        setUserName={this.settingUserName.bind(this)} 
+        setUserName={this.settingUserName.bind(this)}
       />
     );
   }
@@ -79,8 +76,6 @@ export default class App extends Component {
         userData={(this.state.response !== undefined) ? this.state.response : []}
         memes={this.state.memes}
         setMemeList={this.mainMemeList.bind(this)}
-
-
       />
     );
   }
@@ -89,12 +84,10 @@ export default class App extends Component {
     return (
       <Profile
         loggedIn={this.state.loggedIn}
-
         response={this.state.response}
         disabled={this.state.disabled}
         toggleDisabled={this.toggleDisabled}
         userID={(this.state.response !== undefined) ? this.state.response.id : 1}
-
         userData={(this.state.response !== undefined) ? this.state.response : []}
       />
     );
@@ -104,15 +97,11 @@ export default class App extends Component {
     return (
       <Matches
         loggedIn={this.state.loggedIn}
-
         disabled={this.state.disabled}
-
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1} 
+        userID={(this.state.response !== undefined) ? this.state.response.id : 1}
       />
     );
   }
-
-
 
   logoutUserName() {
     axios.get("https://memedr.herokuapp.com/auth/logout")
@@ -125,7 +114,6 @@ export default class App extends Component {
       }).catch(function (error) {
         console.log(error);
       });
-
   }
 
   loggingUserName(submittedName, submittedPassword) {
@@ -173,8 +161,8 @@ export default class App extends Component {
         this.setState({
           memes: response.data.memes
         });
-      }).catch(function(error) { 
-        console.log(error); 
+      }).catch(function (error) {
+        console.log(error);
       });
   }
 
@@ -184,7 +172,7 @@ export default class App extends Component {
         <Router>
           <div id="wrapper">
             <Route render={() => this.userStatusComponent()}></Route>
-		       <Switch>
+            <Switch>
               <Route path="/" exact render={() => this.landingComponent()}></Route>
               <Route path="/about" component={About}></Route>
               <Route path="/signup" render={() => this.signupComponent()}></Route>

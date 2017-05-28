@@ -16,11 +16,8 @@ export default class Landing extends Component {
         <span>
           <div className="logInContainer">
             
-            
-            <input id="usernameInput"type="text" placeholder="username"ref="username"/>
-           
-           
-            <input type="text" placeholder="password"ref="password"/>      
+            <input type="text" id="usernameInput" placeholder="username" ref="username"/>
+            <input type="password" placeholder="password" ref="password"/>      
             
             <button type="button" className="btn btn-info btn-lg" onClick={() => this.checkUserData()}>Log In</button>
             <p id="signInError">{this.props.errorMessage}</p>

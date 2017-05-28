@@ -25,7 +25,7 @@ export default class Match extends Component {
 
     render() {
         return (
-            <div> {this.renderMatches()} </div>
+            <div> {this.renderMatches()}</div>
         )
     }
 }

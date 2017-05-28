@@ -10,23 +10,23 @@ export default class Profile extends Component {
     }
 
     return (
-        <span>
-          <br />
-          <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
-          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
-          <br />
-          <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
-          <p>Profile Image: <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /></p>
-          <p>Username: <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
-          <p>Email: <input type="text" ref="email" defaultValue={this.props.userData.email} /></p>
-          <p>Location: <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
-          <p>Gender: <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
-          <p>Age: <input type="text" ref="age" defaultValue={this.props.userData.age} /></p>
-          <br />
-          <button onClick={this.handleUpdateAccount.bind(this)}> update account </button>
-          <button onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
-        </span>
-      );
+      <span>
+        <br />
+        <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
+        <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
+        <br />
+        <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
+        <p>Profile Image: <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /></p>
+        <p>Username: <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
+        <p>Email: <input type="text" ref="email" defaultValue={this.props.userData.email} /></p>
+        <p>Location: <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
+        <p>Gender: <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
+        <p>Age: <input type="text" ref="age" defaultValue={this.props.userData.age} /></p>
+        <br />
+        <button onClick={this.handleUpdateAccount.bind(this)}> update account </button>
+        <button onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
+      </span>
+    );
   }
 
   handleDeleteAccount() {
@@ -40,13 +40,13 @@ export default class Profile extends Component {
         .catch((err) => {
           return err;
         })
-      
+
       window.location.href = "https://memedrapp.herokuapp.com/";
     }
   }
 
   handleUpdateAccount() {
-    var x = window.confirm("Are you sure you want to update your account?");
+    var x = window.confirm("Are you sure you want to update your account? You'll need to re login.");
     if (x) {
       window.alert("Account Updated");
       let id = this.props.userData.id;
@@ -60,7 +60,7 @@ export default class Profile extends Component {
         updatedImage: this.refs.profile_image.value,
         updatedAge: this.refs.age.value,
       }).catch((err) => { return err; });
-        window.location.href = "https://memedrapp.herokuapp.com/";
+      window.location.href = "https://memedrapp.herokuapp.com/";
     }
   }
 

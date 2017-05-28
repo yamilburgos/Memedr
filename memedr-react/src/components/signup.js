@@ -22,7 +22,7 @@ export default class SignUp extends Component {
       
     return (
       <span>
-        <p>User Name: <input type="text" ref="username" /></p>
+        <p>Username: <input type="text" ref="username" /></p>
         <p>Email: <input type="text" ref="email" /></p>
         <p>Password: <input type="text" ref="password" /></p>
 
@@ -34,7 +34,7 @@ export default class SignUp extends Component {
           <option value="bronx">Bronx</option>
         </select></p>
 
-        <p>Sex: <select ref="gender">
+        <p>Gender: <select ref="gender">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
