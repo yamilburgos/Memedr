@@ -12,7 +12,8 @@ ul{
 
 /*NAV BUTTONS*/
 .navButtons {
-    margin-top: 15px;
+    margin-top: 0px;
+    margin-bottom: 15px;
     display:flex;
     align-self:center;
     width: 200px;
@@ -49,10 +50,11 @@ ul{
 /*    background-color: #ff3b3f;
 */  background-color: #01abaa;
     height: 475px;
-    padding:15px;
+    padding: 15px;
     color: #071013;
     box-shadow: 0px 4px 8px 0px rgba(0,0,0, .2);
     margin-bottom:25px;
+    max-width: 1000px;
 }
 
 
@@ -70,7 +72,7 @@ ul{
 }
 
 .memeName {
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .memeDiv {
@@ -110,9 +112,9 @@ ul{
 .profileContainer {
     display:flex;
     line-height: 15px;
-    height:360px;
+    height:390px;
     max-width:800px;
-    margin-top: 3%;
+    margin-top: 1%;
     background-color: rgba(0,0,0,.8);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
     padding:2%;
@@ -123,7 +125,6 @@ ul{
     width:300px;
     margin:0;
     margin-right:50px;
-
 }
 
 #profileInfoDiv {
@@ -143,6 +144,7 @@ ul{
     min-width:10px;
     color:#01abaa;  
     border:none;
+    margin-top: 10px;
 }
 #updateDeleteButtons {
     position:relative;
@@ -150,7 +152,7 @@ ul{
     margin:0;
     padding:0;
     left:110%;
-    top:-100%;
+    top:-114%;
 }
 #updateDeleteButtons button {
     margin-top: 15px;
@@ -209,7 +211,11 @@ ul{
     margin-top:50px;
 }
 
-
+#welcome{
+    margin: 0;
+    padding: 0;
+    color: #01abaa;
+}
 
 /* LOG IN */
 .logInContainer {
@@ -222,7 +228,7 @@ ul{
     text-align: center;
     background-color: rgba(0,0,0,.8);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
-    padding:5%;
+    padding:4%;
     margin-bottom: 0;
     height:360px;
     transition:.3s;
@@ -269,6 +275,7 @@ ul{
 
 /*MATCHES PAGE*/
 #matchesDiv{
+    color: #ffffff;
     display: flex;
     flex-direction: column;
     max-width: 400px;

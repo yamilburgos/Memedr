@@ -23,9 +23,10 @@ export default class SignUp extends Component {
     return (
       <div className="infoDiv">
       <div>
-        <p>username <input type="text" ref="username" /></p>
-        <p>email <input type="text" ref="email" /></p>
-        <p>password <input type="text" ref="password" /></p>
+        <p>username <input required type="text" ref="username" /></p>
+        <p>email <input type="email" ref="email" /></p>
+        <p>password <input type="password" ref="password" /></p>
+
 
         <p>location <select ref="location">
           <option value="queens">Queens</option>
@@ -41,9 +42,9 @@ export default class SignUp extends Component {
           <option value="other">Other</option>
         </select></p>
 
-        <p>profile image link </p> <input type="text" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
-        <p>age ( must be 18 + ) <input type="number" ref="age" /></p>
-        {/*<p id="tosText">Did you read the Terms of Service? <input id="tos" type="checkbox" /></p>*/}
+        <p>profile image link </p> <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
+        <p>age ( must be 18 + ) <input type="number" ref="age"  min="18" max="100" /></p>
+        <p>Did you read the Terms of Service? <input type="checkbox" /></p>
 
         <button className="btn btn-primary btn-msm createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
         <p>{this.props.errorMessage}</p>

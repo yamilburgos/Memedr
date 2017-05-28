@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import axios from 'axios';
 import '../App.css';
 
 export default class Match extends Component {
@@ -20,7 +19,7 @@ export default class Match extends Component {
         if (this.props.username === undefined) {
             return (
                 <div>
-                    <h1>Sorry, no matches</h1>
+                    <h1>Sorry, no matches yet. Like a meme!</h1>
                 </div>
             )
         } else {
@@ -39,7 +38,9 @@ export default class Match extends Component {
 
     render() {
         return (
-            <div> {this.renderMatches()}</div>
+            <div>
+                {this.renderMatches()}
+            </div>
         )
     }
 }
