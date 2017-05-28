@@ -50,7 +50,7 @@ export default class Profile extends Component {
 
 
 
-       <div>
+       <div className="bigBorder">
         <div className="profileContainer container">
         {this.checkUserStatus()}
             <div id="profileImageDiv">
