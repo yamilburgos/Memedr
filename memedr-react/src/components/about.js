@@ -15,7 +15,7 @@ export default class About extends Component {
                 <p>Memedr matches you with other users who like the same memes as you do</p>
               </div>
           </div>
-          <div id="homeButtonInAbout">
+          <div className="navButtons">
             <NavLink to="/"><button className="homeButton btn btn-info" type="submit">Home</button></NavLink>
           </div>
       </div>

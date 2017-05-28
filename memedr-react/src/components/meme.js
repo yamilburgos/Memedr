@@ -37,15 +37,15 @@ export default class Meme extends Component {
     renderButtons(){
         if(!this.props.disabled){
             return (
-                <p>
-                    <button id={this.props.memeID} onClick={this.handleLike}>Like</button>
-                </p>
+                <div className = "likeUnlikeDiv">
+                    <button className="btn btn-info" id={this.props.memeID} onClick={this.handleLike}>Like</button>
+                </div>
             )
         } else {
             return (
-                <p>
-                    <button id={this.props.memeID} onClick={this.handleUnLike}>UnLike</button>
-                </p>
+                <div className = "likeUnlikeDiv">
+                    <button className="btn btn-danger" id={this.props.memeID} onClick={this.handleUnLike}>UnLike</button>
+                </div>
             )
         }
     }

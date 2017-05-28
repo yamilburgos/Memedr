@@ -47,27 +47,37 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div className="bigBorder">
-        <div className="tempBorder">
+
+
+
+       <div className="bigBorder">
+        <div className="profileContainer container">
           {this.checkUserStatus()}
-          <div>
-            <br />
-            <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
-            <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
-            <br />
-            <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
-            <p>Profile Image: <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /></p>
-            <p>Username: <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
-            <p>Email: <input type="text" ref="email" defaultValue={this.props.userData.email} /></p>
-            <p>Location: <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
-            <p>Gender: <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
-            <p>Age: <input type="text" ref="age" defaultValue={this.props.userData.age} /></p>
-            <br />
-            <button onClick={this.handleUpdateAccount.bind(this)}> update account </button>
-            <button onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
-          </div>
-        </div>
+            <div id="profileImageDiv">
+                <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
+            </div>
+            <div id="profileInfoDiv">
+                <p>profile image link <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /> </p> 
+                <p>username <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
+                <p>email <input type="text" ref="email" defaultValue={this.props.userData.email} /></p>
+                <p>location <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
+                <p>gender <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
+                <p>age <input type="text" ref="age" defaultValue={this.props.userData.age} /></p>
+                <br />
+                <br />
+              <div id="updateDeleteButtons">
+                <button className="btn btn-primary"onClick={this.handleUpdateAccount.bind(this)}> update account </button>
+                <button className="btn btn-danger" onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
+              </div>
+            </div>
+         </div>
+           <div className="navButtons">
+                <NavLink to="/main"><button className="btn btn-info" type="submit">Main</button></NavLink>
+                <NavLink to="/matches"><button className="btn btn-info" type="submit">Matches</button></NavLink>
+           </div> 
+       
       </div>
     );
   }
 }
+

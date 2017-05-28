@@ -21,12 +21,13 @@ export default class SignUp extends Component {
     }
       
     return (
-      <span>
-        <p>Username: <input type="text" ref="username" /></p>
-        <p>Email: <input type="text" ref="email" /></p>
-        <p>Password: <input type="text" ref="password" /></p>
+      <div className="container">
+      <div>
+        <p>username: <input type="text" ref="username" /></p>
+        <p>email: <input type="text" ref="email" /></p>
+        <p>password: <input type="text" ref="password" /></p>
 
-        <p>Location: <select ref="location">
+        <p>location: <select ref="location">
           <option value="queens">Queens</option>
           <option value="manhattan">Manhattan</option>
           <option value="statenisland">Staten Island</option>
@@ -34,28 +35,31 @@ export default class SignUp extends Component {
           <option value="bronx">Bronx</option>
         </select></p>
 
-        <p>Gender: <select ref="gender">
+        <p>gender: <select ref="gender">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select></p>
 
-        <p>Profile Image: </p> <input type="text" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
-        <p>Are you 18 years or older? <input type="number" ref="age" /></p>
+        <p>profile image link: </p> <input type="text" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
+        <p>age ( must be 18 + ) <input type="number" ref="age" /></p>
         <p>Did you read the Terms of Service? <input type="checkbox" /></p>
 
-        <br /><button onClick={() => this.newUserData()}>Create Account</button>
+        <button className="btn btn-primary createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
         <p>{this.props.errorMessage}</p>
-      </span>
+      </div>
+      </div>
     );
   }
 
   render() {
     return (
-      <div className="bigBorder">
-        <div className="tempBorder">
-          <NavLink to="/"><button className="btn btn-default homeButtonInAbout" type="submit">home</button></NavLink>
-          {this.renderSignUpData()}
+      <div className="bigBorder container">
+        <div className="signUpDiv profileContainer">
+           {this.renderSignUpData()}
+          <div className="navButtons">
+            <NavLink to="/"><button className="btn btn-info homeButtonInAbout" type="submit">home</button></NavLink>
+          </div>
         </div>
       </div>
     );
