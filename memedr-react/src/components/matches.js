@@ -52,9 +52,8 @@ export default class Matches extends Component {
         <div className="tempBorder">
           {this.checkUserStatus()}
           <br />
-          <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
-          <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
-          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
+          <NavLink to="/profile"><button className="btn btn-info" type="submit">Profile</button></NavLink>
+          <NavLink to="/main"><button className="btn btn-info" type="submit">Main</button></NavLink>
           <MatchesList matches={this.state.matches}
             deleteMatch={this.deleteMatch} />
         </div>
