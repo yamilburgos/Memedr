@@ -11,13 +11,13 @@ export default class MatchesList extends Component {
                 {this.props.matches.map((element, index) => {
                     return (
                         <Match key={index}
-                        username={element.username} 
-                        gender={element.gender}
-                        location={element.location}
-                        profile_image={element.profile_image}
-                        email={element.email}
-                        age={element.age} 
-                        deleteMatch={this.props.deleteMatch} />
+                            username={element.username}
+                            gender={element.gender}
+                            location={element.location}
+                            profile_image={element.profile_image}
+                            email={element.email}
+                            age={element.age}
+                            deleteMatch={this.props.deleteMatch} />
                     )
                 })}
             </div>
