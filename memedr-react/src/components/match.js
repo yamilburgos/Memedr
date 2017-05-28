@@ -20,7 +20,7 @@ export default class Match extends Component {
         if (this.props.username === undefined) {
             return (
                 <div>
-                    <h1>Sorry, no matches</h1>
+                    <h1>Sorry, no matches yet. Like a meme!</h1>
                 </div>
             )
         } else {
