@@ -6,15 +6,6 @@ import '../App.css';
 import MemeList from './memelist';
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      memes: [],
-      response: this.props.response,
-      disabled: this.props.disabled,
-    }
-  }
 
   getAllMemes() {
     if (!this.props.loggedIn) {
@@ -61,8 +52,8 @@ export default class Main extends Component {
           {this.getAllMemes()}
           <NavLink to="/profile"><button className="btn btn-default" type="submit">Profile</button></NavLink>
           <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
-          <MemeList memes={this.state.memes}
-                    response={this.state.response}
+          <MemeList memes={this.props.memes}
+                    response={this.props.response}
                     likeMeme={this.likeMeme}
                     unLikeMeme={this.unLikeMeme}
                     disabled={this.props.disabled}

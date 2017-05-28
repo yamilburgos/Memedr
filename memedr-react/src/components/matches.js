@@ -22,26 +22,27 @@ export default class Matches extends Component {
     }
   }
 
-  getMatches() {
+  componentDidMount() {
+    _isMounted = true;
+
+    if (!_isMounted) {
+      return
+    }
     let id = this.props.userID;
 
     if (!_isMounted) {
       return
-    } 
-      axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
-        id: id
-      }).then((res) => {
+    }
+    axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
+      id: id
+    }).then((res) => {
 
-        let matches = res.data.data;
+      let matches = res.data.data;
 
-        this.setState({
-          matches: matches,
-        });
-      }).catch((err) => { return err });
-  }
-
-  componentDidMount() {
-    _isMounted = true;
+      this.setState({
+        matches: matches,
+      });
+    }).catch((err) => { return err });
   }
 
   componentWillUnmount() {
