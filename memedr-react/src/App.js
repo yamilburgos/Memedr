@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Redirect, Switch } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -24,16 +24,21 @@ export default class App extends Component {
       disabled: false
     };
 
+
     this.toggleDisabled = this.toggleDisabled.bind(this);
+
   }
 
   userStatusComponent = () => {
     return (
       <UserStatus
         loggedIn={this.state.loggedIn}
+
         logout={this.logoutUserName.bind(this)}
         disabled={this.state.disabled}
+
         signUp={<NavLink to="/signup">Sign Up</NavLink>}
+        logout={this.logoutUserName.bind(this)}
       />
     );
   }
@@ -74,6 +79,8 @@ export default class App extends Component {
         userData={(this.state.response !== undefined) ? this.state.response : []}
         memes={this.state.memes}
         setMemeList={this.mainMemeList.bind(this)}
+
+
       />
     );
   }
@@ -82,10 +89,12 @@ export default class App extends Component {
     return (
       <Profile
         loggedIn={this.state.loggedIn}
+
         response={this.state.response}
         disabled={this.state.disabled}
         toggleDisabled={this.toggleDisabled}
         userID={(this.state.response !== undefined) ? this.state.response.id : 1}
+
         userData={(this.state.response !== undefined) ? this.state.response : []}
       />
     );
@@ -95,11 +104,15 @@ export default class App extends Component {
     return (
       <Matches
         loggedIn={this.state.loggedIn}
+
         disabled={this.state.disabled}
+
         userID={(this.state.response !== undefined) ? this.state.response.id : 1} 
       />
     );
   }
+
+
 
   logoutUserName() {
     axios.get("https://memedr.herokuapp.com/auth/logout")
@@ -112,6 +125,7 @@ export default class App extends Component {
       }).catch(function (error) {
         console.log(error);
       });
+
   }
 
   loggingUserName(submittedName, submittedPassword) {
