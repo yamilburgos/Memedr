@@ -5,7 +5,7 @@ import '../App.css';
 
 import MemeList from './memelist';
 
-
+export default class Main extends Component {
   constructor(props) {
     super(props);
 
@@ -13,27 +13,23 @@ import MemeList from './memelist';
       memes: [],
       response: this.props.response,
       disabled: this.props.disabled,
-
     }
-
+  }
 
   getAllMemes(){
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
 
-
     return this.props.setMemeList();
   }
 
   likeMeme(id, memeid) {
 
-
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
       let x = element.getAttribute('id').split('_')[1];
 
       if (x !== memeid) {
-
         element.parentNode.setAttribute("class", "hideMemeDiv");
       }
     });
@@ -42,7 +38,6 @@ import MemeList from './memelist';
       id: id,
       memeid: memeid
     })
-
       .catch((err) => { return err });
   }
 
@@ -52,14 +47,11 @@ import MemeList from './memelist';
       element.parentNode.removeAttribute("class", "hideMemeDiv");
     });
 
-
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
       id: id,
       memeid: memeid
     })
-
       .catch((err) => { return err });
-
   }
 
   render() {
@@ -67,7 +59,6 @@ import MemeList from './memelist';
       <div className="bigBorder">
         <div className="tempBorder">
           {this.getAllMemes()}
-
           <br />
           <button>Matches</button>
           <button>Saves</button>
@@ -80,7 +71,6 @@ import MemeList from './memelist';
             response={this.state.response}
             likeMeme={this.likeMeme}
             unLikeMeme={this.unLikeMeme}
-
             disabled={this.props.disabled}
             toggleDisabled={this.props.toggleDisabled}
           />
