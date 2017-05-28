@@ -21,13 +21,13 @@ export default class SignUp extends Component {
     }
       
     return (
-      <div className="container">
+      <div className="infoDiv">
       <div>
-        <p>username: <input type="text" ref="username" /></p>
-        <p>email: <input type="text" ref="email" /></p>
-        <p>password: <input type="text" ref="password" /></p>
+        <p>username <input type="text" ref="username" /></p>
+        <p>email <input type="text" ref="email" /></p>
+        <p>password <input type="text" ref="password" /></p>
 
-        <p>location: <select ref="location">
+        <p>location <select ref="location">
           <option value="queens">Queens</option>
           <option value="manhattan">Manhattan</option>
           <option value="statenisland">Staten Island</option>
@@ -35,17 +35,17 @@ export default class SignUp extends Component {
           <option value="bronx">Bronx</option>
         </select></p>
 
-        <p>gender: <select ref="gender">
+        <p>gender <select ref="gender">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="other">Other</option>
         </select></p>
 
-        <p>profile image link: </p> <input type="text" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
+        <p>profile image link </p> <input type="text" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
         <p>age ( must be 18 + ) <input type="number" ref="age" /></p>
-        <p>Did you read the Terms of Service? <input type="checkbox" /></p>
+        {/*<p id="tosText">Did you read the Terms of Service? <input id="tos" type="checkbox" /></p>*/}
 
-        <button className="btn btn-primary createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
+        <button className="btn btn-primary btn-msm createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
         <p>{this.props.errorMessage}</p>
       </div>
       </div>
@@ -54,13 +54,17 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="bigBorder container">
-        <div className="signUpDiv profileContainer">
-           {this.renderSignUpData()}
-          <div className="navButtons">
-            <NavLink to="/"><button className="btn btn-info homeButtonInAbout" type="submit">home</button></NavLink>
+      <div>
+        <div className="bigBorder container">
+          <div className="signUpDiv profileContainer container">
+             {this.renderSignUpData()}
           </div>
+        
+        <div className="navButtons">
+            <NavLink to="/"><button className="btn btn-info homeButtonInSignUp" type="submit">home</button></NavLink>
         </div>
+        </div>
+        
       </div>
     );
   }
