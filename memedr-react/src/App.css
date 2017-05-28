@@ -3,11 +3,22 @@
     padding: 0;
 }
 body{
-    background-color: #DFE0E2;
+    background-color: #fedc3d;
 
 }
 ul{
     list-style: none;
+}
+/* TITLE */
+.title {
+    margin-top: -5px;
+    margin-bottom: -5px;
+    font-family: impact, Charcoal, sans-serif;
+    color:white;
+    text-shadow: -2px -0px #000000, 0 2px #000000, 2px 0 #000000, 0 -2px #000000;
+    user-select: none;
+    cursor: default;
+    font-size: 100px;
 }
 
 .App-header {
@@ -19,19 +30,22 @@ ul{
 
 .tempBorder {
     /*border: 1px solid black;*/
-    height: 512px;
+    height: 450px;
     overflow-y: scroll;
 }
 
 .bigBorder {
    /* border: 5px solid black;*/
     text-align: left;
-    background-color: #0197F6;
-    min-height: 500px;
+/*    background-color: #ff3b3f;
+*/  background-color: #01abaa;
+    height: 475px;
     padding:15px;
     color: #071013;
     box-shadow: 0px 4px 8px 0px rgba(0,0,0, .2);
+    margin-bottom:25px;
 }
+
 
 .imgBorder {
     border: 3px dashed black;
@@ -39,6 +53,7 @@ ul{
     height: 150px;
 }
 
+/* MAIN PAGE */
 .memeImage {
     max-width: 400px;
     max-height: 400px;
@@ -51,6 +66,9 @@ ul{
 .memeDiv {
     padding: 10px;
 }
+
+
+/* PROFILE PAGE*/
 
 .hideMemeDiv {
     display: none;
@@ -66,6 +84,7 @@ ul{
     border: 2px dashed white;
 }
 
+/* MATCHES PAGE */
 /* PROFILE IMAGE ON MATCHES PAGE */
 .profileImageMatches {
     max-width: 300px;
@@ -77,30 +96,111 @@ ul{
     border: 2px dashed red;
 }
 
-/*ABOUT*/
-.homeButtonInAbout {
-    display: block;
-    margin: auto 0;
+/* ABOUT */
+#homeButtonInAbout {
+   display:flex;
+   align-self:center;
+   margin-top: 2%;
 }
-/*LOG IN */
+#aboutMemedrDiv {
+    line-height: 15px;
+    height:360px;
+    max-width:800px;
+    margin-top: 3%;
+    background-color: rgba(0,0,0,.8);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
+    padding:5%;
+    color: #ffffff;
+}
+#aboutMemedrDiv h3 {
+    font-size:40px;
+    /*margin-bottom:25px;*/
+    margin:0;
+    padding:0;
+}
+
+#aboutMemedrDiv p {
+   margin:0;
+   padding:0;
+}
+#aboutMemedrDiv .title {
+   font-size:40px;
+   margin:0;
+   padding:0;
+
+}
+#aboutText {
+    min-height:100px;
+    margin-top:50px;
+}
+.homeButton {
+    margin-top: 13px;
+}
+
+
+/* LOG IN */
 .logInContainer {
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    position:;
-    border:solid green 1px;
+    /*border:solid green 1px;*/
     margin: 0 auto;
-    margin-top: 15%;
+    margin-top: 3%;
     text-align: center;
+    background-color: rgba(0,0,0,.8);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2);
+    padding:5%;
+    height:360px;
+    transition:.3s;
+}
+.logInContainer:hover{
+    transition: .3s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,.5);
 }
 .logInContainer p {
     margin: 20px 0 15px 0;
     font-size: 25px;
-
+}
+#usernameInput {
+    margin-top: 10%;
+}
+.logInContainer input {
+    margin-bottom: 3%;
+    height:50px;
+    text-align: center;
+    font-size: 20px;
 }
 
-
-
-
+.logInContainer button {
+    margin-top: 10%;
+}
+.btn-sample {
+    height: 50px;
+    font-size:20px;
+}
+#aboutButtonDiv {
+    display:flex;
+    align-self:center;
+}
+#signInError {
+    color:red;
+    opacity: .5;
+    user-select:none;
+    cursor:default;
+    animation: fadein_out 1.5s 1;
+}
+@keyframes fadein_out {
+    0%      { opacity:.5; }
+    50%     { opacity:.2; }
+    100%    { opacity:.5; }
+}
+@media screen and (max-width: 400px) {
+    #title {
+        font-size: 75px;
+    }
+    .bigBorder {
+        height:450px;
+    }
+}
 
 
