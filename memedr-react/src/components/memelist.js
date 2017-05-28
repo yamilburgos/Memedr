@@ -22,7 +22,7 @@ export default class MemeList extends Component {
                             unLikeMeme={this.props.unLikeMeme}
                             response={this.props.response}
                             disabled={this.props.disabled}
-                            toggleDisabled={this.props.toggleDisabled}
+                            toggleDisabled={this.props.toggleDisabled} 
                         />
                     )
                 })}

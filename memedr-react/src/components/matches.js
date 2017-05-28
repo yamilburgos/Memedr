@@ -11,7 +11,9 @@ export default class Matches extends Component {
 
     this.state = {
       matches: [{}],
-      disabled: this.props.disabled,
+
+      disabled: this.props.disabled, 
+
       liked: this.props.liked
     }
   }
@@ -20,9 +22,12 @@ export default class Matches extends Component {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
+
   }
 
   componentDidMount() {
+
+
     let id = this.props.userID;
 
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {
@@ -32,7 +37,13 @@ export default class Matches extends Component {
         matches: res.data.data 
       });
 
-      console.log(this.state.matches);
+
+      this.setState({ 
+        matches: res.data.data 
+      });
+      //console.log(this.state.matches);
+
+
     }).catch((err) => { return err });  
   }
 
