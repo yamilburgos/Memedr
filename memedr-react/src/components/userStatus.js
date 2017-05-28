@@ -4,10 +4,10 @@ import '../App.css';
 export default class UserStatus extends Component {
   renderLogInData() {
     if (this.props.loggedIn !== true) {
-      return <button>{this.props.signUp}</button>;
+      //return <button>{this.props.signUp}</button>;
     }
 
-    return <button onClick={() => this.props.logout()}>LogOut</button>;
+    //return <button onClick={() => this.props.logout()}>LogOut</button>;
   }
 
   render() {

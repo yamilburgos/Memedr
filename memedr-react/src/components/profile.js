@@ -8,34 +8,6 @@ export default class Profile extends Component {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
-
-    return (
-      <div>
-        <div className="profileContainer container">
-            <div id="profileImageDiv">
-                <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
-            </div>
-            <div id="profileInfoDiv">
-                <p>profile image link <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /> </p> 
-                <p>username <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
-                <p>email <input type="text" ref="email" defaultValue={this.props.userData.email} /></p>
-                <p>location <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
-                <p>gender <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
-                <p>age <input type="text" ref="age" defaultValue={this.props.userData.age} /></p>
-                <br />
-                <br />
-              <div id="updateDeleteButtons">
-                <button className="btn btn-primary"onClick={this.handleUpdateAccount.bind(this)}> update account </button>
-                <button className="btn btn-danger" onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
-              </div>
-            </div>
-         </div>
-          <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
-          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
-          <br />
-       
-      </div>
-    );
   }
 
   handleDeleteAccount() {
@@ -75,10 +47,31 @@ export default class Profile extends Component {
 
   render() {
     return (
-      <div className="bigBorder container">
-        <div className="tempBorder">
-          {this.checkUserStatus()}
-        </div>
+       <div>
+        <div className="profileContainer container">
+        {this.checkUserStatus()}
+            <div id="profileImageDiv">
+                <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
+            </div>
+            <div id="profileInfoDiv">
+                <p>profile image link <input type="text" ref="profile_image" defaultValue={this.props.userData.profile_image} /> </p> 
+                <p>username <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
+                <p>email <input type="text" ref="email" defaultValue={this.props.userData.email} /></p>
+                <p>location <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
+                <p>gender <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
+                <p>age <input type="text" ref="age" defaultValue={this.props.userData.age} /></p>
+                <br />
+                <br />
+              <div id="updateDeleteButtons">
+                <button className="btn btn-primary"onClick={this.handleUpdateAccount.bind(this)}> update account </button>
+                <button className="btn btn-danger" onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
+              </div>
+            </div>
+         </div>
+          <NavLink to="/main"><button className="btn btn-default" type="submit">Main</button></NavLink>
+          <NavLink to="/matches"><button className="btn btn-default" type="submit">Matches</button></NavLink>
+          <br />
+       
       </div>
     );
   }
