@@ -50,7 +50,7 @@ export default class Main extends Component {
             <NavLink to="/matches"><button className="btn btn-info" type="submit">My Matches</button></NavLink>
           </div>
           <MemeList memes={this.props.memes}
-            response={this.props.response}
+            response={this.props.userData}
             likeMeme={this.likeMeme}
             unLikeMeme={this.unLikeMeme}
             disabled={this.props.disabled}
