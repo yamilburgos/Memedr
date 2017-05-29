@@ -77,7 +77,6 @@ export default class App extends Component {
   }
 
   mainComponent = () => {
-  if(this.state.loggedIn === true) {
     return (
       <Main
         loggedIn={this.state.loggedIn}
@@ -89,15 +88,9 @@ export default class App extends Component {
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
-     }
-  else {
-    console.log("redirecting");
-    return (<Redirect to="/"/>);
-  }
   }
 
   profileComponent = () => {
-   if(this.state.loggedIn === true) {
     return (
       <Profile
         loggedIn={this.state.loggedIn}
@@ -109,14 +102,8 @@ export default class App extends Component {
       />
     );
   }
-  else {
-    console.log("redirecting");
-    return (<Redirect to="/"/>);
-  }
-  }
 
   matchesComponent = () => {
-    if(this.state.loggedIn === true) {
     return (
       <Matches
         loggedIn={this.state.loggedIn}
@@ -129,12 +116,6 @@ export default class App extends Component {
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
-    }
-        
-    else {
-    console.log("redirecting");
-    return (<Redirect to="/"/>);
-    }
   }
 
   logoutUserName() {
@@ -148,7 +129,6 @@ export default class App extends Component {
       }).catch(function (error) {
         console.log(error);
       });
-      //window.location.href = "https://memedrapp.herokuapp.com/";
   }
 
   loggingUserName(submittedName, submittedPassword) {
@@ -198,18 +178,32 @@ export default class App extends Component {
   }
 
   getMyMatches() {
-    //let id = this.props.userID;
     let id = this.state.response.id;
-
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {id})
-      .then((res) => {
-        //let matches = res.data.data;
+      .then((response) => {
         this.setState({ 
-          matches: res.data.data 
+          matches: response.data.data 
         }); 
-      }).catch((err) => { 
-        console.log(err); 
+      }).catch((error) => { 
+        console.log(error); 
       });
+  }
+
+  switchTest(text) {
+    if(this.state.loggedIn === true) {
+      switch(text) {
+        case "/main":
+          return this.mainComponent();
+        case "/profile":
+          return this.profileComponent();
+        default:
+          return this.matchesComponent();
+      }
+    }
+
+    else {
+      return (<Redirect to="/"/>);
+    }
   }
 
   render() {
@@ -222,9 +216,10 @@ export default class App extends Component {
               <Route path="/" exact render={() => this.landingComponent()}></Route>
               <Route path="/about" component={About}></Route>
               <Route path="/signup" render={() => this.signupComponent()}></Route>
-              <Route path="/profile" render={() => this.profileComponent()}></Route>
-              <Route path="/main" render={() => this.mainComponent()}></Route>
-              <Route path="/matches" render={() => this.matchesComponent()}></Route>
+
+              <Route path="/main" render={() => this.switchTest("/main")}></Route>
+              <Route path="/profile" render={() => this.switchTest("/profile")}></Route>
+              <Route path="/matches" render={() => this.switchTest("/matches")}></Route>
             </Switch>
           </div>
         </Router>

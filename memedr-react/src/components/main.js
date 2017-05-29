@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import { Route, NavLink, Redirect } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
@@ -12,10 +12,7 @@ export default class Main extends Component {
 
     this.likeMeme = this.likeMeme.bind(this);
     this.unLikeMeme = this.unLikeMeme.bind(this);
-  }
-
-  componentDidMount() {
-    return this.props.setMemeList();
+    this.props.setMemeList();
   }
 
   likeMeme(id, memeid) {
@@ -53,11 +50,11 @@ export default class Main extends Component {
             <NavLink to="/matches"><button className="btn btn-info" type="submit">My Matches</button></NavLink>
           </div>
           <MemeList memes={this.props.memes}
-                    response={this.props.response}
-                    likeMeme={this.likeMeme}
-                    unLikeMeme={this.unLikeMeme}
-                    disabled={this.props.disabled}
-                    toggleDisabled={this.props.toggleDisabled} />
+            response={this.props.response}
+            likeMeme={this.likeMeme}
+            unLikeMeme={this.unLikeMeme}
+            disabled={this.props.disabled}
+            toggleDisabled={this.props.toggleDisabled} />
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import { Route, NavLink, Redirect } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
@@ -10,14 +10,7 @@ export default class Matches extends Component {
     super(props);
 
     this.deleteMatch = this.deleteMatch.bind(this);
-  }
-
-  componentDidMount() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
-
-    return this.props.setMatchesList();
+    this.props.setMatchesList();
   }
 
   deleteMatch(username, id) {
@@ -40,10 +33,10 @@ export default class Matches extends Component {
             <NavLink to="/main"><button className="btn btn-info" type="submit">Pick Memes</button></NavLink>
           </div>
           <MatchesList matches={this.props.matches}
-                       deleteMatch={this.deleteMatch}
-                       disabled={this.props.disabled}
-                       response={this.props.response}
-                       toggleDisabled={this.props.toggleDisabled} />
+            deleteMatch={this.deleteMatch}
+            disabled={this.props.disabled}
+            response={this.props.response}
+            toggleDisabled={this.props.toggleDisabled} />
         </div>
       </div>
     );
