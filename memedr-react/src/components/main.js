@@ -14,7 +14,7 @@ export default class Main extends Component {
     this.unLikeMeme = this.unLikeMeme.bind(this);
   }
 
-  getAllMemes() {
+  componentDidMount() {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
@@ -52,7 +52,6 @@ export default class Main extends Component {
     return (
       <div className="bigBorder">
         <div className="tempBorder">
-          {this.getAllMemes()}
           <div className="navButtons">
             <NavLink to="/profile"><button className="btn btn-info" type="submit">My Profile</button></NavLink>&nbsp;
             <NavLink to="/matches"><button className="btn btn-info" type="submit">My Matches</button></NavLink>

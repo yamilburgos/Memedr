@@ -37,13 +37,13 @@ export default class Meme extends Component {
         if(!this.props.disabled){
             return (
                 <div className = "likeUnlikeDiv">
-                    <button className="btn btn-info" id={this.props.memeID} onClick={() => {this.handleLike.bind(this)}}>Like</button>
+                    <button className="btn btn-info" id={this.props.memeID} onClick={(e)=>{this.handleLike(e)}}>Like</button>
                 </div>
             )
         } else {
             return (
                 <div className = "likeUnlikeDiv">
-                    <button className="btn btn-danger" id={this.props.memeID} onClick={() => {this.handleUnLike.bind(this)}}>UnLike</button>
+                    <button className="btn btn-danger" id={this.props.memeID} onClick={(e) => {this.handleUnLike(e)}}>UnLike</button>
                 </div>
             )
         }
