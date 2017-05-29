@@ -141,7 +141,7 @@ export default class Profile extends Component {
                 <p>age <input type="number" ref="age" defaultValue={this.props.userData.age} min="18" max="100" /></p>
                 <br />
                 <br />
-              <div id="updateDeleteButtons">
+              <div id="updateDeleteButtons" className="updateDeleteDiv">
                 <button className="btn btn-primary"onClick={this.handleUpdateAccount.bind(this)}> update account </button>
                 <button className="btn btn-danger" onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
               </div>

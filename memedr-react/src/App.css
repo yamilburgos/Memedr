@@ -9,6 +9,9 @@ body{
 ul{
     list-style: none;
 }
+p {
+    font-size: 15px;
+}
 
 .centerText {
     text-align: center;
@@ -156,17 +159,20 @@ ul{
     margin-top: 10px;
     padding-left: 5px;
 }
-#updateDeleteButtons {
+.updateDeleteDiv {
+    display:flex;
     position:relative;
-    width: 150px;
+    width: 350px;
     margin:0;
     padding:0;
-    left:110%;
-    top:-114%;
+    left:-355px;
+    top:-50px;
+    transition:.1s;
 }
 #updateDeleteButtons button {
     margin-top: 15px;
     width:150px;
+    margin-left:15px;
 }
 
 .profileImage {
@@ -218,6 +224,7 @@ ul{
 #aboutMemedrDiv p {
    margin:0;
    padding:0;
+   font-size:19px;
 }
 #aboutMemedrDiv .title {
    font-size:40px;
@@ -321,7 +328,7 @@ ul{
     color:white;
     margin:0;
     padding:3%;
-    padding-top:25px;
+    padding-top:13px;
     font-weight: 300;
 }
 #matchUserStats {
@@ -332,7 +339,9 @@ ul{
 #matchesEmail {
     color: #019B85;
     font-weight: 300;
-    font-size:18px;
+    font-size:20px;
+    margin-top: 0;
+
 }
 
 
@@ -346,7 +355,7 @@ ul{
     margin-bottom: 0;
     padding:15px 20px 0 20px;
     transition:.3s;
-    height: 460px;
+    height: 440px;
 }
 .signUpDiv input, select {
     display:flex;
@@ -434,15 +443,13 @@ input[type='checkbox'] {
         width:225px;
     }
    
-    #updateDeleteButtons {
+    .updateDeleteDiv {
         /*position:relative;*/
-        display: flex;
-        flex direction: row;
-        align-content: center;
         width: 400px;
         margin:0;
-        padding:0;
+        margin-top:55px;
         left:-5%;
+        transition:.3s;
         
     }
     #updateDeleteButtons button {
