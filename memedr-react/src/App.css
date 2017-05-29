@@ -477,5 +477,9 @@ input[type='checkbox'] {
         height:475px;
 
     }
+    /* Matches */
+    .matchesBorder {
+        height:480px;
+    }
 }
 
