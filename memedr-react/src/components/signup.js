@@ -21,11 +21,13 @@ export default class SignUp extends Component {
     }
       
     return (
-      <div className="container">
+      <div className="infoDiv">
       <div>
         <p>username <input required type="text" ref="username" /></p>
         <p>email <input type="email" ref="email" /></p>
         <p>password <input type="password" ref="password" /></p>
+
+
 
         <p>location <select ref="location">
           <option value="queens">Queens</option>
@@ -45,7 +47,7 @@ export default class SignUp extends Component {
         <p>age ( must be 18 + ) <input type="number" ref="age"  min="18" max="100" /></p>
         <p>Did you read the Terms of Service? <input type="checkbox" /></p>
 
-        <button className="btn btn-primary createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
+        <button className="btn btn-primary btn-msm createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
         <p>{this.props.errorMessage}</p>
       </div>
       </div>
@@ -54,13 +56,17 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="bigBorder container">
-        <div className="signUpDiv profileContainer">
-           {this.renderSignUpData()}
-          <div className="navButtons">
-            <NavLink to="/"><button className="btn btn-info homeButtonInAbout" type="submit">home</button></NavLink>
+      <div>
+        <div className="bigBorder container">
+          <div className="signUpDiv profileContainer container">
+             {this.renderSignUpData()}
           </div>
+        
+        <div className="navButtons">
+            <NavLink onClick={this.props.clearError} to="/"><button className="btn btn-info homeButtonInSignUp" type="submit">home</button></NavLink>
         </div>
+        </div>
+        
       </div>
     );
   }

@@ -46,6 +46,12 @@ export default class App extends Component {
     });
   }
 
+  toggleErrorMessage() {
+    this.setState({
+      logMessage: ""
+    });
+  }
+
   landingComponent = () => {
     return (
       <Landing
@@ -53,6 +59,7 @@ export default class App extends Component {
         disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         logUserName={this.loggingUserName.bind(this)}
+        clearError={this.toggleErrorMessage.bind(this)}
       />
     );
   }
@@ -64,6 +71,7 @@ export default class App extends Component {
         disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         setUserName={this.settingUserName.bind(this)}
+        clearError={this.toggleErrorMessage.bind(this)}
       />
     );
   }
@@ -123,8 +131,6 @@ export default class App extends Component {
   }
 
   loggingUserName(submittedName, submittedPassword) {
-    this.setState({ logMessage: "" })
-
     axios.post("https://memedr.herokuapp.com/auth/login", {
       username: submittedName,
       password: submittedPassword
@@ -140,8 +146,6 @@ export default class App extends Component {
   }
 
   settingUserName(signupDataArray) {
-    this.setState({ logMessage: "" })
-
     axios.post("https://memedr.herokuapp.com/auth/register", {
       username: signupDataArray[0],
       password: signupDataArray[1],

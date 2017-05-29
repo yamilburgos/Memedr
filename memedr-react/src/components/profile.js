@@ -47,12 +47,12 @@ export default class Profile extends Component {
 
   render() {
     return (
-       <div className="bigBorder">
+       <div className=" profileContainerFirstDiv bigBorder">
         <div className="navButtons">
           <NavLink to="/main"><button className="btn btn-info" type="submit">Pick Memes</button></NavLink>&nbsp;&nbsp;
           <NavLink to="/matches"><button className="btn btn-info" type="submit">My Matches</button></NavLink>
         </div>
-        <div className="profileContainer container">
+        <div className="profileContainerSecondDiv profileContainer container">
           {this.checkUserStatus()}
             <div id="profileImageDiv">
                 <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
