@@ -12,7 +12,7 @@ export default class Matches extends Component {
     this.deleteMatch = this.deleteMatch.bind(this);
     this.props.setMatchesList();
   }
-
+// when a match is made tis call would allow the user to delete a particular match from thir match list
   deleteMatch(username, id) {
     console.log(username);
     console.log(id);
@@ -23,7 +23,7 @@ export default class Matches extends Component {
       username: username
     }).catch((err) => { return err });
   }
-
+// this route is doesnt render the matches itself but is the parent of match list to which we pass props to// remember this: Matches renders Matchlist which renders Match
   render() {
     return (
       <div className="matchesBorder bigBorder">
