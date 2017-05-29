@@ -112,6 +112,7 @@ export default class App extends Component {
         userID={(this.state.response !== undefined) ? this.state.response.id : 1}
         setMatchesList={this.getMyMatches.bind(this)}
         matches={this.state.matches}
+        response={this.state.response}
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );

@@ -45,7 +45,7 @@ export default class SignUp extends Component {
           <p>profile image link <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" /></p>
           <p>age ( must be 18 + ) <input type="number" ref="age" min="18" max="100" /></p>
           <p>Did you read the Terms of Service? <input type="checkbox" /></p>
-          <p><center><NavLink onClick={this.props.clearError} to="/">Already have an account? Login!</NavLink></center></p>
+          <p className="centerText"><NavLink onClick={this.props.clearError} to="/">Already have an account? Login!</NavLink></p>
           <button className="btn btn-primary btn-msm createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
         </div>
       </div>

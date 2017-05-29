@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users(
     profile_image TEXT NOT NULL,
     age INTEGER NOT NULL,
     active BOOLEAN DEFAULT TRUE,
-    CHECK (age>=17),
+    CHECK (age>=16),
     CHECK (gender = 'Male' OR gender = 'Female'),
     CHECK (location = 'Queens' OR location = 'Manhattan' 
         OR location = 'Staten Island' OR location = 'Brooklyn' 
@@ -43,11 +43,13 @@ CREATE TABLE IF NOT EXISTS users_matches(
     users_matches_id BIGSERIAL PRIMARY KEY NOT NULL,
     userid INTEGER NOT NULL UNIQUE,
     username VARCHAR(30) NOT NULL UNIQUE,
+    meme_in_common INTEGER NOT NULL,
     gender VARCHAR(6) NOT NULL,
     location VARCHAR(200) NOT NULL,
     profile_image TEXT NOT NULL,
     email VARCHAR(200) NOT NULL,
     age INTEGER NOT NULL,
-    matched_with INTEGER NOT NULL,
-    FOREIGN KEY (userid) REFERENCES users(id)
+    who_clicked_matches INTEGER NOT NULL,
+    FOREIGN KEY (userid) REFERENCES users(id),
+    FOREIGN KEY (meme_in_common) REFERENCES api_cache(id)
 );
