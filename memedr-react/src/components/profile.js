@@ -4,12 +4,6 @@ import axios from 'axios';
 import '../App.css';
 
 export default class Profile extends Component {
-  checkUserStatus() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
-  }
-
   handleDeleteAccount() {
     var x = window.confirm("Are you sure you want to delete your account?");
     if (x) {
@@ -135,7 +129,6 @@ export default class Profile extends Component {
           <NavLink to="/matches"><button className="btn btn-info" type="submit">My Matches</button></NavLink>
         </div>
         <div className="profileContainerSecondDiv profileContainer container">
-          {this.checkUserStatus()}
             <div id="profileImageDiv">
                 <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
             </div>

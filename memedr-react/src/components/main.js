@@ -15,10 +15,6 @@ export default class Main extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
-
     return this.props.setMemeList();
   }
 
