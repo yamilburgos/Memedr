@@ -57,7 +57,7 @@ function getMyMatches(req, res, next){
             WHERE users.id = ${userID}`)
             .then((data) => {
                 let memeID = data[0].memeid;
-                console.log(data);
+                //console.log(data);
 
                 db.any(`SELECT users.username, users.id, users.gender, users.location, users.profile_image, users.email, users.age, liked_memes.memeid
                         FROM users
@@ -66,9 +66,9 @@ function getMyMatches(req, res, next){
                   .then((data) => { 
                     res.status(200).json({ status: `Users that have the same likes as User ${userID}`, data }); 
                     
-                    return db.task(t=>t.batch(data.map(r=>t.none('INSERT INTO users_matches(userid, username, gender, location, profile_image, email, age)' + 'values($1, $2, $3, $4, $5, $6, $7)', [r.id, r.username, r.gender, r.location, r.profile_image, r.email, r.age]))))
-                                .then((data) => { console.log("The matches have hit the database!") })
-                                .catch((err) => { return next(err); });
+                    db.task(t=>t.batch(data.map(r=>t.none('INSERT INTO users_matches(userid, username, gender, location, profile_image, email, age, matched_with)' + 'values($1, $2, $3, $4, $5, $6, $7, $8)', [r.id, r.username, r.gender, r.location, r.profile_image, r.email, r.age, userID]))))
+                            .then((data) => { console.log("Matches have hit the database"); })
+                            .catch((err) => { return next(err); });
                   })
                   .catch((err) => { return next(err); });
             })
@@ -172,7 +172,11 @@ function deleteAccount(req, res, next){
     }).catch((err) => { return next(err); });
 }
 
+// THIS FUNCTION WILL DELETE A MATCH
+function deleteMyMatch(req, res, next){
+
+}
 
 module.exports = { getMemes, requestAPI, deleteMemeFromCache, likeMeme, unLikeMeme,
-                   getUsersWithLikes, updateProfile, 
+                   getUsersWithLikes, updateProfile, deleteMyMatch, 
                    getMyMatches, deleteAccount, submitSubTitle, getSubTitles };

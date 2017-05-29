@@ -27,20 +27,18 @@ export default class SignUp extends Component {
         <p>email <input type="email" ref="email" /></p>
         <p>password <input type="password" ref="password" /></p>
 
-
-
         <p>location <select ref="location">
-          <option value="queens">Queens</option>
-          <option value="manhattan">Manhattan</option>
-          <option value="statenisland">Staten Island</option>
-          <option value="brookyln">Brooklyn</option>
-          <option value="bronx">Bronx</option>
+          <option value="Queens">Queens</option>
+          <option value="Manhattan">Manhattan</option>
+          <option value="Staten island">Staten Island</option>
+          <option value="Brookyln">Brooklyn</option>
+          <option value="Bronx">Bronx</option>
         </select></p>
 
         <p>gender <select ref="gender">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
         </select></p>
 
         <p>profile image link </p> <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />

@@ -5,15 +5,15 @@ CREATE DATABASE memedr_app;
 
 CREATE TABLE IF NOT EXISTS users(
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    username VARCHAR(30) UNIQUE NOT NULL,
+    username VARCHAR(30) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(200) UNIQUE NOT NULL,
+    email VARCHAR(200) NOT NULL,
     location VARCHAR(200) NOT NULL,
     gender VARCHAR(6) NOT NULL,
     profile_image TEXT NOT NULL,
     age INTEGER NOT NULL,
     active BOOLEAN DEFAULT TRUE,
-    CHECK (age>=18),
+    CHECK (age>=17),
     CHECK (gender = 'male' OR gender = 'female'),
     CHECK (location = 'queens' OR location = 'manhattan' 
         OR location = 'staten island' OR location = 'brooklyn' 
@@ -41,12 +41,13 @@ CREATE TABLE IF NOT EXISTS liked_memes(
 
 CREATE TABLE IF NOT EXISTS users_matches(
     users_matches_id BIGSERIAL PRIMARY KEY NOT NULL,
-    userid INTEGER NOT NULL UNIQUE,
+    userid INTEGER NOT NULL,
     username TEXT NOT NULL,
     gender TEXT NOT NULL,
     location TEXT NOT NULL,
     profile_image TEXT NOT NULL,
     email TEXT NOT NULL,
     age INTEGER NOT NULL,
+    matched_with INTEGER NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(id)
 );

@@ -62,7 +62,15 @@ export default class Profile extends Component {
                 <p>username <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
                 <p>email <input type="email" ref="email" defaultValue={this.props.userData.email} /></p>
                 <p>location <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
-                <p>gender <input type="text" ref="gender" defaultValue={this.props.userData.gender} /></p>
+                <p>gender {/*<input type="text" ref="gender" defaultValue={this.props.userData.gender} />*/}
+                {/*if(){}
+*/}
+
+                <select ref="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select></p>
                 <p>age <input type="number" ref="age" defaultValue={this.props.userData.age} min="18" max="100" /></p>
                 <br />
                 <br />

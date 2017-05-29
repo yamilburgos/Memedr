@@ -14,7 +14,8 @@ export default class Main extends Component {
     this.unLikeMeme = this.unLikeMeme.bind(this);
   }
 
-  componentWillMount() {
+
+  componentDidMount() {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
