@@ -12,9 +12,7 @@ export default class Main extends Component {
 
     this.likeMeme = this.likeMeme.bind(this);
     this.unLikeMeme = this.unLikeMeme.bind(this);
-
     this.props.setMemeList();
-
   }
 
   likeMeme(id, memeid) {
@@ -45,7 +43,7 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div className="memeBorder bigBorder">
+      <div className="bigBorder">
         <div className="tempBorder">
           <div className="navButtons">
             <NavLink to="/profile"><button className="btn btn-info" type="submit">My Profile</button></NavLink>&nbsp;
