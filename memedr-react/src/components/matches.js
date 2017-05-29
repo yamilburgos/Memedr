@@ -26,7 +26,7 @@ export default class Matches extends Component {
 
   render() {
     return (
-      <div className="bigBorder">
+      <div className="matchesBorder bigBorder">
         <div className="tempBorder">
 
 
