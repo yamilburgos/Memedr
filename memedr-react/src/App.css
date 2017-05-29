@@ -387,7 +387,6 @@ ul{
     }
     /* PROFILE */
 
-
     .profileContainerSecondDiv {
         display:flex;
         flex-direction: column; 
@@ -408,18 +407,7 @@ ul{
         font-size: 20px;
         width:225px;
     }
-    #profileInfoDiv p {
-        width:225;
-    }
-    #profileInfoDiv input {
-        display:flex;
-        background-color: rgba(0,0,0,.2);
-        text-align:center;
-        min-width:10px;
-        color:#01abaa;  
-        border:none;
-        margin-top: 10px;
-    }
+   
     #updateDeleteButtons {
         /*position:relative;*/
         display: flex;
@@ -438,15 +426,23 @@ ul{
         width:150px;
     }
 
-    .profileImage {
-        max-width: 300px;
-        max-height: 300px;
-        border: 2px dashed black;
-    }
     .profileContainerFirstDiv  {
         height: 850px;
         transition: 1S;
     }
-    
+    /* MAIN PAGE*/
+    .memeImage {
+        max-width: 320px;
+        max-height: 400px;
+        border:solid black 2px;
+        transition:.3s;
+    }
+    .memeDiv {
+        padding-top:10px;
+    }
+    .memeBorder {
+        height:475px;
+
+    }
 }
 

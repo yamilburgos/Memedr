@@ -11,7 +11,7 @@ export default class Matches extends Component {
     this.deleteMatch = this.deleteMatch.bind(this);
   }
 
-  getAllMatches() {
+  componentDidMount() {
     if (!this.props.loggedIn) {
       return <Redirect to="/" />;
     }
@@ -28,7 +28,7 @@ export default class Matches extends Component {
     return (
       <div className="bigBorder">
         <div className="tempBorder">
-          {this.getAllMatches()}
+         
           <div className="navButtons">
             <NavLink to="/profile"><button className="btn btn-info" type="submit">My Profile</button></NavLink>&nbsp;&nbsp;
             <NavLink to="/main"><button className="btn btn-info" type="submit">Pick Memes</button></NavLink>
