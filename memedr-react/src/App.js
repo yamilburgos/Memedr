@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -77,6 +77,7 @@ export default class App extends Component {
   }
 
   mainComponent = () => {
+  if(this.state.loggedIn === true) {
     return (
       <Main
         loggedIn={this.state.loggedIn}
@@ -88,9 +89,15 @@ export default class App extends Component {
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
+     }
+  else {
+    console.log("redirecting");
+    return (<Redirect to="/"/>);
+  }
   }
 
   profileComponent = () => {
+   if(this.state.loggedIn === true) {
     return (
       <Profile
         loggedIn={this.state.loggedIn}
@@ -102,8 +109,14 @@ export default class App extends Component {
       />
     );
   }
+  else {
+    console.log("redirecting");
+    return (<Redirect to="/"/>);
+  }
+  }
 
   matchesComponent = () => {
+    if(this.state.loggedIn === true) {
     return (
       <Matches
         loggedIn={this.state.loggedIn}
@@ -116,6 +129,12 @@ export default class App extends Component {
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
+    }
+        
+    else {
+    console.log("redirecting");
+    return (<Redirect to="/"/>);
+    }
   }
 
   logoutUserName() {
