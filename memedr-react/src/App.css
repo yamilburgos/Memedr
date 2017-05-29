@@ -171,7 +171,13 @@ ul{
     border: 2px dashed white;
 }
 
-
+/* MATCHES PAGE */
+/* PROFILE IMAGE ON MATCHES PAGE */
+.profileImageMatches {
+    max-width: 300px;
+    max-height: 200px;
+    border: 2px dashed black;
+}
 
 
 /* ABOUT */

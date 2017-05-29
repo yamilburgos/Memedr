@@ -63,4 +63,7 @@ router.delete('/meme/:id', db.deleteMemeFromCache);
 // IF A USER DECIDES TO DELETE THEIR ACCOUNT
 router.delete('/users/profile/delete/:id', db.deleteAccount);
 
+// DELETE A MATCH
+router.put('/users/profile/delete/match/:id', db.deleteMyMatch);
+
 module.exports = router;
