@@ -20,7 +20,7 @@ router.post('/register', (req, res, next) => {
   }).catch((err) => {
     res.status(200).json({
       error: 'Registration Error',
-      message: 'Common Issues: Username is taken, Email is taken, or younger than 18.',
+      message: 'Registration Error: Please try again.',
     });
   });
 });
