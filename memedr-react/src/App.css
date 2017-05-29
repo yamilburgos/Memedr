@@ -55,6 +55,7 @@ ul{
     box-shadow: 0px 4px 8px 0px rgba(0,0,0, .2);
     margin-bottom:25px;
     max-width: 1000px;
+    transition: 1S;
 }
 
 
@@ -120,6 +121,7 @@ ul{
     padding:2%;
     color: #ffffff;
     margin-bottom: 0;
+    transition: 1S;
 }
 #profileImageDiv {
     width:300px;
@@ -372,7 +374,7 @@ ul{
     50%     { opacity:.2; }
     100%    { opacity:.5; }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 625px) {
     #title {
         font-size: 75px;
     }
@@ -382,6 +384,69 @@ ul{
     .signUpDiv {
         width:300px;
         transition:.3s;
-}
+    }
+    /* PROFILE */
+
+
+    .profileContainerSecondDiv {
+        display:flex;
+        flex-direction: column; 
+        height:750px;
+        margin-bottom: 25px;
+        transition: 1S;
+    }
+    #profileImageDiv {
+        width:300px;
+        margin:5px; 
+        margin-bottom: 15px;   
+    }
+
+    #profileInfoDiv {
+        display:column;
+        margin-top: 8%;
+        margin:10px;
+        font-size: 20px;
+        width:225px;
+    }
+    #profileInfoDiv p {
+        width:225;
+    }
+    #profileInfoDiv input {
+        display:flex;
+        background-color: rgba(0,0,0,.2);
+        text-align:center;
+        min-width:10px;
+        color:#01abaa;  
+        border:none;
+        margin-top: 10px;
+    }
+    #updateDeleteButtons {
+        /*position:relative;*/
+        display: flex;
+        flex direction: row;
+        align-content: center;
+        width: 400px;
+        margin:0;
+        padding:0;
+        left:-5%;
+        
+    }
+    #updateDeleteButtons button {
+        margin-left: 5px;
+        margin-top: -20px;
+        margin-bottom:25px;
+        width:150px;
+    }
+
+    .profileImage {
+        max-width: 300px;
+        max-height: 300px;
+        border: 2px dashed black;
+    }
+    .profileContainerFirstDiv  {
+        height: 850px;
+        transition: 1S;
+    }
+    
 }
 
