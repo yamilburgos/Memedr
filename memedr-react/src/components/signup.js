@@ -19,35 +19,35 @@ export default class SignUp extends Component {
     if (this.props.loggedIn) {
       return <Redirect to="/profile" />;
     }
-      
+
     return (
       <div className="infoDiv">
-      <div>
-        <p>username <input required type="text" ref="username" /></p>
-        <p>email <input type="email" ref="email" /></p>
-        <p>password <input type="password" ref="password" /></p>
+        <div>
+          <p id="signInError">{this.props.errorMessage}</p>
+          <p>username <input required type="text" ref="username" /></p>
+          <p>email <input type="email" ref="email" /></p>
+          <p>password <input type="password" ref="password" /></p>
 
-        <p>location <select ref="location">
-          <option value="Queens">Queens</option>
-          <option value="Manhattan">Manhattan</option>
-          <option value="Staten island">Staten Island</option>
-          <option value="Brookyln">Brooklyn</option>
-          <option value="Bronx">Bronx</option>
-        </select></p>
+          <p>location <select ref="location">
+            <option value="Queens">Queens</option>
+            <option value="Manhattan">Manhattan</option>
+            <option value="Staten Island">Staten Island</option>
+            <option value="Brookyln">Brooklyn</option>
+            <option value="Bronx">Bronx</option>
+          </select></p>
 
-        <p>gender <select ref="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select></p>
+          <p>gender <select ref="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select></p>
 
-        <p>profile image link </p> <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
-        <p>age ( must be 18 + ) <input type="number" ref="age"  min="18" max="100" /></p>
-        <p>Did you read the Terms of Service? <input type="checkbox" /></p>
-
-        <button className="btn btn-primary btn-msm createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
-        <p>{this.props.errorMessage}</p>
-      </div>
+          <p>profile image link <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" /></p>
+          <p>age ( must be 18 + ) <input type="number" ref="age" min="18" max="100" /></p>
+          <p>Did you read the Terms of Service? <input type="checkbox" /></p>
+          <p className="centerText"><NavLink onClick={this.props.clearError} to="/">Already have an account? Login!</NavLink></p>
+          <button className="btn btn-primary btn-msm createAccountButton" onClick={() => this.newUserData()}>Create Account</button>
+        </div>
       </div>
     );
   }
@@ -57,14 +57,9 @@ export default class SignUp extends Component {
       <div>
         <div className="bigBorder container">
           <div className="signUpDiv profileContainer container">
-             {this.renderSignUpData()}
+            {this.renderSignUpData()}
           </div>
-        
-        <div className="navButtons">
-            <NavLink onClick={this.props.clearError} to="/"><button className="btn btn-info homeButtonInSignUp" type="submit">home</button></NavLink>
         </div>
-        </div>
-        
       </div>
     );
   }

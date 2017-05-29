@@ -1,5 +1,6 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import { Route, NavLink, Redirect } from 'react-router-dom';
+import axios from 'axios';
 import '../App.css';
 
 import MatchesList from './matcheslist';
@@ -19,9 +20,15 @@ export default class Matches extends Component {
     return this.props.setMatchesList();
   }
 
-  deleteMatch(username) {
+  deleteMatch(username, id) {
     console.log(username);
+    console.log(id);
     console.log("delete my match");
+
+    axios.put("https://memedr.herokuapp.com/users/profile/delete/match/" + id, {
+      id: id,
+      username: username
+    }).catch((err) => { return err });
   }
 
   render() {
@@ -37,6 +44,7 @@ export default class Matches extends Component {
           <MatchesList matches={this.props.matches}
                        deleteMatch={this.deleteMatch}
                        disabled={this.props.disabled}
+                       response={this.props.response}
                        toggleDisabled={this.props.toggleDisabled} />
         </div>
       </div>

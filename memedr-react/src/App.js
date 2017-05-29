@@ -112,6 +112,7 @@ export default class App extends Component {
         userID={(this.state.response !== undefined) ? this.state.response.id : 1}
         setMatchesList={this.getMyMatches.bind(this)}
         matches={this.state.matches}
+        response={this.state.response}
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
@@ -128,6 +129,7 @@ export default class App extends Component {
       }).catch(function (error) {
         console.log(error);
       });
+      //window.location.href = "https://memedrapp.herokuapp.com/";
   }
 
   loggingUserName(submittedName, submittedPassword) {
