@@ -63,7 +63,7 @@ export default class SignUp extends Component {
           </div>
         
         <div className="navButtons">
-            <NavLink to="/"><button className="btn btn-info homeButtonInSignUp" type="submit">home</button></NavLink>
+            <NavLink onClick={this.props.clearError} to="/"><button className="btn btn-info homeButtonInSignUp" type="submit">home</button></NavLink>
         </div>
         </div>
         
