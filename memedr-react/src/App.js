@@ -28,7 +28,7 @@ export default class App extends Component {
     this.toggleDisabled = this.toggleDisabled.bind(this);
     this.getMyMatches = this.getMyMatches.bind(this);
   }
-
+// method names that include 'component' are creating methods that include the component and the states passed down into them - this is necessary for react router
   userStatusComponent = () => {
     return (
       <UserStatus
@@ -37,19 +37,19 @@ export default class App extends Component {
       />
     );
   }
-
+// this sets the 'disabled' for the like and unlike buttons
   toggleDisabled() {
     this.setState({
       disabled: !this.state.disabled
     });
   }
-
+// when a user signs in with invalid or missing user info
   toggleErrorMessage() {
     this.setState({
       logMessage: ""
     });
   }
-
+// log in 
   landingComponent = () => {
     return (
       <Landing
@@ -59,7 +59,7 @@ export default class App extends Component {
       />
     );
   }
-
+// sign up
   signupComponent = () => {
     return (
       <SignUp
@@ -69,7 +69,7 @@ export default class App extends Component {
       />
     );
   }
-
+// the page where auser likes the memes
   mainComponent = () => {
     return (
       <Main
@@ -81,7 +81,7 @@ export default class App extends Component {
       />
     );
   }
-
+// user profile
   profileComponent = () => {
     return (
       <Profile
@@ -89,7 +89,7 @@ export default class App extends Component {
       />
     );
   }
-
+// matches
   matchesComponent = () => {
     return (
       <Matches
@@ -101,7 +101,7 @@ export default class App extends Component {
       />
     );
   }
-
+// log out - send axios call to log out user
   logoutUserName() {
     axios.get("https://memedr.herokuapp.com/auth/logout")
       .then((response) => {
@@ -114,7 +114,7 @@ export default class App extends Component {
         console.log(error);
       });
   }
-
+// logs the user in - sends their user name and password and if valid sends back an object with the users data and sets the state of logged in 
   loggingUserName(submittedName, submittedPassword) {
     axios.post("https://memedr.herokuapp.com/auth/login", {
       username: submittedName,
@@ -129,7 +129,7 @@ export default class App extends Component {
       console.log(error);
     });
   }
-
+// posts user data on sign up 
   settingUserName(signupDataArray) {
     axios.post("https://memedr.herokuapp.com/auth/register", {
       username: signupDataArray[0],
@@ -149,7 +149,7 @@ export default class App extends Component {
       console.log(error);
     });
   }
-
+// returns an object with the memes stored in getMemes end point
   mainMemeList() {
     axios.get("https://memedr.herokuapp.com/getMemes")
       .then((response) => {
@@ -160,7 +160,7 @@ export default class App extends Component {
         console.log(error);
       });
   }
-
+// returns an object with the users in patches stored in matches end point
   getMyMatches() {
     let id = this.state.response.id;
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {id})
@@ -172,7 +172,7 @@ export default class App extends Component {
         console.log(error); 
       });
   }
-
+// the following selects what links lead to whick routes baseed on if a user is logged in or not
   checkLogin(authPath) {
     if(this.state.loggedIn === true) {
       switch(authPath) {
@@ -198,7 +198,7 @@ export default class App extends Component {
       }
     }
   }
-
+// here we use react router to create our routes, run through the log in check (immediately above) and if logged in serve up the component methods
   render() {
     return (
       <div className="App-header">
