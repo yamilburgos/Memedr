@@ -37,7 +37,7 @@ export default class Matches extends Component {
           <MatchesList matches={this.props.matches}
             deleteMatch={this.deleteMatch}
             disabled={this.props.disabled}
-            response={this.props.response}
+            response={this.props.userData}
             toggleDisabled={this.props.toggleDisabled} />
         </div>
       </div>

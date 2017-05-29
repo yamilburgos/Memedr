@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -33,8 +33,6 @@ export default class App extends Component {
     return (
       <UserStatus
         loggedIn={this.state.loggedIn}
-        disabled={this.state.disabled}
-        signUp={<NavLink to="/signup">Sign Up</NavLink>}
         logout={this.logoutUserName.bind(this)}
       />
     );
@@ -55,8 +53,6 @@ export default class App extends Component {
   landingComponent = () => {
     return (
       <Landing
-        loggedIn={this.state.loggedIn}
-        disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         logUserName={this.loggingUserName.bind(this)}
         clearError={this.toggleErrorMessage.bind(this)}
@@ -67,8 +63,6 @@ export default class App extends Component {
   signupComponent = () => {
     return (
       <SignUp
-        loggedIn={this.state.loggedIn}
-        disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         setUserName={this.settingUserName.bind(this)}
         clearError={this.toggleErrorMessage.bind(this)}
@@ -79,11 +73,9 @@ export default class App extends Component {
   mainComponent = () => {
     return (
       <Main
-        loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         userData={(this.state.response !== undefined) ? this.state.response : []}
         memes={this.state.memes}
-        response={this.state.response}
         setMemeList={this.mainMemeList.bind(this)}
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
@@ -93,11 +85,6 @@ export default class App extends Component {
   profileComponent = () => {
     return (
       <Profile
-        loggedIn={this.state.loggedIn}
-        response={this.state.response}
-        disabled={this.state.disabled}
-        toggleDisabled={this.toggleDisabled}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1}
         userData={(this.state.response !== undefined) ? this.state.response : []}
       />
     );
@@ -106,13 +93,10 @@ export default class App extends Component {
   matchesComponent = () => {
     return (
       <Matches
-        loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         userData={(this.state.response !== undefined) ? this.state.response : []}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1}
         setMatchesList={this.getMyMatches.bind(this)}
         matches={this.state.matches}
-        response={this.state.response}
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
@@ -189,20 +173,29 @@ export default class App extends Component {
       });
   }
 
-  switchTest(text) {
+  checkLogin(authPath) {
     if(this.state.loggedIn === true) {
-      switch(text) {
+      switch(authPath) {
         case "/main":
           return this.mainComponent();
         case "/profile":
           return this.profileComponent();
-        default:
+        case "/matches":
           return this.matchesComponent();
+        default:
+          return (<Redirect to="/main"/>);
       }
     }
 
     else {
-      return (<Redirect to="/"/>);
+      switch(authPath) {
+        case "/":
+          return this.landingComponent();
+        case "/signup":
+          return this.signupComponent();
+        default:
+          return (<Redirect to="/"/>);
+      }
     }
   }
 
@@ -213,13 +206,13 @@ export default class App extends Component {
           <div id="wrapper">
             <Route render={() => this.userStatusComponent()}></Route>
             <Switch>
-              <Route path="/" exact render={() => this.landingComponent()}></Route>
+              <Route path="/" exact render={() => this.checkLogin("/")}></Route>
+              <Route path="/signup" render={() => this.checkLogin("/signup")}></Route>
               <Route path="/about" component={About}></Route>
-              <Route path="/signup" render={() => this.signupComponent()}></Route>
 
-              <Route path="/main" render={() => this.switchTest("/main")}></Route>
-              <Route path="/profile" render={() => this.switchTest("/profile")}></Route>
-              <Route path="/matches" render={() => this.switchTest("/matches")}></Route>
+              <Route path="/main" render={() => this.checkLogin("/main")}></Route>
+              <Route path="/profile" render={() => this.checkLogin("/profile")}></Route>
+              <Route path="/matches" render={() => this.checkLogin("/matches")}></Route>
             </Switch>
           </div>
         </Router>
