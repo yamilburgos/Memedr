@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../App.css';
 
 import Match from './match';
-
+// this is where the real work of making the matches happpend. the matchs data gets mapped to the match component the match component is created for each matched user
 export default class MatchesList extends Component {
     render() {
         return (
