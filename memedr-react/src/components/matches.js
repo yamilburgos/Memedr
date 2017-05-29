@@ -28,6 +28,8 @@ export default class Matches extends Component {
     return (
       <div className="bigBorder">
         <div className="tempBorder">
+
+
           <div className="navButtons">
             <NavLink to="/profile"><button className="btn btn-info" type="submit">My Profile</button></NavLink>&nbsp;&nbsp;
             <NavLink to="/main"><button className="btn btn-info" type="submit">Pick Memes</button></NavLink>

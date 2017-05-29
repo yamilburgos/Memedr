@@ -9,6 +9,9 @@ body{
 ul{
     list-style: none;
 }
+p {
+    font-size: 15px;
+}
 
 .centerText {
     text-align: center;
@@ -156,17 +159,20 @@ ul{
     margin-top: 10px;
     padding-left: 5px;
 }
-#updateDeleteButtons {
+.updateDeleteDiv {
+    display:flex;
     position:relative;
-    width: 150px;
+    width: 350px;
     margin:0;
     padding:0;
-    left:110%;
-    top:-114%;
+    left:-355px;
+    top:-50px;
+    transition:.1s;
 }
 #updateDeleteButtons button {
     margin-top: 15px;
     width:150px;
+    margin-left:15px;
 }
 
 .profileImage {
@@ -218,6 +224,7 @@ ul{
 #aboutMemedrDiv p {
    margin:0;
    padding:0;
+   font-size:19px;
 }
 #aboutMemedrDiv .title {
    font-size:40px;
@@ -321,7 +328,7 @@ ul{
     color:white;
     margin:0;
     padding:3%;
-    padding-top:25px;
+    padding-top:13px;
     font-weight: 300;
 }
 #matchUserStats {
@@ -332,7 +339,9 @@ ul{
 #matchesEmail {
     color: #019B85;
     font-weight: 300;
-    font-size:18px;
+    font-size:20px;
+    margin-top: 0;
+
 }
 
 
@@ -346,7 +355,7 @@ ul{
     margin-bottom: 0;
     padding:15px 20px 0 20px;
     transition:.3s;
-    height: 460px;
+    height: 440px;
 }
 .signUpDiv input, select {
     display:flex;
@@ -413,7 +422,6 @@ input[type='checkbox'] {
     }
     /* PROFILE */
 
-
     .profileContainerSecondDiv {
         display:flex;
         flex-direction: column; 
@@ -434,27 +442,14 @@ input[type='checkbox'] {
         font-size: 20px;
         width:225px;
     }
-    #profileInfoDiv p {
-        width:225;
-    }
-    #profileInfoDiv input {
-        display:flex;
-        background-color: rgba(0,0,0,.2);
-        text-align:center;
-        min-width:10px;
-        color:#01abaa;  
-        border:none;
-        margin-top: 10px;
-    }
-    #updateDeleteButtons {
+   
+    .updateDeleteDiv {
         /*position:relative;*/
-        display: flex;
-        flex direction: row;
-        align-content: center;
         width: 400px;
         margin:0;
-        padding:0;
+        margin-top:55px;
         left:-5%;
+        transition:.3s;
         
     }
     #updateDeleteButtons button {
@@ -464,15 +459,23 @@ input[type='checkbox'] {
         width:150px;
     }
 
-    .profileImage {
-        max-width: 300px;
-        max-height: 300px;
-        border: 2px dashed black;
-    }
     .profileContainerFirstDiv  {
         height: 850px;
         transition: 1S;
     }
-    
+    /* MAIN PAGE*/
+    .memeImage {
+        max-width: 320px;
+        max-height: 400px;
+        border:solid black 2px;
+        transition:.3s;
+    }
+    .memeDiv {
+        padding-top:10px;
+    }
+    .memeBorder {
+        height:475px;
+
+    }
 }
 
