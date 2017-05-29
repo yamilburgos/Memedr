@@ -11,8 +11,8 @@ export default class Match extends Component {
 
     handleDelete(e) {
         let username = e.target.getAttribute('alt');
-        console.log(username);
-        this.props.deleteMatch(username);
+        let id = this.props.response.id;
+        this.props.deleteMatch(username, id);
     }
 
     renderMatches() {

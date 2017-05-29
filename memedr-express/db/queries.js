@@ -66,7 +66,7 @@ function getMyMatches(req, res, next){
                   .then((data) => { 
                     res.status(200).json({ status: `Users that have the same likes as User ${userID}`, data }); 
                     
-                    db.task(t=>t.batch(data.map(r=>t.none('INSERT INTO users_matches(userid, username, gender, location, profile_image, email, age, matched_with)' + 'values($1, $2, $3, $4, $5, $6, $7, $8)', [r.id, r.username, r.gender, r.location, r.profile_image, r.email, r.age, userID]))))
+                    db.task(t=>t.batch(data.map(r=>t.none('INSERT INTO users_matches(userid, username, meme_in_common, gender, location, profile_image, email, age, who_clicked_matches)' + 'values($1, $2, $3, $4, $5, $6, $7, $8, $9)', [r.id, r.username, memeID, r.gender, r.location, r.profile_image, r.email, r.age, userID]))))
                             .then((data) => { console.log("Matches have hit the database"); })
                             .catch((err) => { return next(err); });
                   })
@@ -174,7 +174,12 @@ function deleteAccount(req, res, next){
 
 // THIS FUNCTION WILL DELETE A MATCH
 function deleteMyMatch(req, res, next){
+    let userID = parseInt(req.params.id);
+    let userName = req.body.username;
 
+    db.result('DELETE FROM users_matches WHERE who_clicked_matches = $1 AND username = $2', [userID, userName])
+      .then((data) => { res.status(200).json({ status: `${userName} successfully deleted from ${userID}'s matches.` }); })
+      .catch((err) => { return next(err); });
 }
 
 module.exports = { getMemes, requestAPI, deleteMemeFromCache, likeMeme, unLikeMeme,

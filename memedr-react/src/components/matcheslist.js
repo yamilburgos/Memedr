@@ -19,6 +19,7 @@ export default class MatchesList extends Component {
                             age={element.age}
                             deleteMatch={this.props.deleteMatch} 
                             dataSlideTo={index}
+                            response={this.props.response}
                         />
                     )
                 })}

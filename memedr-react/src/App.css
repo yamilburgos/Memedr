@@ -10,6 +10,10 @@ ul{
     list-style: none;
 }
 
+.centerText {
+    text-align: center;
+}
+
 /*NAV BUTTONS*/
 .navButtons {
     margin-top: 0px;
@@ -150,6 +154,7 @@ ul{
     color:#01abaa;  
     border:none;
     margin-top: 10px;
+    padding-left: 5px;
 }
 #updateDeleteButtons {
     position:relative;
@@ -178,10 +183,13 @@ ul{
 /* PROFILE IMAGE ON MATCHES PAGE */
 .profileImageMatches {
     max-width: 300px;
-    max-height: 200px;
+    height: 200px;
     border: 2px dashed black;
 }
 
+.profileImageMatches:hover {
+    border: 2px dashed red;
+}
 
 /* ABOUT */
 
