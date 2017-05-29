@@ -18,29 +18,29 @@ export default class Main extends Component {
   likeMeme(id, memeid) {
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
       let x = element.getAttribute('id').split('_')[1];
-
+// hide all the memes that are not the one selected 
       if (x !== memeid) {
         element.parentNode.setAttribute("class", "hideMemeDiv");
       }
     });
-
+// post to the like end point the user name and meme id the like together on the like table
     axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
       id: id,
       memeid: memeid
     }).catch((err) => { return err });
   }
-
+// when unlike is clicked, it un hides the hidden memes
   unLikeMeme(id, memeid) {
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
       element.parentNode.removeAttribute("class", "hideMemeDiv");
     });
-
+// this makes a call to the unlike endpoint 
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
       id: id,
       memeid: memeid
     }).catch((err) => { return err });
   }
-
+// from the main page we can link to out profile and our matches we instanite the meme list component and pass it props
   render() {
     return (
       <div className="bigBorder">
