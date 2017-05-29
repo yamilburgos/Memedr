@@ -31,7 +31,7 @@ export default class Landing extends Component {
   render() {
     return (
       <div className="bigBorder container">
-          <div className="tempBorder">
+          <div>
             {this.renderLogInData()}
             <br />
             <div className="navButtons aboutMemedr">
