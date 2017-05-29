@@ -9,7 +9,7 @@ export default class Landing extends Component {
       this.refs.password.value
     );
   }
-
+// check user data takes the data the in the user name and password divs passes it to check user data method  uses log user name method that was passed into this component - which is called when user clicks log in 
   render() {
     return (
       <div className="bigBorder container">
@@ -30,3 +30,4 @@ export default class Landing extends Component {
     );
   }
 }
+// this also contains a nav link to our about route
