@@ -27,9 +27,9 @@ export default class Match extends Component {
                 <div>
                     <div id="matchesDiv">
                         <h1 id="matchUserName">{this.props.username}</h1> 
-                        <h3 id="matchUserStats">{this.props.age}, {this.props.gender}, {this.props.location}</h3>
+                        <h4 id="matchUserStats">{this.props.age} / {this.props.gender} / {this.props.location}</h4>
                         <p><img id="matchesId"src={this.props.profile_image} alt={this.props.username} className="profileImageMatches" onClick={this.handleDelete} /></p>
-                        <p id="matchesEmail">{this.props.email}</p>
+                        <h4>{this.props.email}</h4>
                     </div>
                 </div>
             )
