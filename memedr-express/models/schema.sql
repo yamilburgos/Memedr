@@ -14,10 +14,10 @@ CREATE TABLE IF NOT EXISTS users(
     age INTEGER NOT NULL,
     active BOOLEAN DEFAULT TRUE,
     CHECK (age>=17),
-    CHECK (gender = 'male' OR gender = 'female'),
-    CHECK (location = 'queens' OR location = 'manhattan' 
-        OR location = 'staten island' OR location = 'brooklyn' 
-        OR location = 'bronx')
+    CHECK (gender = 'Male' OR gender = 'Female'),
+    CHECK (location = 'Queens' OR location = 'Manhattan' 
+        OR location = 'Staten Island' OR location = 'Brooklyn' 
+        OR location = 'Bronx')
 );
 
 CREATE TABLE IF NOT EXISTS subtitles(
@@ -41,12 +41,12 @@ CREATE TABLE IF NOT EXISTS liked_memes(
 
 CREATE TABLE IF NOT EXISTS users_matches(
     users_matches_id BIGSERIAL PRIMARY KEY NOT NULL,
-    userid INTEGER NOT NULL,
-    username TEXT NOT NULL,
-    gender TEXT NOT NULL,
-    location TEXT NOT NULL,
+    userid INTEGER NOT NULL UNIQUE,
+    username VARCHAR(30) NOT NULL UNIQUE,
+    gender VARCHAR(6) NOT NULL,
+    location VARCHAR(200) NOT NULL,
     profile_image TEXT NOT NULL,
-    email TEXT NOT NULL,
+    email VARCHAR(200) NOT NULL,
     age INTEGER NOT NULL,
     matched_with INTEGER NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(id)

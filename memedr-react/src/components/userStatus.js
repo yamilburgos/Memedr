@@ -4,7 +4,7 @@ import '../App.css';
 export default class UserStatus extends Component {
   renderLogInData() {
     if (this.props.loggedIn === true) {
-      return <button onClick={() => this.props.logout()}>LogOut</button>;
+      return <button className="btn btn-danger btn-xs" onClick={() => this.props.logout()}>Logout</button>;
     }
   }
 

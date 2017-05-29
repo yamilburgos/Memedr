@@ -45,6 +45,88 @@ export default class Profile extends Component {
     }
   }
 
+  renderGender(){
+    if ( this.props.userData.gender  === "Male") {
+      return (
+      <select ref="gender">
+        <option defaultValue value="Male">{this.props.userData.gender}</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      )
+    } else if ( this.props.userData.gender  === "Female") {
+      return (
+      <select ref="gender">
+        <option defaultValue value="Female">{this.props.userData.gender}</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
+      </select>
+      )
+    } else {
+      return (
+      <select ref="gender">
+        <option defaultValue value="Other">{this.props.userData.gender}</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      )
+    }
+  }
+
+  renderLocations(){
+    if ( this.props.userData.location  === "Queens") {
+      return (
+        <select ref="location">
+          <option defaultValue value="Queens">{this.props.userData.location}</option>
+          <option value="Manhattan">Manhattan</option>
+          <option value="Staten Island">Staten Island</option>
+          <option value="Brookyln">Brooklyn</option>
+          <option value="Bronx">Bronx</option>
+        </select>
+      )
+    } else if ( this.props.userData.location  === "Manhattan") {
+      return (
+      <select ref="location">
+          <option value="Queens">Queens</option>
+          <option defaultValue value="Manhattan">{this.props.userData.location}</option>
+          <option value="Staten Island">Staten Island</option>
+          <option value="Brookyln">Brooklyn</option>
+          <option value="Bronx">Bronx</option>
+        </select>
+      )
+    } else if ( this.props.userData.location  === "Staten Island") {
+      return (
+      <select ref="location">
+          <option value="Queens">Queens</option>
+          <option value="Manhattan">Manhattan</option>
+          <option defaultValue value="Staten Island">{this.props.userData.location}</option>
+          <option value="Brookyln">Brooklyn</option>
+          <option value="Bronx">Bronx</option>
+        </select>
+      )
+    } else if ( this.props.userData.location  === "Brooklyn") {
+      return (
+      <select ref="location">
+          <option value="Queens">Queens</option>
+          <option value="Manhattan">Manhattan</option>
+          <option value="Staten Island">Staten Island</option>
+          <option defaultValue value="Brookyln">{this.props.userData.location}</option>
+          <option value="Bronx">Bronx</option>
+        </select>
+      )
+    } else {
+      return (
+      <select ref="location">
+          <option value="Queens">Queens</option>
+          <option value="Manhattan">Manhattan</option>
+          <option value="Staten Island">Staten Island</option>
+          <option value="Brookyln">Brooklyn</option>
+          <option defaultValue value="Bronx">{this.props.userData.location}</option>
+        </select>
+      )
+    }
+  }
+
   render() {
     return (
        <div className=" profileContainerFirstDiv bigBorder">
@@ -61,16 +143,8 @@ export default class Profile extends Component {
                 <p>profile image link <input type="url" ref="profile_image" defaultValue={this.props.userData.profile_image} /> </p> 
                 <p>username <input type="text" ref="username" defaultValue={this.props.userData.username} /></p>
                 <p>email <input type="email" ref="email" defaultValue={this.props.userData.email} /></p>
-                <p>location <input type="text" ref="location" defaultValue={this.props.userData.location} /></p>
-                <p>gender {/*<input type="text" ref="gender" defaultValue={this.props.userData.gender} />*/}
-                {/*if(){}
-*/}
-
-                <select ref="gender">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select></p>
+                <p>location {this.renderLocations()}</p>
+                <p>gender {this.renderGender()}</p>
                 <p>age <input type="number" ref="age" defaultValue={this.props.userData.age} min="18" max="100" /></p>
                 <br />
                 <br />

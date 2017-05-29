@@ -30,7 +30,7 @@ export default class SignUp extends Component {
         <p>location <select ref="location">
           <option value="Queens">Queens</option>
           <option value="Manhattan">Manhattan</option>
-          <option value="Staten island">Staten Island</option>
+          <option value="Staten Island">Staten Island</option>
           <option value="Brookyln">Brooklyn</option>
           <option value="Bronx">Bronx</option>
         </select></p>
@@ -41,7 +41,7 @@ export default class SignUp extends Component {
           <option value="Other">Other</option>
         </select></p>
 
-        <p>profile image link </p> <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" />
+        <p>profile image link <input type="url" ref="image" defaultValue="https://memedr.herokuapp.com/images/default.jpg" /></p>
         <p>age ( must be 18 + ) <input type="number" ref="age"  min="18" max="100" /></p>
         <p>Did you read the Terms of Service? <input type="checkbox" /></p>
 

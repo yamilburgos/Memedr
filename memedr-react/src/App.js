@@ -128,6 +128,7 @@ export default class App extends Component {
       }).catch(function (error) {
         console.log(error);
       });
+      //window.location.href = "https://memedrapp.herokuapp.com/";
   }
 
   loggingUserName(submittedName, submittedPassword) {
