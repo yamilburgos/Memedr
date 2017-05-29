@@ -53,7 +53,6 @@ export default class App extends Component {
   landingComponent = () => {
     return (
       <Landing
-        loggedIn={this.state.loggedIn}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         logUserName={this.loggingUserName.bind(this)}
         clearError={this.toggleErrorMessage.bind(this)}
@@ -64,7 +63,6 @@ export default class App extends Component {
   signupComponent = () => {
     return (
       <SignUp
-        loggedIn={this.state.loggedIn}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         setUserName={this.settingUserName.bind(this)}
         clearError={this.toggleErrorMessage.bind(this)}
@@ -182,13 +180,22 @@ export default class App extends Component {
           return this.mainComponent();
         case "/profile":
           return this.profileComponent();
-        default:
+        case "/matches":
           return this.matchesComponent();
+        default:
+          return (<Redirect to="/main"/>);
       }
     }
 
     else {
-      return (<Redirect to="/"/>);
+      switch(authPath) {
+        case "/":
+          return this.landingComponent();
+        case "/signup":
+          return this.signupComponent();
+        default:
+          return (<Redirect to="/"/>);
+      }
     }
   }
 
@@ -199,9 +206,9 @@ export default class App extends Component {
           <div id="wrapper">
             <Route render={() => this.userStatusComponent()}></Route>
             <Switch>
-              <Route path="/" exact render={() => this.landingComponent()}></Route>
+              <Route path="/" exact render={() => this.checkLogin("/")}></Route>
+              <Route path="/signup" render={() => this.checkLogin("/signup")}></Route>
               <Route path="/about" component={About}></Route>
-              <Route path="/signup" render={() => this.signupComponent()}></Route>
 
               <Route path="/main" render={() => this.checkLogin("/main")}></Route>
               <Route path="/profile" render={() => this.checkLogin("/profile")}></Route>
