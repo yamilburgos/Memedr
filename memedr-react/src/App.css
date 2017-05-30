@@ -352,10 +352,11 @@ p {
 .signUpDiv {
     flex-direction:column;
     width:450px;
+    margin-top:0;
     margin-bottom: 0;
-    padding:15px 20px 0 20px;
+    padding:10px 20px 0 20px;
     transition:.3s;
-    height: 440px;
+    height: 450px;
 }
 .signUpDiv input, select {
     display:flex;
