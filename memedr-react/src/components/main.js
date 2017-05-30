@@ -23,18 +23,25 @@ export default class Main extends Component {
         element.parentNode.setAttribute("class", "hideMemeDiv");
       }
     });
-// post to the like end point the user name and meme id the like together on the like table
+
+    this.props.changeView(memeid, false);
+
+    // post to the like end point the user name and meme id the like together on the like table
     axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
       id: id,
       memeid: memeid
     }).catch((err) => { return err });
   }
-// when unlike is clicked, it un hides the hidden memes
+
+  // when unlike is clicked, it un hides the hidden memes
   unLikeMeme(id, memeid) {
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
       element.parentNode.removeAttribute("class", "hideMemeDiv");
     });
-// this makes a call to the unlike endpoint 
+
+    this.props.changeView(-1, true);
+
+    // this makes a call to the unlike endpoint 
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
       id: id,
       memeid: memeid
@@ -54,7 +61,10 @@ export default class Main extends Component {
             likeMeme={this.likeMeme}
             unLikeMeme={this.unLikeMeme}
             disabled={this.props.disabled}
-            toggleDisabled={this.props.toggleDisabled} />
+            toggleDisabled={this.props.toggleDisabled} 
+            chosenMeme={this.props.chosenMeme}
+            hideAll={this.props.hideAll}
+          />
         </div>
       </div>
     );
