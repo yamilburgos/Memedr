@@ -24,6 +24,8 @@ export default class Main extends Component {
       }
     });
 
+    this.props.changeView(memeid, false);
+
     axios.post("https://memedr.herokuapp.com/users/profile/like/" + id, {
       id: id,
       memeid: memeid
@@ -34,6 +36,8 @@ export default class Main extends Component {
     document.querySelectorAll('.memeDiv').forEach((element, index) => {
       element.parentNode.removeAttribute("class", "hideMemeDiv");
     });
+
+    this.props.changeView(-1, true);
 
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
       id: id,
@@ -54,7 +58,10 @@ export default class Main extends Component {
             likeMeme={this.likeMeme}
             unLikeMeme={this.unLikeMeme}
             disabled={this.props.disabled}
-            toggleDisabled={this.props.toggleDisabled} />
+            toggleDisabled={this.props.toggleDisabled} 
+            chosenMeme={this.props.chosenMeme}
+            hideAll={this.props.hideAll}
+          />
         </div>
       </div>
     );

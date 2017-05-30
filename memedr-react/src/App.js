@@ -22,7 +22,9 @@ export default class App extends Component {
       memes: [],
       matches: [{}],
       logMessage: "",
-      disabled: false
+      disabled: false,
+      chosenMeme: -1,
+      hideAll: true
     };
 
     this.toggleDisabled = this.toggleDisabled.bind(this);
@@ -47,6 +49,13 @@ export default class App extends Component {
   toggleErrorMessage() {
     this.setState({
       logMessage: ""
+    });
+  }
+
+  changeView(chosenMeme, hideAll) {
+    this.setState({ 
+      chosenMeme: chosenMeme,
+      hideAll: hideAll
     });
   }
 
@@ -78,6 +87,9 @@ export default class App extends Component {
         memes={this.state.memes}
         setMemeList={this.mainMemeList.bind(this)}
         toggleDisabled={this.toggleDisabled.bind(this)}
+        changeView={this.changeView.bind(this)}
+        chosenMeme={this.state.chosenMeme}
+        hideAll={this.state.hideAll}
       />
     );
   }
