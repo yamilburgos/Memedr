@@ -20,7 +20,7 @@ export default class App extends Component {
       loggedIn: false,
       response: [],
       memes: [],
-      matches: [{}],
+      matches: [],
       logMessage: "",
       disabled: false,
       chosenMeme: -1,
@@ -59,6 +59,12 @@ export default class App extends Component {
     });
   }
 
+  clearMatches() {
+    this.setState({
+      matches: []      
+    });
+  }
+
   // log in 
   landingComponent = () => {
     return (
@@ -91,6 +97,7 @@ export default class App extends Component {
         changeView={this.changeView.bind(this)}
         chosenMeme={this.state.chosenMeme}
         hideAll={this.state.hideAll}
+        clearMatches={this.clearMatches.bind(this)}
       />
     );
   }
@@ -111,6 +118,7 @@ export default class App extends Component {
         setMatchesList={this.getMyMatches.bind(this)}
         matches={this.state.matches}
         toggleDisabled={this.toggleDisabled.bind(this)}
+        chosenMeme={this.state.chosenMeme}
       />
     );
   }
