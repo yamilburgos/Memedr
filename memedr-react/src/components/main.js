@@ -51,7 +51,7 @@ export default class Main extends Component {
 // from the main page we can link to out profile and our matches we instanite the meme list component and pass it props
   render() {
     return (
-      <div className="bigBorder">
+      <div className="memeBorder bigBorder">
         <div className="tempBorder">
           <div className="navButtons">
             <NavLink to="/profile"><button className="btn btn-info" type="submit">My Profile</button></NavLink>&nbsp;
