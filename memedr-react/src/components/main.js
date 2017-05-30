@@ -40,6 +40,7 @@ export default class Main extends Component {
     });
 
     this.props.changeView(-1, true);
+    this.props.clearMatches();
 
     // this makes a call to the unlike endpoint 
     axios.put("https://memedr.herokuapp.com/users/profile/unlike/" + id, {
