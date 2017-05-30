@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
 import { BrowserRouter as Route, Redirect, NavLink } from 'react-router-dom';
 import '../App.css';
-
+// the method new user data uses the methosid passed down - serUserName - that takes the refes of the input as array values, passes them back up and makes an axios call to store them in the usere db   
 export default class SignUp extends Component {
   newUserData() {
     this.props.setUserName([
@@ -14,7 +14,7 @@ export default class SignUp extends Component {
       this.refs.age.value
     ]);
   }
-
+// the button create account runs the this.newUserData method
   render() {
     return (
       <div>
