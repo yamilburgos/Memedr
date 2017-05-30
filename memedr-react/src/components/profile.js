@@ -1,15 +1,9 @@
 import React, { Component } from 'react'; // eslint-disable-next-line
-import { Route, NavLink, Redirect } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
 
 export default class Profile extends Component {
-  checkUserStatus() {
-    if (!this.props.loggedIn) {
-      return <Redirect to="/" />;
-    }
-  }
-
   handleDeleteAccount() {
     var x = window.confirm("Are you sure you want to delete your account?");
     if (x) {
@@ -25,13 +19,13 @@ export default class Profile extends Component {
       window.location.href = "https://memedrapp.herokuapp.com/";
     }
   }
-
+// inorder to updata account usere has to be logged out - when they log vback in they will see their updates - we uses a conform window to make sure they wated to make their changes
   handleUpdateAccount() {
     var x = window.confirm("Are you sure you want to update your account? You'll need to re login.");
     if (x) {
       window.alert("Account Updated");
       let id = this.props.userData.id;
-
+// here we take all the values in all the inputs and send them back to the database
       axios.put("https://memedr.herokuapp.com/users/profile/update/" + id, {
         id: id,
         updatedUsername: this.refs.username.value,
@@ -44,7 +38,7 @@ export default class Profile extends Component {
       window.location.href = "https://memedrapp.herokuapp.com/";
     }
   }
-
+// since gender is in a drop down the folowing code had a condition for Male Female and Other
   renderGender(){
     if ( this.props.userData.gender  === "Male") {
       return (
@@ -72,7 +66,7 @@ export default class Profile extends Component {
       )
     }
   }
-
+// this is like the gender selection - s separate conditions is made for each loaction
   renderLocations(){
     if ( this.props.userData.location  === "Queens") {
       return (
@@ -126,7 +120,7 @@ export default class Profile extends Component {
       )
     }
   }
-
+// since the userprofile data object was sent into profile component - it attributes can be assigned to differnt areas here like userData>profile_image or userData.email | we also placed the buttons to delete a users accoutn and a button to trigger the update here
   render() {
     return (
        <div className=" profileContainerFirstDiv bigBorder">
@@ -135,7 +129,6 @@ export default class Profile extends Component {
           <NavLink to="/matches"><button className="btn btn-info" type="submit">My Matches</button></NavLink>
         </div>
         <div className="profileContainerSecondDiv profileContainer container">
-          {this.checkUserStatus()}
             <div id="profileImageDiv">
                 <img src={this.props.userData.profile_image} className="profileImage" alt={this.props.userData.username}></img>
             </div>
@@ -148,7 +141,7 @@ export default class Profile extends Component {
                 <p>age <input type="number" ref="age" defaultValue={this.props.userData.age} min="18" max="100" /></p>
                 <br />
                 <br />
-              <div id="updateDeleteButtons">
+              <div id="updateDeleteButtons" className="updateDeleteDiv">
                 <button className="btn btn-primary"onClick={this.handleUpdateAccount.bind(this)}> update account </button>
                 <button className="btn btn-danger" onClick={this.handleDeleteAccount.bind(this)}> delete account </button>
               </div>

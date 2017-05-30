@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 
@@ -22,102 +22,99 @@ export default class App extends Component {
       memes: [],
       matches: [{}],
       logMessage: "",
-      disabled: false
+      disabled: false,
+      chosenMeme: -1,
+      hideAll: true
     };
 
     this.toggleDisabled = this.toggleDisabled.bind(this);
     this.getMyMatches = this.getMyMatches.bind(this);
   }
-
+// method names that include 'component' are creating methods that include the component and the states passed down into them - this is necessary for react router
   userStatusComponent = () => {
     return (
       <UserStatus
         loggedIn={this.state.loggedIn}
-        disabled={this.state.disabled}
-        signUp={<NavLink to="/signup">Sign Up</NavLink>}
         logout={this.logoutUserName.bind(this)}
       />
     );
   }
-
+// this sets the 'disabled' for the like and unlike buttons
   toggleDisabled() {
     this.setState({
       disabled: !this.state.disabled
     });
   }
-
+// when a user signs in with invalid or missing user info
   toggleErrorMessage() {
     this.setState({
       logMessage: ""
     });
   }
 
+  changeView(chosenMeme, hideAll) {
+    this.setState({ 
+      chosenMeme: chosenMeme,
+      hideAll: hideAll
+    });
+  }
+
+  // log in 
   landingComponent = () => {
     return (
       <Landing
-        loggedIn={this.state.loggedIn}
-        disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         logUserName={this.loggingUserName.bind(this)}
         clearError={this.toggleErrorMessage.bind(this)}
       />
     );
   }
-
+// sign up
   signupComponent = () => {
     return (
       <SignUp
-        loggedIn={this.state.loggedIn}
-        disabled={this.state.disabled}
         errorMessage={(this.state.logMessage !== undefined) ? this.state.logMessage : ""}
         setUserName={this.settingUserName.bind(this)}
         clearError={this.toggleErrorMessage.bind(this)}
       />
     );
   }
-
+// the page where auser likes the memes
   mainComponent = () => {
     return (
       <Main
-        loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         userData={(this.state.response !== undefined) ? this.state.response : []}
         memes={this.state.memes}
-        response={this.state.response}
         setMemeList={this.mainMemeList.bind(this)}
         toggleDisabled={this.toggleDisabled.bind(this)}
+        changeView={this.changeView.bind(this)}
+        chosenMeme={this.state.chosenMeme}
+        hideAll={this.state.hideAll}
       />
     );
   }
-
+// user profile
   profileComponent = () => {
     return (
       <Profile
-        loggedIn={this.state.loggedIn}
-        response={this.state.response}
-        disabled={this.state.disabled}
-        toggleDisabled={this.toggleDisabled}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1}
         userData={(this.state.response !== undefined) ? this.state.response : []}
       />
     );
   }
-
+// matches
   matchesComponent = () => {
     return (
       <Matches
-        loggedIn={this.state.loggedIn}
         disabled={this.state.disabled}
         userData={(this.state.response !== undefined) ? this.state.response : []}
-        userID={(this.state.response !== undefined) ? this.state.response.id : 1}
         setMatchesList={this.getMyMatches.bind(this)}
         matches={this.state.matches}
-        response={this.state.response}
         toggleDisabled={this.toggleDisabled.bind(this)}
       />
     );
   }
-
+// log out - send axios call to log out user
   logoutUserName() {
     axios.get("https://memedr.herokuapp.com/auth/logout")
       .then((response) => {
@@ -129,9 +126,8 @@ export default class App extends Component {
       }).catch(function (error) {
         console.log(error);
       });
-      //window.location.href = "https://memedrapp.herokuapp.com/";
   }
-
+// logs the user in - sends their user name and password and if valid sends back an object with the users data and sets the state of logged in 
   loggingUserName(submittedName, submittedPassword) {
     axios.post("https://memedr.herokuapp.com/auth/login", {
       username: submittedName,
@@ -146,7 +142,7 @@ export default class App extends Component {
       console.log(error);
     });
   }
-
+// posts user data on sign up 
   settingUserName(signupDataArray) {
     axios.post("https://memedr.herokuapp.com/auth/register", {
       username: signupDataArray[0],
@@ -166,7 +162,7 @@ export default class App extends Component {
       console.log(error);
     });
   }
-
+// returns an object with the memes stored in getMemes end point
   mainMemeList() {
     axios.get("https://memedr.herokuapp.com/getMemes")
       .then((response) => {
@@ -177,22 +173,45 @@ export default class App extends Component {
         console.log(error);
       });
   }
-
+// returns an object with the users in patches stored in matches end point
   getMyMatches() {
-    //let id = this.props.userID;
     let id = this.state.response.id;
-
     axios.get("https://memedr.herokuapp.com/users/profile/matches/" + id, {id})
-      .then((res) => {
-        //let matches = res.data.data;
+      .then((response) => {
         this.setState({ 
-          matches: res.data.data 
+          matches: response.data.data 
         }); 
-      }).catch((err) => { 
-        console.log(err); 
+      }).catch((error) => { 
+        console.log(error); 
       });
   }
+// the following selects what links lead to whick routes baseed on if a user is logged in or not
+  checkLogin(authPath) {
+    if(this.state.loggedIn === true) {
+      switch(authPath) {
+        case "/main":
+          return this.mainComponent();
+        case "/profile":
+          return this.profileComponent();
+        case "/matches":
+          return this.matchesComponent();
+        default:
+          return (<Redirect to="/main"/>);
+      }
+    }
 
+    else {
+      switch(authPath) {
+        case "/":
+          return this.landingComponent();
+        case "/signup":
+          return this.signupComponent();
+        default:
+          return (<Redirect to="/"/>);
+      }
+    }
+  }
+// here we use react router to create our routes, run through the log in check (immediately above) and if logged in serve up the component methods
   render() {
     return (
       <div className="App-header">
@@ -200,12 +219,13 @@ export default class App extends Component {
           <div id="wrapper">
             <Route render={() => this.userStatusComponent()}></Route>
             <Switch>
-              <Route path="/" exact render={() => this.landingComponent()}></Route>
+              <Route path="/" exact render={() => this.checkLogin("/")}></Route>
+              <Route path="/signup" render={() => this.checkLogin("/signup")}></Route>
               <Route path="/about" component={About}></Route>
-              <Route path="/signup" render={() => this.signupComponent()}></Route>
-              <Route path="/profile" render={() => this.profileComponent()}></Route>
-              <Route path="/main" render={() => this.mainComponent()}></Route>
-              <Route path="/matches" render={() => this.matchesComponent()}></Route>
+
+              <Route path="/main" render={() => this.checkLogin("/main")}></Route>
+              <Route path="/profile" render={() => this.checkLogin("/profile")}></Route>
+              <Route path="/matches" render={() => this.checkLogin("/matches")}></Route>
             </Switch>
           </div>
         </Router>

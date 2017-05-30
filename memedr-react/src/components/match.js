@@ -14,7 +14,7 @@ export default class Match extends Component {
         let id = this.props.response.id;
         this.props.deleteMatch(username, id);
     }
-
+// if the user has no matches well display the h1 message - if they do then the props send to this component are rendered here - this is the profile data of a matching user 
     renderMatches() {
         if (this.props.username === undefined) {
             return (
@@ -29,7 +29,7 @@ export default class Match extends Component {
                         <h1 id="matchUserName">{this.props.username}</h1> 
                         <h4 id="matchUserStats">{this.props.age} / {this.props.gender} / {this.props.location}</h4>
                         <p><img id="matchesId"src={this.props.profile_image} alt={this.props.username} className="profileImageMatches" onClick={this.handleDelete} /></p>
-                        <h4>{this.props.email}</h4>
+                        <h4 id="matchesEmail">{this.props.email}</h4>
                     </div>
                 </div>
             )

@@ -43,7 +43,9 @@ export default class Meme extends Component {
         } else {
             return (
                 <div className = "likeUnlikeDiv">
+
                     <button className="btn btn-danger" id={this.props.memeID} onClick={(e) => {this.handleUnLike(e)}}>UnLike</button>
+
                 </div>
             )
         }
