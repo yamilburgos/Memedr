@@ -412,7 +412,7 @@ input[type='checkbox'] {
     100%    { opacity:.5; }
 }
 @media screen and (max-width: 625px) {
-    #title {
+    .title {
         font-size: 75px;
     }
     .bigBorder {
@@ -447,11 +447,15 @@ input[type='checkbox'] {
    
     .updateDeleteDiv {
         /*position:relative;*/
+        display:flex;
+        flex-direction: column;
         width: 400px;
         margin:0;
         margin-top:65px;
         left:-5%;
         transition:.3s;
+        margin-left:65px;
+       
         
     }
     #updateDeleteButtons button {
@@ -481,6 +485,16 @@ input[type='checkbox'] {
     /* Matches */
     .matchesBorder {
         height:480px;
+    }
+    .profileImage{
+        width:245px;
+        margin-left:20px;
+    }
+    .memeImage {
+        width:245px;
+    }
+    .profileImageMatches {
+        width: 245px;
     }
 }
 
