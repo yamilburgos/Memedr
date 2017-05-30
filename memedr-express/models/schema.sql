@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS api_cache(
 
 CREATE TABLE IF NOT EXISTS liked_memes(
     liked_meme_id BIGSERIAL PRIMARY KEY NOT NULL,
-    userid INTEGER NOT NULL,
+    userid INTEGER NOT NULL UNIQUE,
     memeid INTEGER NOT NULL,
     FOREIGN KEY (userid) REFERENCES users(id),
     FOREIGN KEY (memeid) REFERENCES api_cache(id)
