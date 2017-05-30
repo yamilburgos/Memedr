@@ -81,8 +81,8 @@ export default class Profile extends Component {
     } else if ( this.props.userData.location  === "Manhattan") {
       return (
       <select ref="location">
-          <option value="Queens">Queens</option>
           <option defaultValue value="Manhattan">{this.props.userData.location}</option>
+          <option value="Queens">Queens</option>
           <option value="Staten Island">Staten Island</option>
           <option value="Brookyln">Brooklyn</option>
           <option value="Bronx">Bronx</option>
@@ -91,9 +91,9 @@ export default class Profile extends Component {
     } else if ( this.props.userData.location  === "Staten Island") {
       return (
       <select ref="location">
+          <option defaultValue value="Staten Island">{this.props.userData.location}</option>
           <option value="Queens">Queens</option>
           <option value="Manhattan">Manhattan</option>
-          <option defaultValue value="Staten Island">{this.props.userData.location}</option>
           <option value="Brookyln">Brooklyn</option>
           <option value="Bronx">Bronx</option>
         </select>
@@ -101,21 +101,21 @@ export default class Profile extends Component {
     } else if ( this.props.userData.location  === "Brooklyn") {
       return (
       <select ref="location">
+          <option defaultValue value="Brookyln">{this.props.userData.location}</option>
           <option value="Queens">Queens</option>
           <option value="Manhattan">Manhattan</option>
           <option value="Staten Island">Staten Island</option>
-          <option defaultValue value="Brookyln">{this.props.userData.location}</option>
           <option value="Bronx">Bronx</option>
         </select>
       )
     } else {
       return (
       <select ref="location">
+          <option defaultValue value="Bronx">{this.props.userData.location}</option>
           <option value="Queens">Queens</option>
           <option value="Manhattan">Manhattan</option>
           <option value="Staten Island">Staten Island</option>
           <option value="Brookyln">Brooklyn</option>
-          <option defaultValue value="Bronx">{this.props.userData.location}</option>
         </select>
       )
     }
