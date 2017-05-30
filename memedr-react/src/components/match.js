@@ -14,7 +14,7 @@ export default class Match extends Component {
         let id = this.props.response.id;
         this.props.deleteMatch(username, id);
     }
-
+// if the user has no matches well display the h1 message - if they do then the props send to this component are rendered here - this is the profile data of a matching user 
     renderMatches() {
         if (this.props.username === undefined) {
             return (
