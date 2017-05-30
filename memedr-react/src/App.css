@@ -367,6 +367,7 @@ p {
     padding:0;
     width: 200px;
     line-height: 15px;
+    padding-left: 5px;
 }
 .signUpDiv p {
     margin-bottom:10px;
