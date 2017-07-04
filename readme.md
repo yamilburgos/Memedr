@@ -1,9 +1,16 @@
 # Memedr
+> An app that brings all kinds of people together based on their choice of memes.
+
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+
+	https://memedrapp.herokuapp.com
+
 Memedr is a app that brings people together based on their choice of memes. A user is presented with a meme, they can choose if they like it or not. If they like a meme their choice goes into the database. After selecting a certain amount of memes(to be decided) they will be matched with another user who has liked a certain percentage of those same memes(also to be decided).
 
-### LIVE: 
+![](./readme-assets/demo.png)
 
-### CRUD FUNCTIONALITY
+## CRUD FUNCTIONALITY
 1. CREATE
     * User Profiles and Meme selections
 2. READ
@@ -13,14 +20,14 @@ Memedr is a app that brings people together based on their choice of memes. A us
 4. DELETE
     * User Profiles and Meme selections
 
-### Git Projects
+## Git Projects
 https://git.generalassemb.ly/GainorB/memedr/projects/1
 
-### API
+## API
 1. Gify API
 2. imgflip API 
 
-### MVP
+## MVP
 1. Theme
 2. User Authentication
     * Update Profile
@@ -35,10 +42,7 @@ https://git.generalassemb.ly/GainorB/memedr/projects/1
 5. React.js
 6. Postman for Endpoint testing
 
-### DATABASE SCHEMA
-1. psql -f /memedr-express/models/schema.sql
-
-### NODE MODULES
+## NODE MODULES
 1. Passport
     * To build a User System with authentication
     * Registration Form to store User's preferences
@@ -65,22 +69,21 @@ https://git.generalassemb.ly/GainorB/memedr/projects/1
 12. CORS
     * Used to manage Cross Origin issues
 
-### WIREFRAMES
+## WIREFRAMES
 ![Wireframe](./readme-assets/1.jpg)
 ![Wireframe](./readme-assets/2.jpg)
 ![Wireframe](./readme-assets/3.jpg)
 ![Wireframe](./readme-assets/4.jpg)
 ![Wireframe](./readme-assets/5.jpg)
 
-### USER STORIES
+## USER STORIES
 1. As a user, I like to create an account and select my favorite gif.
 2. As a user, I like to be matched with other users with the same favorite.
 3. As a user, I would like to delete my favorite and choose another.
 4. As a user, I like to be able to change my username and password when needed.
 5. As a user, I like to reset my password if I were to forget it.
 
-
-### DOWNLOAD PROJECT & INSTALL
+## DOWNLOAD PROJECT & INSTALL
 1. Git clone or download this project
 2. Open up Terminal or Command line
 3. Navigate to the directory where the project was cloned or downloaded to
@@ -91,7 +94,23 @@ https://git.generalassemb.ly/GainorB/memedr/projects/1
 8. The application will run at: localhost:3000, if that port is already in use, run this command: PORT=1738 npm start
 9. This command will start the server at: localhost:1738
 
-### AUTHORS
-1. Eric
-2. Gainor
-3. Yamil
+## DATABASE SCHEMA
+1. psql -f /memedr-express/models/schema.sql
+
+## Meta
+* [Eric](https://github.com/unit57)
+* [Gainor](https://git.generalassemb.ly/GainorB)
+* [Yamil](https://github.com/yamilburgos/)
+
+## Contributing
+1. Fork it (<https://github.com/yamilburgos/Memedr/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
+
+<!-- Markdown link & img dfn's -->
+[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/datadog-metrics
+[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
